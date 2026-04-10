@@ -18,6 +18,7 @@ export default async function handler(req: Request, _context: Context) {
       const body = await req.json();
       ref = (body.ref ?? "").toString();
       phone = (body.phone ?? "").toString();
+      console.log("[botcake-fields] POST body:", JSON.stringify(body));
     } catch {
       return jsonResponse({ package: "", price: "" });
     }
@@ -32,6 +33,7 @@ export default async function handler(req: Request, _context: Context) {
   // Extract UUID from ref format: "2539956--webcakeorderid___UUID"
   const uuidMatch = ref.match(/webcakeorderid___([a-f0-9-]{36})/i);
   const orderKey = uuidMatch ? `order_${uuidMatch[1]}` : phone.replace(/\D/g, "");
+  console.log("[botcake-fields] ref:", ref, "| phone:", phone, "| orderKey:", orderKey);
 
   if (!orderKey) {
     return jsonResponse({ package: "", price: "" });

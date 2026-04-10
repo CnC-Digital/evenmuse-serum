@@ -159,11 +159,11 @@ async function submitOrder(e) {
         });
       }
 
-      // Netlify Forms — background capture for dashboard visibility
+      // Netlify Forms — use sendBeacon so it survives the page redirect
       const formEl = document.getElementById('orderForm');
-      if (formEl) {
+      if (formEl && navigator.sendBeacon) {
         const encoded = new URLSearchParams(new FormData(formEl)).toString();
-        fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: encoded }).catch(() => {});
+        navigator.sendBeacon('/', new Blob([encoded], { type: 'application/x-www-form-urlencoded' }));
       }
 
       const tyUrl = data.redirect || '/thankyou.html';
