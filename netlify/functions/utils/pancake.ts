@@ -12,6 +12,13 @@ export interface PancakeOrderPayload {
   provinceId?: string;
   districtId?: string;
   communeId?: string;
+  utmSource?: string;
+  utmMedium?: string;
+  utmCampaign?: string;
+  utmTerm?: string;
+  utmContent?: string;
+  utmId?: string;
+  landingUrl?: string;
 }
 
 const BASE_URL = "https://pos.pages.fm/api/v1";
@@ -104,6 +111,13 @@ export async function createPancakeOrder(payload: PancakeOrderPayload): Promise<
     shipping_fee: 0,
     total_discount: 0,
     cash: payload.price,
+    p_utm_source: payload.utmSource || null,
+    p_utm_medium: payload.utmMedium || null,
+    p_utm_campaign: payload.utmCampaign || null,
+    p_utm_term: payload.utmTerm || null,
+    p_utm_content: payload.utmContent || null,
+    p_utm_id: payload.utmId || null,
+    link: payload.landingUrl || null,
   };
 
   const res = await fetchWithTimeout(apiUrl(`/shops/${shopId}/orders`, apiKey), {

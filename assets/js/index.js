@@ -1,3 +1,16 @@
+// ── Capture UTM params on first load and persist in sessionStorage ──
+(function captureUtms() {
+  const p = new URLSearchParams(window.location.search);
+  const keys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'utm_id'];
+  keys.forEach(k => {
+    if (p.get(k)) sessionStorage.setItem(k, p.get(k));
+  });
+  // Store the full landing URL (includes fbclid etc.)
+  if (!sessionStorage.getItem('landing_url')) {
+    sessionStorage.setItem('landing_url', window.location.href);
+  }
+})();
+
 // ── Package data ──
 const PACKAGES = {
   starter_glow: {
@@ -113,6 +126,13 @@ async function submitOrder(e) {
 
   const formData = new FormData(document.getElementById('orderForm'));
   const payload = Object.fromEntries(formData.entries());
+
+  // Attach UTMs from sessionStorage
+  ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'utm_id'].forEach(k => {
+    const val = sessionStorage.getItem(k);
+    if (val) payload[k] = val;
+  });
+  payload['landing_url'] = sessionStorage.getItem('landing_url') || window.location.href;
 
   // Generate client-side event ID for dedup
   const eventId = crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(36);

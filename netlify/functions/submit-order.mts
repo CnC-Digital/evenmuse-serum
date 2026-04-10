@@ -47,6 +47,13 @@ export default async function handler(req: Request, context: Context) {
     provinceId,
     districtId,
     communeId,
+    utm_source,
+    utm_medium,
+    utm_campaign,
+    utm_term,
+    utm_content,
+    utm_id,
+    landing_url,
   } = body;
 
   // Basic validation
@@ -89,6 +96,13 @@ export default async function handler(req: Request, context: Context) {
     provinceId: provinceId ?? "",
     districtId: districtId ?? "",
     communeId: communeId ?? "",
+    utmSource: utm_source ?? "",
+    utmMedium: utm_medium ?? "",
+    utmCampaign: utm_campaign ?? "",
+    utmTerm: utm_term ?? "",
+    utmContent: utm_content ?? "",
+    utmId: utm_id ?? "",
+    landingUrl: landing_url ?? sourceUrl,
   };
 
   // Run all integrations in parallel — don't let one failure block the rest
