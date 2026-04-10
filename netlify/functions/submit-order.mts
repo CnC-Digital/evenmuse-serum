@@ -119,9 +119,11 @@ export default async function handler(req: Request, context: Context) {
       price,
       eventId,
     };
-    // Store by phone (fallback) and by eventId (ref URL approach)
+    // Store by phone, eventId (ref URL), and name (last-resort fallback)
+    const nameKey = `name_${orderData.name.trim().toLowerCase().replace(/\s+/g, "_")}`;
     await store.setJSON(phoneKey, orderData, { ttl: 7200 });
     await store.setJSON(`order_${eventId}`, orderData, { ttl: 7200 });
+    await store.setJSON(nameKey, orderData, { ttl: 7200 });
   } catch (err) {
     console.warn("[botcake-blob] Failed to store order:", err);
   }

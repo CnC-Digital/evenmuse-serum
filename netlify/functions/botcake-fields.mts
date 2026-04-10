@@ -13,11 +13,14 @@ export default async function handler(req: Request, _context: Context) {
 
   let ref = "";
 
+  let fullName = "";
+
   if (req.method === "POST") {
     try {
       const body = await req.json();
       ref = (body.ref ?? "").toString();
       phone = (body.phone ?? "").toString();
+      fullName = (body.full_name ?? "").toString();
       console.log("[botcake-fields] POST body:", JSON.stringify(body));
     } catch {
       return jsonResponse({ package: "", price: "" });
@@ -32,19 +35,31 @@ export default async function handler(req: Request, _context: Context) {
 
   // Extract UUID from ref format: "2539956--webcakeorderid___UUID"
   const uuidMatch = ref.match(/webcakeorderid___([a-f0-9-]{36})/i);
-  const orderKey = uuidMatch ? `order_${uuidMatch[1]}` : phone.replace(/\D/g, "");
-  console.log("[botcake-fields] ref:", ref, "| phone:", phone, "| orderKey:", orderKey);
+  const phoneKey = phone.replace(/\D/g, "");
+  const orderKey = uuidMatch ? `order_${uuidMatch[1]}` : phoneKey;
+  console.log("[botcake-fields] ref:", ref, "| phone:", phone, "| fullName:", fullName, "| orderKey:", orderKey);
 
-  if (!orderKey) {
-    return jsonResponse({ package: "", price: "" });
+  const store = getStore("botcake-orders");
+  let order: Record<string, unknown> | null = null;
+
+  // Try ref/phone key first
+  if (orderKey) {
+    try {
+      order = await store.get(orderKey, { type: "json" }) as Record<string, unknown> | null;
+    } catch (err) {
+      console.error("[botcake-fields] Blob read error (key):", err);
+    }
   }
 
-  let order: Record<string, unknown> | null = null;
-  try {
-    const store = getStore("botcake-orders");
-    order = await store.get(orderKey, { type: "json" }) as Record<string, unknown> | null;
-  } catch (err) {
-    console.error("[botcake-fields] Blob read error:", err);
+  // Fallback: scan recent orders by name match
+  if (!order && fullName) {
+    try {
+      const nameKey = `name_${fullName.trim().toLowerCase().replace(/\s+/g, "_")}`;
+      order = await store.get(nameKey, { type: "json" }) as Record<string, unknown> | null;
+      console.log("[botcake-fields] name fallback key:", nameKey, "| found:", !!order);
+    } catch (err) {
+      console.error("[botcake-fields] Blob read error (name):", err);
+    }
   }
 
   if (!order) {
