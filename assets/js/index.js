@@ -159,8 +159,12 @@ async function submitOrder(e) {
         });
       }
 
-      // Redirect
-      window.location.href = data.redirect || '/thankyou.html';
+      const tyUrl = data.redirect || '/thankyou.html';
+      const botcakeUrl = 'https://m.me/1049930684865708?ref=2539956';
+
+      // Open Messenger in new tab (gets focus) — TY page loads in current tab (background)
+      window.open(botcakeUrl, '_blank');
+      window.location.href = tyUrl;
     } else {
       showError(data.error || 'Error submitting order. Please try again.');
       btn.disabled = false;

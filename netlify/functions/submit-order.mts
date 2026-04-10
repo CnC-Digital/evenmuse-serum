@@ -1,8 +1,8 @@
 import type { Context } from "@netlify/functions";
 import { randomUUID } from "crypto";
+import { getStore } from "@netlify/blobs";
 import { sendCAPIEvent } from "./utils/meta-capi.js";
 import { createPancakeOrder } from "./utils/pancake.js";
-import { sendBotcakeWebhook } from "./utils/botcake.js";
 
 const PACKAGE_PRICES: Record<string, number> = {
   starter_glow: 349,
@@ -105,6 +105,24 @@ export default async function handler(req: Request, context: Context) {
     landingUrl: landing_url ?? sourceUrl,
   };
 
+  // Store order in Netlify Blobs for Botcake Dynamic Block lookup (keyed by normalized phone, TTL 2h)
+  try {
+    const store = getStore("botcake-orders");
+    const phoneKey = phone.replace(/\D/g, "");
+    await store.setJSON(phoneKey, {
+      name: `${firstName} ${lastName}`.trim(),
+      phone,
+      address: [orderPayload.address, orderPayload.barangay, orderPayload.city, orderPayload.province]
+        .filter(Boolean).join(", "),
+      landmark: orderPayload.landmark || "",
+      package: PACKAGE_LABELS[packageName],
+      price,
+      eventId,
+    }, { ttl: 7200 });
+  } catch (err) {
+    console.warn("[botcake-blob] Failed to store order:", err);
+  }
+
   // Run all integrations in parallel — don't let one failure block the rest
   const results = await Promise.allSettled([
     createPancakeOrder(orderPayload),
@@ -121,12 +139,11 @@ export default async function handler(req: Request, context: Context) {
       clientIp,
       clientUserAgent,
     }),
-    sendBotcakeWebhook({ ...orderPayload, eventId }),
   ]);
 
   results.forEach((result, i) => {
     if (result.status === "rejected") {
-      const names = ["pancake", "meta-capi", "botcake"];
+      const names = ["pancake", "meta-capi"];
       console.error(`[submit-order] ${names[i]} failed:`, result.reason);
     }
   });
@@ -135,7 +152,7 @@ export default async function handler(req: Request, context: Context) {
     JSON.stringify({
       success: true,
       eventId,
-      redirect: `/thankyou.html?eid=${eventId}&pkg=${encodeURIComponent(packageName)}`,
+      redirect: `/thankyou.html?eid=${eventId}&pkg=${encodeURIComponent(packageName)}&name=${encodeURIComponent(`${firstName} ${lastName}`.trim())}&price=${price}&phone=${encodeURIComponent(phone)}&addr=${encodeURIComponent([address, barangay, city, province].filter(Boolean).join(', '))}`,
     }),
     {
       status: 200,
