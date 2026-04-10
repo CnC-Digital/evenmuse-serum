@@ -221,6 +221,20 @@ function _resetSelect(selectEl, placeholder) {
   selectEl.disabled = false;
 }
 
+// Prefetch barangays for all cities in a province (runs in background, 5 at a time)
+async function _prefetchBarangays(cities) {
+  const uncached = cities.filter(c => !_barangayCache.has(c.id));
+  for (let i = 0; i < uncached.length; i += 5) {
+    const batch = uncached.slice(i, i + 5);
+    await Promise.allSettled(batch.map(c =>
+      fetch(`${GEO}?type=communes&district_id=${encodeURIComponent(c.id)}`)
+        .then(r => r.json())
+        .then(data => _barangayCache.set(c.id, data))
+        .catch(() => {})
+    ));
+  }
+}
+
 function populateCities() {
   const provinceEl = document.getElementById('province');
   const citySelect = document.getElementById('city');
@@ -247,6 +261,9 @@ function populateCities() {
     citySelect.appendChild(opt);
   });
   citySelect.disabled = false;
+
+  // Kick off background prefetch — by the time user picks a city, barangays are ready
+  _prefetchBarangays(province.cities);
 }
 
 async function populateBarangays() {
