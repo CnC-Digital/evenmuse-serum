@@ -71,7 +71,7 @@
       </div>
       <div class="price-main">₱549</div>
       <p style="color:var(--green);margin-bottom:20px;font-weight:600;">Buy 1 Get 1 Free — Get a second bottle at no charge!</p>
-      <button class="btn-cta" onclick="openPopup('bestie_pack')">
+      <button class="btn-cta" onclick="scrollToPackages()">
         ORDER NOW — ₱549 (Buy 1 Take 1)
       </button>
       <p style="color:var(--muted);margin-top:12px;">Pay upon delivery · Free shipping · 100% authentic</p>
@@ -181,7 +181,7 @@
         <p>"Even skin tone. Less concealer days. Confident to go bare-face in meetings. Can't believe it. 😱"</p>
       </div>
     </div>
-    <button class="btn-cta" onclick="openPopup('bestie_pack')">
+    <button class="btn-cta" onclick="scrollToPackages()">
       GET YOUR BESTIE PACK — ₱549
     </button>
   </section>
@@ -282,7 +282,7 @@
   <div class="divider"></div>
 
   <!-- PRICING -->
-  <section class="pricing fade-in">
+  <section class="pricing fade-in" id="choose-package">
     <div class="section-label">Choose Your Package</div>
     <h2>Choose Your Package</h2>
     <p class="subtitle">Your Discount Has Been Applied!</p>
@@ -354,7 +354,7 @@
         <div class="fit-item"><span class="cross">✘</span><span>You have no patience for gradual, lasting results</span></div>
       </div>
     </div>
-    <button class="btn-cta" onclick="openPopup('bestie_pack')">
+    <button class="btn-cta" onclick="scrollToPackages()">
       I'M READY — ORDER MY PACK
     </button>
   </section>
@@ -522,7 +522,7 @@
     <div class="section-label">Last Chance</div>
     <h2>Start Your <span>Glow-Up</span> Today</h2>
     <p>COD. Free shipping. You have nothing to lose. Pay only when your package arrives.</p>
-    <button class="btn-cta" onclick="openPopup('bestie_pack')">
+    <button class="btn-cta" onclick="scrollToPackages()">
       ORDER NOW — ₱549 (Buy 1 Take 1)
     </button>
     <p class="urgency">⚡ Limited stocks available this week</p>
@@ -630,7 +630,7 @@
 
       <div class="form-group">
         <label class="form-label" for="phone">Phone Number *</label>
-        <input class="form-input" type="tel" id="phone" name="phone" placeholder="09xxxxxxxxx" required autocomplete="tel" pattern="[0-9]{10,13}" />
+        <input class="form-input" type="tel" id="phone" name="phone" placeholder="09xxxxxxxxx" required autocomplete="tel" pattern="^(09|\+639|639)\d{9}$" inputmode="numeric" maxlength="13" />
       </div>
 
       <div class="form-group">
@@ -653,8 +653,8 @@
       </div>
 
       <div class="form-group">
-        <label class="form-label" for="barangay">Barangay</label>
-        <select class="form-select" id="barangay" name="barangay">
+        <label class="form-label" for="barangay">Barangay *</label>
+        <select class="form-select" id="barangay" name="barangay" required>
           <option value="">— Select Barangay —</option>
         </select>
       </div>

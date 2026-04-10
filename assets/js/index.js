@@ -43,6 +43,13 @@ function startCountdown() {
   tick();
 }
 
+function scrollToPackages() {
+  const section = document.getElementById('choose-package');
+  if (section) {
+    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+
 function openPopup(packageName) {
   const pkg = PACKAGES[packageName] || PACKAGES['bestie_pack'];
   document.getElementById('selectedPackage').value = packageName;
@@ -91,6 +98,12 @@ async function submitOrder(e) {
   const codConfirm = document.getElementById('codConfirm');
   if (!codConfirm.checked) {
     showError('Please confirm the COD payment before proceeding.');
+    return;
+  }
+
+  const phone = document.getElementById('phone').value.trim();
+  if (!/^(09|\+639|639)\d{9}$/.test(phone)) {
+    showError('Please enter a valid PH mobile number (e.g. 09171234567 or +639171234567).');
     return;
   }
 
@@ -246,6 +259,24 @@ async function populateBarangays() {
     provinceSelect.disabled = false;
   }
 })();
+
+// ── Phone input: digits only, max length based on prefix ──
+document.getElementById('phone').addEventListener('input', function () {
+  // Strip non-digit chars except leading +
+  let val = this.value.replace(/[^\d+]/g, '');
+
+  // Allow + only at position 0
+  if (val.indexOf('+') > 0) val = val.replace(/\+/g, '');
+
+  // Determine max length: +639xxxxxxxxx = 13, 639xxxxxxxxx = 12, 09xxxxxxxxx = 11
+  let max = 11;
+  if (val.startsWith('+639')) max = 13;
+  else if (val.startsWith('639')) max = 12;
+
+  if (val.length > max) val = val.slice(0, max);
+
+  this.value = val;
+});
 
 // ── Fade-in on scroll ──
 const observer = new IntersectionObserver((entries) => {
