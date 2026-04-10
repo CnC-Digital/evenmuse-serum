@@ -90,9 +90,9 @@
 
     /* ── CTA Button ── */
     .btn-cta {
-      display: block;
-      width: 100%;
-      padding: 18px 24px;
+      display: inline-block;
+      width: auto;
+      padding: 18px 32px;
       background: linear-gradient(135deg, var(--green), var(--green2));
       color: #fff;
       font-family: 'Montserrat', sans-serif;
@@ -111,9 +111,9 @@
     .btn-cta:active { transform: translateY(0); }
 
     .btn-outline {
-      display: block;
-      width: 100%;
-      padding: 14px 24px;
+      display: inline-block;
+      width: auto;
+      padding: 14px 32px;
       background: transparent;
       color: var(--gold);
       font-family: 'Montserrat', sans-serif;
@@ -388,7 +388,9 @@
       flex-direction: column;
     }
     .pkg-card .btn-cta,
-    .pkg-card .btn-outline { margin-top: auto; }
+    .pkg-card .btn-outline { margin-top: auto; align-self: center; }
+    .transform, .forwho, .final-cta { text-align: center; }
+    .hero-bot .btn-cta { display: inline-block; }
     .pkg-card.featured {
       border-color: var(--gold);
       background: rgba(201,164,90,0.06);
