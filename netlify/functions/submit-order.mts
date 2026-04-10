@@ -3,6 +3,7 @@ import { randomUUID } from "crypto";
 import { getStore } from "@netlify/blobs";
 import { sendCAPIEvent } from "./utils/meta-capi.js";
 import { createPancakeOrder } from "./utils/pancake.js";
+import { sendTelegramOrderNotification } from "./utils/telegram.js";
 
 const PACKAGE_PRICES: Record<string, number> = {
   starter_glow: 349,
@@ -131,6 +132,28 @@ export default async function handler(req: Request, context: Context) {
   // Run all integrations in parallel — don't let one failure block the rest
   const results = await Promise.allSettled([
     createPancakeOrder(orderPayload),
+    sendTelegramOrderNotification({
+      firstName,
+      lastName,
+      phone,
+      address,
+      barangay: barangay ?? "",
+      city,
+      province,
+      landmark: landmark ?? "",
+      packageName,
+      packageLabel: PACKAGE_LABELS[packageName],
+      price,
+      eventId,
+      landingUrl: orderPayload.landingUrl,
+      clientIp,
+      utmSource: utm_source ?? "",
+      utmMedium: utm_medium ?? "",
+      utmCampaign: utm_campaign ?? "",
+      utmId: utm_id ?? "",
+      utmContent: utm_content ?? "",
+      utmTerm: utm_term ?? "",
+    }),
     sendCAPIEvent({
       eventName: "Purchase",
       eventId,
@@ -148,7 +171,7 @@ export default async function handler(req: Request, context: Context) {
 
   results.forEach((result, i) => {
     if (result.status === "rejected") {
-      const names = ["pancake", "meta-capi"];
+      const names = ["pancake", "telegram", "meta-capi"];
       console.error(`[submit-order] ${names[i]} failed:`, result.reason);
     }
   });
