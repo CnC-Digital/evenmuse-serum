@@ -159,8 +159,8 @@ function showError(msg) {
   el.style.display = 'block';
 }
 
-// ── PH Location Dropdowns (PSGC API) ──
-const PSGC = 'https://psgc.gitlab.io/api';
+// ── PH Location Dropdowns (via Pancake geo proxy) ──
+const GEO = '/api/pancake-geo';
 
 function _setLoading(selectEl, msg) {
   selectEl.innerHTML = `<option value="">${msg}</option>`;
@@ -168,92 +168,94 @@ function _setLoading(selectEl, msg) {
 }
 function _setReady(selectEl, placeholder) {
   selectEl.disabled = false;
-  if (!selectEl.options.length) {
+  if (selectEl.options.length <= 1) {
     selectEl.innerHTML = `<option value="">${placeholder}</option>`;
   }
+}
+function _resetSelect(selectEl, placeholder) {
+  selectEl.innerHTML = `<option value="">${placeholder}</option>`;
+  selectEl.disabled = false;
 }
 
 async function populateCities() {
   const provinceEl = document.getElementById('province');
   const citySelect = document.getElementById('city');
   const barangaySelect = document.getElementById('barangay');
-  const code = provinceEl.selectedOptions[0]?.dataset.code;
+  const provinceId = provinceEl.selectedOptions[0]?.dataset.pancakeId;
+
+  // Reset downstream + hidden IDs
+  _resetSelect(citySelect, '— Select City —');
+  _resetSelect(barangaySelect, '— Select Barangay —');
+  document.getElementById('provinceId').value = provinceId || '';
+  document.getElementById('districtId').value = '';
+  document.getElementById('communeId').value = '';
+
+  if (!provinceId) return;
 
   _setLoading(citySelect, '— Loading cities… —');
-  _setLoading(barangaySelect, '— Select Barangay —');
-
-  if (!code) {
-    _setReady(citySelect, '— Select City —');
-    _setReady(barangaySelect, '— Select Barangay —');
-    return;
-  }
-
   try {
-    const url = code === 'NCR'
-      ? `${PSGC}/regions/130000000/cities-municipalities/`
-      : `${PSGC}/provinces/${code}/cities-municipalities/`;
-    const data = await fetch(url).then(r => r.json());
+    const data = await fetch(`${GEO}?type=districts&province_id=${encodeURIComponent(provinceId)}`).then(r => r.json());
     citySelect.innerHTML = '<option value="">— Select City —</option>';
-    data.sort((a, b) => a.name.localeCompare(b.name)).forEach(c => {
+    data.forEach(c => {
       const opt = document.createElement('option');
       opt.value = c.name;
-      opt.dataset.code = c.code;
+      opt.dataset.pancakeId = c.id;
       opt.textContent = c.name;
       citySelect.appendChild(opt);
     });
-    _setReady(citySelect, '— Select City —');
-    _setReady(barangaySelect, '— Select Barangay —');
+    citySelect.disabled = false;
   } catch {
     _setReady(citySelect, '— Select City —');
-    _setReady(barangaySelect, '— Select Barangay —');
   }
 }
 
 async function populateBarangays() {
   const cityEl = document.getElementById('city');
   const barangaySelect = document.getElementById('barangay');
-  const code = cityEl.selectedOptions[0]?.dataset.code;
+  const districtId = cityEl.selectedOptions[0]?.dataset.pancakeId;
+
+  _resetSelect(barangaySelect, '— Select Barangay —');
+  document.getElementById('districtId').value = districtId || '';
+  document.getElementById('communeId').value = '';
+
+  if (!districtId) return;
 
   _setLoading(barangaySelect, '— Loading barangays… —');
-
-  if (!code) { _setReady(barangaySelect, '— Select Barangay —'); return; }
-
   try {
-    const data = await fetch(`${PSGC}/cities-municipalities/${code}/barangays/`).then(r => r.json());
+    const data = await fetch(`${GEO}?type=communes&district_id=${encodeURIComponent(districtId)}`).then(r => r.json());
     barangaySelect.innerHTML = '<option value="">— Select Barangay —</option>';
-    data.sort((a, b) => a.name.localeCompare(b.name)).forEach(b => {
+    data.forEach(b => {
       const opt = document.createElement('option');
       opt.value = b.name;
+      opt.dataset.pancakeId = b.id;
       opt.textContent = b.name;
       barangaySelect.appendChild(opt);
     });
-    _setReady(barangaySelect, '— Select Barangay —');
+    barangaySelect.disabled = false;
   } catch {
     _setReady(barangaySelect, '— Select Barangay —');
   }
 }
+
+document.getElementById('barangay').addEventListener('change', function () {
+  document.getElementById('communeId').value = this.selectedOptions[0]?.dataset.pancakeId || '';
+});
 
 // Populate province dropdown on init
 (async function initProvinces() {
   const provinceSelect = document.getElementById('province');
   _setLoading(provinceSelect, '— Loading provinces… —');
   try {
-    const data = await fetch(`${PSGC}/provinces/`).then(r => r.json());
+    const data = await fetch(`${GEO}?type=provinces`).then(r => r.json());
     provinceSelect.innerHTML = '<option value="">— Select Province —</option>';
-    // NCR as special entry
-    const ncr = document.createElement('option');
-    ncr.value = 'Metro Manila (NCR)';
-    ncr.dataset.code = 'NCR';
-    ncr.textContent = 'Metro Manila (NCR)';
-    provinceSelect.appendChild(ncr);
-    data.sort((a, b) => a.name.localeCompare(b.name)).forEach(p => {
+    data.forEach(p => {
       const opt = document.createElement('option');
       opt.value = p.name;
-      opt.dataset.code = p.code;
+      opt.dataset.pancakeId = p.id;
       opt.textContent = p.name;
       provinceSelect.appendChild(opt);
     });
-    _setReady(provinceSelect, '— Select Province —');
+    provinceSelect.disabled = false;
   } catch {
     provinceSelect.innerHTML = '<option value="">— Select Province —</option>';
     provinceSelect.disabled = false;

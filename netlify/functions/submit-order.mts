@@ -44,6 +44,9 @@ export default async function handler(req: Request, context: Context) {
     province,
     landmark,
     packageName,
+    provinceId,
+    districtId,
+    communeId,
   } = body;
 
   // Basic validation
@@ -83,6 +86,9 @@ export default async function handler(req: Request, context: Context) {
     landmark: landmark ?? "",
     packageName,
     price,
+    provinceId: provinceId ?? "",
+    districtId: districtId ?? "",
+    communeId: communeId ?? "",
   };
 
   // Run all integrations in parallel — don't let one failure block the rest

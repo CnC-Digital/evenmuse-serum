@@ -9,17 +9,20 @@ export interface PancakeOrderPayload {
   landmark?: string;
   packageName: string;
   price: number;
+  provinceId?: string;
+  districtId?: string;
+  communeId?: string;
 }
 
 const BASE_URL = "https://pos.pages.fm/api/v1";
 
-const PRODUCT_ID = "d3af1b20-ad98-497a-85fd-14162606213e";
+const PRODUCT_ID = "4bce7f68-c32a-4c66-b6dd-2bf931362d34";
 
 // Fallback IDs confirmed from the Pancake POS API (can be overridden via env vars)
 const VARIATION_DEFAULTS: Record<string, { productId: string; variationId: string }> = {
-  starter_glow: { productId: PRODUCT_ID, variationId: "08dd83ed-fffa-4756-8af6-0c5bd855b55e" }, // Set A (1jar) ₱399
-  bestie_pack:  { productId: PRODUCT_ID, variationId: "9515afe7-c5d8-45eb-bcd4-5c810413fee7" }, // Set B (2jars) ₱699
-  squad_pack:   { productId: PRODUCT_ID, variationId: "06ca80fc-91f7-4307-8d8a-ceaf034405be" }, // Set C (3jars) ₱799
+  starter_glow: { productId: PRODUCT_ID, variationId: "ad9fd83f-d3dc-468e-8336-1aff0a4ae6fe" }, // Set A (1bottle) ₱349
+  bestie_pack:  { productId: PRODUCT_ID, variationId: "60931bf2-0a81-47ed-b6a8-48b52b63dd85" }, // Set B (2bottles) ₱549
+  squad_pack:   { productId: PRODUCT_ID, variationId: "950906a4-6015-45fe-8a42-adfb08900b28" }, // Set C (3bottles) ₱699
 };
 
 // Env var suffixes (override defaults if set in Netlify)
@@ -77,8 +80,11 @@ export async function createPancakeOrder(payload: PancakeOrderPayload): Promise<
     shipping_address: {
       full_name: `${payload.firstName} ${payload.lastName}`.trim(),
       phone_number: payload.phone,
-      address: fullAddress,
+      address: payload.address,
       full_address: fullAddress,
+      province_id: payload.provinceId || null,
+      district_id: payload.districtId || null,
+      commune_id: payload.communeId || null,
     },
     items: [
       {
