@@ -190,16 +190,20 @@ function showError(msg) {
   el.style.display = 'block';
 }
 
-// ── PH Location Dropdowns (via Pancake geo proxy) ──
+// ── PH Location Dropdowns — static geo bundle + on-demand barangays ──
 const GEO = '/api/pancake-geo';
 
-// In-memory cache so repeat selections never re-fetch
-const _geoCache = new Map();
-async function _geoFetch(url) {
-  if (_geoCache.has(url)) return _geoCache.get(url);
-  const data = await fetch(url).then(r => r.json());
-  _geoCache.set(url, data);
-  return data;
+// Loaded once from static CDN-cached file; never re-fetched
+let _geoData = null; // Array<{ id, name, cities: [{id, name}] }>
+
+// In-memory cache for barangay API responses
+const _barangayCache = new Map();
+
+async function _loadGeoData() {
+  if (_geoData) return _geoData;
+  const res = await fetch('/assets/data/geo.json');
+  _geoData = await res.json();
+  return _geoData;
 }
 
 function _setLoading(selectEl, msg) {
@@ -217,36 +221,32 @@ function _resetSelect(selectEl, placeholder) {
   selectEl.disabled = false;
 }
 
-async function populateCities() {
+function populateCities() {
   const provinceEl = document.getElementById('province');
   const citySelect = document.getElementById('city');
   const barangaySelect = document.getElementById('barangay');
   const provinceId = provinceEl.selectedOptions[0]?.dataset.pancakeId;
 
-  // Reset downstream + hidden IDs
   _resetSelect(citySelect, '— Select City —');
   _resetSelect(barangaySelect, '— Select Barangay —');
   document.getElementById('provinceId').value = provinceId || '';
   document.getElementById('districtId').value = '';
   document.getElementById('communeId').value = '';
 
-  if (!provinceId) return;
+  if (!provinceId || !_geoData) return;
 
-  _setLoading(citySelect, '— Loading cities… —');
-  try {
-    const data = await _geoFetch(`${GEO}?type=districts&province_id=${encodeURIComponent(provinceId)}`);
-    citySelect.innerHTML = '<option value="">— Select City —</option>';
-    data.forEach(c => {
-      const opt = document.createElement('option');
-      opt.value = c.name;
-      opt.dataset.pancakeId = c.id;
-      opt.textContent = c.name;
-      citySelect.appendChild(opt);
-    });
-    citySelect.disabled = false;
-  } catch {
-    _setReady(citySelect, '— Select City —');
-  }
+  const province = _geoData.find(p => p.id === provinceId);
+  if (!province) return;
+
+  citySelect.innerHTML = '<option value="">— Select City —</option>';
+  province.cities.forEach(c => {
+    const opt = document.createElement('option');
+    opt.value = c.name;
+    opt.dataset.pancakeId = c.id;
+    opt.textContent = c.name;
+    citySelect.appendChild(opt);
+  });
+  citySelect.disabled = false;
 }
 
 async function populateBarangays() {
@@ -260,9 +260,25 @@ async function populateBarangays() {
 
   if (!districtId) return;
 
+  // Serve from cache if already fetched
+  if (_barangayCache.has(districtId)) {
+    const cached = _barangayCache.get(districtId);
+    barangaySelect.innerHTML = '<option value="">— Select Barangay —</option>';
+    cached.forEach(b => {
+      const opt = document.createElement('option');
+      opt.value = b.name;
+      opt.dataset.pancakeId = b.id;
+      opt.textContent = b.name;
+      barangaySelect.appendChild(opt);
+    });
+    barangaySelect.disabled = false;
+    return;
+  }
+
   _setLoading(barangaySelect, '— Loading barangays… —');
   try {
-    const data = await _geoFetch(`${GEO}?type=communes&district_id=${encodeURIComponent(districtId)}`);
+    const data = await fetch(`${GEO}?type=communes&district_id=${encodeURIComponent(districtId)}`).then(r => r.json());
+    _barangayCache.set(districtId, data);
     barangaySelect.innerHTML = '<option value="">— Select Barangay —</option>';
     data.forEach(b => {
       const opt = document.createElement('option');
@@ -281,12 +297,12 @@ document.getElementById('barangay').addEventListener('change', function () {
   document.getElementById('communeId').value = this.selectedOptions[0]?.dataset.pancakeId || '';
 });
 
-// Populate province dropdown on init
+// Load static geo bundle and populate provinces on init
 (async function initProvinces() {
   const provinceSelect = document.getElementById('province');
   _setLoading(provinceSelect, '— Loading provinces… —');
   try {
-    const data = await _geoFetch(`${GEO}?type=provinces`);
+    const data = await _loadGeoData();
     provinceSelect.innerHTML = '<option value="">— Select Province —</option>';
     data.forEach(p => {
       const opt = document.createElement('option');
