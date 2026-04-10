@@ -13,17 +13,14 @@
     n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
     t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
     document,'script','https://connect.facebook.net/en_US/fbevents.js');
-    const FB_PIXEL_ID = document.querySelector('meta[name="fb:pixel_id"]')?.content || '';
-    if (FB_PIXEL_ID) {
-      fbq('init', FB_PIXEL_ID);
-      fbq('track', 'PageView');
-      fbq('track', 'ViewContent', {
-        content_name: 'EvenMuse Alpha Arbutin Serum',
-        content_category: 'Skincare',
-        currency: 'PHP',
-        value: 549
-      });
-    }
+    fbq('init', '4188994658004996');
+    fbq('track', 'PageView');
+    fbq('track', 'ViewContent', {
+      content_name: 'EvenMuse Alpha Arbutin Serum',
+      content_category: 'Skincare',
+      currency: 'PHP',
+      value: 549
+    });
   </script>
   <meta name="fb:pixel_id" content="4188994658004996" />
   <noscript><img height="1" width="1" style="display:none"
@@ -614,7 +611,8 @@
     </div>
 
     <!-- Form -->
-    <form class="modal-form" id="orderForm" onsubmit="submitOrder(event)">
+    <form class="modal-form" id="orderForm" onsubmit="submitOrder(event)" data-netlify="true" name="order">
+      <input type="hidden" name="form-name" value="order" />
       <input type="hidden" id="selectedPackage" name="packageName" value="bestie_pack" />
       <input type="hidden" id="provinceId" name="provinceId" value="" />
       <input type="hidden" id="districtId" name="districtId" value="" />

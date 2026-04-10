@@ -27,18 +27,15 @@
     const value = pkgPrices[pkg] || 549;
     const label = pkgLabels[pkg] || pkgLabels['bestie_pack'];
 
-    const FB_PIXEL_ID = document.querySelector('meta[name="fb:pixel_id"]')?.content || '';
-    if (FB_PIXEL_ID) {
-      fbq('init', FB_PIXEL_ID);
-      fbq('track', 'PageView');
-      // Purchase event — deduped via event_id matching server-side CAPI
-      fbq('track', 'Purchase', {
-        value: value,
-        currency: 'PHP',
-        content_name: label,
-        eventID: eventId
-      });
-    }
+    fbq('init', '4188994658004996');
+    fbq('track', 'PageView');
+    // Purchase event — deduped via event_id matching server-side CAPI
+    fbq('track', 'Purchase', {
+      value: value,
+      currency: 'PHP',
+      content_name: label,
+      eventID: eventId
+    });
   </script>
   <meta name="fb:pixel_id" content="4188994658004996" />
   <noscript><img height="1" width="1" style="display:none"

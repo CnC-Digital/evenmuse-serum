@@ -109,7 +109,7 @@ export default async function handler(req: Request, context: Context) {
   try {
     const store = getStore("botcake-orders");
     const phoneKey = phone.replace(/\D/g, "");
-    await store.setJSON(phoneKey, {
+    const orderData = {
       name: `${firstName} ${lastName}`.trim(),
       phone,
       address: [orderPayload.address, orderPayload.barangay, orderPayload.city, orderPayload.province]
@@ -118,7 +118,10 @@ export default async function handler(req: Request, context: Context) {
       package: PACKAGE_LABELS[packageName],
       price,
       eventId,
-    }, { ttl: 7200 });
+    };
+    // Store by phone (fallback) and by eventId (ref URL approach)
+    await store.setJSON(phoneKey, orderData, { ttl: 7200 });
+    await store.setJSON(`order_${eventId}`, orderData, { ttl: 7200 });
   } catch (err) {
     console.warn("[botcake-blob] Failed to store order:", err);
   }
@@ -148,10 +151,15 @@ export default async function handler(req: Request, context: Context) {
     }
   });
 
+  const messengerPageId = process.env.MESSENGER_PAGE_ID ?? "1049930684865708";
+  const botcakeFlowRefId = process.env.BOTCAKE_FLOW_REF_ID ?? "2539956";
+  const botcakeUrl = `https://m.me/${messengerPageId}?ref=${botcakeFlowRefId}--webcakeorderid___${eventId}`;
+
   return new Response(
     JSON.stringify({
       success: true,
       eventId,
+      botcakeUrl,
       redirect: `/thankyou.html?eid=${eventId}&pkg=${encodeURIComponent(packageName)}&name=${encodeURIComponent(`${firstName} ${lastName}`.trim())}&price=${price}&phone=${encodeURIComponent(phone)}&addr=${encodeURIComponent([address, barangay, city, province].filter(Boolean).join(', '))}`,
     }),
     {

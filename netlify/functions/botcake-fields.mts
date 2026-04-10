@@ -11,30 +11,36 @@ import { getStore } from "@netlify/blobs";
 export default async function handler(req: Request, _context: Context) {
   let phone = "";
 
+  let ref = "";
+
   if (req.method === "POST") {
     try {
       const body = await req.json();
+      ref = (body.ref ?? "").toString();
       phone = (body.phone ?? "").toString();
     } catch {
       return jsonResponse({ package: "", price: "" });
     }
   } else if (req.method === "GET") {
     const url = new URL(req.url);
+    ref = url.searchParams.get("ref") ?? "";
     phone = url.searchParams.get("phone") ?? "";
   } else {
     return jsonResponse({ package: "", price: "" });
   }
 
-  if (!phone) {
+  // Extract UUID from ref format: "2539956--webcakeorderid___UUID"
+  const uuidMatch = ref.match(/webcakeorderid___([a-f0-9-]{36})/i);
+  const orderKey = uuidMatch ? `order_${uuidMatch[1]}` : phone.replace(/\D/g, "");
+
+  if (!orderKey) {
     return jsonResponse({ package: "", price: "" });
   }
-
-  const phoneKey = phone.replace(/\D/g, "");
 
   let order: Record<string, unknown> | null = null;
   try {
     const store = getStore("botcake-orders");
-    order = await store.get(phoneKey, { type: "json" }) as Record<string, unknown> | null;
+    order = await store.get(orderKey, { type: "json" }) as Record<string, unknown> | null;
   } catch (err) {
     console.error("[botcake-fields] Blob read error:", err);
   }
