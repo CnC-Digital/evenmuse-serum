@@ -193,6 +193,15 @@ function showError(msg) {
 // ── PH Location Dropdowns (via Pancake geo proxy) ──
 const GEO = '/api/pancake-geo';
 
+// In-memory cache so repeat selections never re-fetch
+const _geoCache = new Map();
+async function _geoFetch(url) {
+  if (_geoCache.has(url)) return _geoCache.get(url);
+  const data = await fetch(url).then(r => r.json());
+  _geoCache.set(url, data);
+  return data;
+}
+
 function _setLoading(selectEl, msg) {
   selectEl.innerHTML = `<option value="">${msg}</option>`;
   selectEl.disabled = true;
@@ -225,7 +234,7 @@ async function populateCities() {
 
   _setLoading(citySelect, '— Loading cities… —');
   try {
-    const data = await fetch(`${GEO}?type=districts&province_id=${encodeURIComponent(provinceId)}`).then(r => r.json());
+    const data = await _geoFetch(`${GEO}?type=districts&province_id=${encodeURIComponent(provinceId)}`);
     citySelect.innerHTML = '<option value="">— Select City —</option>';
     data.forEach(c => {
       const opt = document.createElement('option');
@@ -253,7 +262,7 @@ async function populateBarangays() {
 
   _setLoading(barangaySelect, '— Loading barangays… —');
   try {
-    const data = await fetch(`${GEO}?type=communes&district_id=${encodeURIComponent(districtId)}`).then(r => r.json());
+    const data = await _geoFetch(`${GEO}?type=communes&district_id=${encodeURIComponent(districtId)}`);
     barangaySelect.innerHTML = '<option value="">— Select Barangay —</option>';
     data.forEach(b => {
       const opt = document.createElement('option');
@@ -277,7 +286,7 @@ document.getElementById('barangay').addEventListener('change', function () {
   const provinceSelect = document.getElementById('province');
   _setLoading(provinceSelect, '— Loading provinces… —');
   try {
-    const data = await fetch(`${GEO}?type=provinces`).then(r => r.json());
+    const data = await _geoFetch(`${GEO}?type=provinces`);
     provinceSelect.innerHTML = '<option value="">— Select Province —</option>';
     data.forEach(p => {
       const opt = document.createElement('option');

@@ -66,7 +66,7 @@ function json(data: any, status: number) {
     status,
     headers: {
       "Content-Type": "application/json",
-      "Cache-Control": "public, max-age=3600",
+      "Cache-Control": "public, max-age=3600, s-maxage=86400, stale-while-revalidate=3600",
     },
   });
 }

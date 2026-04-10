@@ -26,10 +26,17 @@
   <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=4188994658004996&ev=PageView&noscript=1" /></noscript>
 
+  <!-- Preload critical hero image -->
+  <link rel="preload" as="image" href="assets/images/avatar.webp" fetchpriority="high" />
+
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Montserrat:wght@700;800&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- DNS prefetch for external image domains -->
+  <link rel="dns-prefetch" href="//ui-avatars.com" />
+  <link rel="dns-prefetch" href="//images.unsplash.com" />
 
   <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon-180.png" />
@@ -57,7 +64,7 @@
     <!-- hero-visual: product image (right col on desktop) -->
     <div class="hero-visual">
       <div class="hero-img-wrap">
-        <img src="assets/images/avatar.png" alt="EvenMuse Alpha Arbutin Serum" class="hero-img" loading="eager" />
+        <img src="assets/images/avatar.webp" alt="EvenMuse Alpha Arbutin Serum" class="hero-img" loading="eager" fetchpriority="high" width="540" height="540" decoding="sync" />
       </div>
     </div>
     <!-- hero-bot: desc + price + CTA (left col bottom on desktop) -->
@@ -288,7 +295,7 @@
       <!-- Starter -->
       <div class="pkg-card">
         <div class="pkg-visual">
-          <img src="assets/images/1pc.png" class="pkg-product-img" alt="1 EvenMuse Serum bottle">
+          <img src="assets/images/1pc.webp" class="pkg-product-img" alt="1 EvenMuse Serum bottle" width="300" height="300" loading="lazy" decoding="async">
         </div>
         <div class="pkg-name">Starter Glow</div>
         <div class="pkg-desc">Buy 1 — 30mL bottle · "Try it once"</div>
@@ -303,7 +310,7 @@
       <div class="pkg-card featured">
         <div class="pkg-badge">⭐ BEST VALUE</div>
         <div class="pkg-visual">
-          <img src="assets/images/2pcs.png" class="pkg-product-img" alt="2 EvenMuse Serum bottles">
+          <img src="assets/images/2pcs.webp" class="pkg-product-img" alt="2 EvenMuse Serum bottles" width="300" height="300" loading="lazy" decoding="async">
         </div>
         <div class="pkg-name">Bestie Pack</div>
         <div class="pkg-desc">Buy 1 Take 1 — 2× 30mL bottles · Save ₱149</div>
@@ -317,7 +324,7 @@
       <!-- Squad Pack -->
       <div class="pkg-card">
         <div class="pkg-visual">
-          <img src="assets/images/3pcs.png" class="pkg-product-img" alt="3 EvenMuse Serum bottles">
+          <img src="assets/images/3pcs.webp" class="pkg-product-img" alt="3 EvenMuse Serum bottles" width="300" height="300" loading="lazy" decoding="async">
         </div>
         <div class="pkg-name">Squad Pack</div>
         <div class="pkg-desc">Buy 2 Take 1 — 3× 30mL bottles · Save ₱348</div>
