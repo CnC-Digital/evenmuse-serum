@@ -11,29 +11,35 @@ export interface PancakeOrderPayload {
   price: number;
 }
 
-// Read individual product ID env vars instead of JSON
-function getProductId(packageName: string): string {
+// Get the variation ID for a given package
+// Variation IDs are found in POS → Products → click the product → click each variation
+function getVariantId(packageName: string): string {
   const map: Record<string, string | undefined> = {
-    starter_glow: process.env.PANCAKE_PRODUCT_ID_1PC,
-    bestie_pack:  process.env.PANCAKE_PRODUCT_ID_2PC,
-    squad_pack:   process.env.PANCAKE_PRODUCT_ID_3PC,
+    starter_glow: process.env.PANCAKE_VARIANT_ID_1PC,
+    bestie_pack:  process.env.PANCAKE_VARIANT_ID_2PC,
+    squad_pack:   process.env.PANCAKE_VARIANT_ID_3PC,
   };
   return map[packageName] ?? "";
 }
 
 export async function createPancakeOrder(payload: PancakeOrderPayload): Promise<void> {
-  const apiKey = process.env.PANCAKE_API_KEY;
-  const shopId = process.env.PANCAKE_SHOP_ID;
+  const apiKey  = process.env.PANCAKE_API_KEY;
+  const shopId  = process.env.PANCAKE_SHOP_ID;
+  const productId = process.env.PANCAKE_PRODUCT_ID;
 
   if (!apiKey || !shopId) {
     console.warn("[pancake] Missing PANCAKE_API_KEY or PANCAKE_SHOP_ID — skipping order creation");
     return;
   }
 
-  const productId = getProductId(payload.packageName);
-
   if (!productId) {
-    console.warn(`[pancake] No product ID set for package: ${payload.packageName}`);
+    console.warn("[pancake] PANCAKE_PRODUCT_ID not set — skipping order creation");
+    return;
+  }
+
+  const variantId = getVariantId(payload.packageName);
+  if (!variantId) {
+    console.warn(`[pancake] No variant ID set for package: ${payload.packageName}`);
   }
 
   const fullAddress = [
@@ -57,6 +63,7 @@ export async function createPancakeOrder(payload: PancakeOrderPayload): Promise<
     items: [
       {
         product_id: productId,
+        variation_id: variantId,
         quantity: 1,
         price: payload.price,
       },
