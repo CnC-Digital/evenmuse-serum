@@ -14,9 +14,9 @@ export interface PancakeOrderPayload {
 // Read individual product ID env vars instead of JSON
 function getProductId(packageName: string): string {
   const map: Record<string, string | undefined> = {
-    starter_glow: process.env.PANCAKE_PRODUCT_ID_STARTER_GLOW,
-    bestie_pack:  process.env.PANCAKE_PRODUCT_ID_BESTIE_PACK,
-    squad_pack:   process.env.PANCAKE_PRODUCT_ID_SQUAD_PACK,
+    starter_glow: process.env.PANCAKE_PRODUCT_ID_1PC,
+    bestie_pack:  process.env.PANCAKE_PRODUCT_ID_2PC,
+    squad_pack:   process.env.PANCAKE_PRODUCT_ID_3PC,
   };
   return map[packageName] ?? "";
 }
