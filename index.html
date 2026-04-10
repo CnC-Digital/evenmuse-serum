@@ -894,6 +894,81 @@
       .hero { padding: 88px 12%; gap: 0 80px; }
       .hero-img { width: 360px; }
     }
+
+    /* ── Hero subheadline ── */
+    .hero-sub {
+      font-size: 16px;
+      line-height: 1.8;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+    .hero-sub strong { color: var(--gold); font-weight: 600; }
+    @media (min-width: 768px) { .hero-sub { font-size: 18px; } }
+
+    /* ── Pain item: image card layout ── */
+    .pain-item {
+      flex-direction: column;
+      gap: 0;
+      align-items: stretch;
+      padding: 0;
+      overflow: hidden;
+    }
+    .pain-img {
+      width: 100%;
+      height: 155px;
+      object-fit: cover;
+      display: block;
+    }
+    .pain-text {
+      padding: 14px 16px 16px;
+    }
+    .pain-text strong { display: block; margin-bottom: 4px; }
+
+    /* ── Ingredient card: image layout ── */
+    .ing-card {
+      padding: 0;
+      overflow: hidden;
+    }
+    .ing-img {
+      width: 100%;
+      height: 110px;
+      object-fit: cover;
+      display: block;
+      border-radius: var(--radius) var(--radius) 0 0;
+      background: rgba(201,164,90,0.08);
+    }
+    .ing-body {
+      padding: 12px 14px 14px;
+    }
+
+    /* ── Lifestyle full image on desktop ── */
+    @media (min-width: 768px) {
+      .lifestyle-img {
+        height: auto;
+        max-height: 580px;
+        object-fit: contain;
+        background: var(--bg);
+      }
+    }
+
+    /* ── Package bottle visuals ── */
+    .pkg-visual {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 6px;
+      margin-bottom: 16px;
+      padding: 16px 0 0;
+      min-height: 110px;
+    }
+    .pkg-bottle {
+      width: 68px;
+      height: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 6px 14px rgba(201,164,90,0.22));
+    }
+    .pkg-visual.bottles-2 .pkg-bottle { width: 56px; }
+    .pkg-visual.bottles-3 .pkg-bottle { width: 48px; }
   </style>
 </head>
 <body>
@@ -923,7 +998,7 @@
     </div>
     <!-- hero-bot: desc + price + CTA (left col bottom on desktop) -->
     <div class="hero-bot">
-      <p>2-3 drops lang, AM/PM, tapos sunscreen. Alpha Arbutin targets dark spots at the source — hindi lang pang-bright.</p>
+      <p class="hero-sub">Hindi ito pang-bright lang. <strong>EvenMuse Alpha Arbutin Serum</strong> targets the source ng dark spots, acne marks, at uneven tone — gradual na fade na nagtatagal. 2-3 drops, AM/PM, tapos sunscreen. Kaya ng busy schedule mo.</p>
       <div class="price-tag">
         Regular price: <s>₱698</s> &nbsp;·&nbsp; BESTIE PACK PROMO
       </div>
@@ -944,28 +1019,52 @@
     <h2>Bakit Hindi Pa Rin Nawawala ang Dark Spots Mo?</h2>
     <div class="pain-grid">
       <div class="pain-item">
-        <div class="pain-icon">😔</div>
+        <img
+          src="https://c8.alamy.com/comp/2J58YNK/acne-dark-spots-and-scars-on-face-of-asian-young-woman-2J58YNK.jpg"
+          alt="Acne marks and dark spots on Asian woman's face"
+          class="pain-img"
+          loading="lazy"
+          onerror="this.style.background='rgba(201,164,90,0.1)';this.style.height='155px'"
+        />
         <div class="pain-text">
           <strong>Acne marks na nagtatagal</strong>
           Kahit wala nang active pimple, nandoon pa rin ang marks. Ilang months na.
         </div>
       </div>
       <div class="pain-item">
-        <div class="pain-icon">🪞</div>
+        <img
+          src="https://cyspera.com/wp-content/uploads/melasma-486x573.jpeg"
+          alt="Melasma and patchy skin tone on face"
+          class="pain-img"
+          loading="lazy"
+          onerror="this.style.background='rgba(201,164,90,0.1)';this.style.height='155px'"
+        />
         <div class="pain-text">
           <strong>Patchy tone sa cheeks at upper lip</strong>
           Hindi pantay ang kulay ng mukha mo kahit sa likas na liwanag.
         </div>
       </div>
       <div class="pain-item">
-        <div class="pain-icon">💸</div>
+        <img
+          src="https://goodonyou.eco/wp-content/uploads/2025/01/Too-many-beauty-products-1.png"
+          alt="Too many skincare products tried but none working"
+          class="pain-img"
+          loading="lazy"
+          onerror="this.style.background='rgba(201,164,90,0.1)';this.style.height='155px'"
+        />
         <div class="pain-text">
           <strong>Nag-try na ng ibang serum pero bumabalik pa rin</strong>
           Pera ang gastos, oras ang kaltas — tapos ganoon pa rin ang skin.
         </div>
       </div>
       <div class="pain-item">
-        <div class="pain-icon">☀️</div>
+        <img
+          src="https://dehazskincare.com/cdn/shop/articles/image-49_5f7dbd49-8d87-4b1b-b3e4-8eb9fb4be795_1200x.jpg"
+          alt="Sun damage and hyperpigmentation on skin"
+          class="pain-img"
+          loading="lazy"
+          onerror="this.style.background='rgba(201,164,90,0.1)';this.style.height='155px'"
+        />
         <div class="pain-text">
           <strong>Ang bilis mag-darken ulit pag na-araw</strong>
           One week walang sunscreen — balik sa dati. Frustrating, 'di ba?
@@ -1059,37 +1158,60 @@
   <section class="ingredients fade-in">
     <div class="section-label">Formula Breakdown</div>
     <h2>What's Inside</h2>
-    <img
-      src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=900&fit=crop&auto=format&q=80"
-      alt="Premium skincare serum ingredients flat lay"
-      class="showcase-img"
-      loading="lazy"
-      onerror="this.src='https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=900&fit=crop&auto=format&q=80'"
-    />
     <div class="ing-grid">
       <div class="ing-card">
-        <div class="ing-name">Alpha Arbutin 2%</div>
-        <div class="ing-desc">Dark spot fading at the source</div>
+        <img src="https://i.herbalreality.com/wp-content/uploads/2024/06/26083620/Fresh-Bearberry-leaves-Arctostaphylos-uva-ursi.jpg"
+          alt="Bearberry plant — source of Alpha Arbutin" class="ing-img" loading="lazy"
+          onerror="this.style.background='rgba(201,164,90,0.12)'" />
+        <div class="ing-body">
+          <div class="ing-name">Alpha Arbutin 2%</div>
+          <div class="ing-desc">Dark spot fading at the source — from bearberry extract</div>
+        </div>
       </div>
       <div class="ing-card">
-        <div class="ing-name">Niacinamide 10%</div>
-        <div class="ing-desc">Tone evening + pore minimizing</div>
+        <img src="http://wiseowlhealth.com/cdn/shop/files/Niacinamide_Wise_Owl_Health.png"
+          alt="Niacinamide Vitamin B3" class="ing-img" loading="lazy"
+          onerror="this.style.background='rgba(201,164,90,0.12)'" />
+        <div class="ing-body">
+          <div class="ing-name">Niacinamide 10%</div>
+          <div class="ing-desc">Tone evening + pore minimizing</div>
+        </div>
       </div>
       <div class="ing-card">
-        <div class="ing-name">Tranexamic Acid 3%</div>
-        <div class="ing-desc">Deep pigmentation control</div>
+        <img src="https://elsieorganics.com/wp-content/uploads/2024/10/Tranexamic-Acid-Powder.jpg"
+          alt="Tranexamic Acid pure powder" class="ing-img" loading="lazy"
+          onerror="this.style.background='rgba(201,164,90,0.12)'" />
+        <div class="ing-body">
+          <div class="ing-name">Tranexamic Acid 3%</div>
+          <div class="ing-desc">Deep pigmentation control</div>
+        </div>
       </div>
       <div class="ing-card">
-        <div class="ing-name">Snail Secretion</div>
-        <div class="ing-desc">Skin repair + regeneration</div>
+        <img src="https://www.cosrx.com/cdn/shop/files/Snail96Essence_8_2048x.jpg"
+          alt="Snail secretion filtrate mucin" class="ing-img" loading="lazy"
+          onerror="this.src='https://media.gettyimages.com/id/522213084/photo/helix-aspersa-maxima-producing-a-defensive-froth-of-mucus.jpg?s=612x612&w=gi&k=20&c=CI4JIP4RgG3ENzjySD08iQ9Zno9Mj6wOTg2htQK_R0k='" />
+        <div class="ing-body">
+          <div class="ing-name">Snail Secretion</div>
+          <div class="ing-desc">Skin repair + regeneration</div>
+        </div>
       </div>
       <div class="ing-card">
-        <div class="ing-name">Hyaluronic Acid</div>
-        <div class="ing-desc">Deep hydration, plump skin</div>
+        <img src="https://images.unsplash.com/photo-1614204424926-196a80bf0be8?w=400&fit=crop&q=80"
+          alt="Hyaluronic Acid serum clear hydration" class="ing-img" loading="lazy"
+          onerror="this.style.background='rgba(201,164,90,0.12)'" />
+        <div class="ing-body">
+          <div class="ing-name">Hyaluronic Acid</div>
+          <div class="ing-desc">Deep hydration, plump skin</div>
+        </div>
       </div>
       <div class="ing-card">
-        <div class="ing-name">Licorice + Papaya</div>
-        <div class="ing-desc">Natural brightening extracts</div>
+        <img src="https://paradisenursery.com/cdn/shop/files/brazilian.papaya.and.juice_1280x.webp"
+          alt="Papaya fruit and licorice root natural brightening" class="ing-img" loading="lazy"
+          onerror="this.style.background='rgba(201,164,90,0.12)'" />
+        <div class="ing-body">
+          <div class="ing-name">Licorice + Papaya</div>
+          <div class="ing-desc">Natural brightening extracts</div>
+        </div>
       </div>
     </div>
   </section>
@@ -1105,6 +1227,9 @@
     <div class="pkg-grid">
       <!-- Starter -->
       <div class="pkg-card">
+        <div class="pkg-visual bottles-1">
+          <img src="assets/mockup.png" class="pkg-bottle" alt="1 bottle" onerror="this.style.display='none'">
+        </div>
         <div class="pkg-name">Starter Glow</div>
         <div class="pkg-desc">Buy 1 — 30mL bottle · "Try it once"</div>
         <div class="pkg-price"><span>₱</span>349</div>
@@ -1117,6 +1242,10 @@
       <!-- Bestie Pack (featured) -->
       <div class="pkg-card featured">
         <div class="pkg-badge">⭐ BEST VALUE</div>
+        <div class="pkg-visual bottles-2">
+          <img src="assets/mockup.png" class="pkg-bottle" alt="bottle 1" onerror="this.style.display='none'">
+          <img src="assets/mockup.png" class="pkg-bottle" alt="bottle 2" onerror="this.style.display='none'">
+        </div>
         <div class="pkg-name">Bestie Pack</div>
         <div class="pkg-desc">Buy 1 Take 1 — 2× 30mL bottles · Save ₱149</div>
         <div class="pkg-price"><span>₱</span>549</div>
@@ -1128,6 +1257,11 @@
 
       <!-- Squad Pack -->
       <div class="pkg-card">
+        <div class="pkg-visual bottles-3">
+          <img src="assets/mockup.png" class="pkg-bottle" alt="bottle 1" onerror="this.style.display='none'">
+          <img src="assets/mockup.png" class="pkg-bottle" alt="bottle 2" onerror="this.style.display='none'">
+          <img src="assets/mockup.png" class="pkg-bottle" alt="bottle 3" onerror="this.style.display='none'">
+        </div>
         <div class="pkg-name">Squad Pack</div>
         <div class="pkg-desc">Buy 2 Take 1 — 3× 30mL bottles · Save ₱348</div>
         <div class="pkg-price"><span>₱</span>699</div>
