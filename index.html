@@ -611,8 +611,9 @@
     </div>
 
     <!-- Form -->
-    <form class="modal-form" id="orderForm" onsubmit="submitOrder(event)" data-netlify="true" name="order">
+    <form class="modal-form" id="orderForm" onsubmit="submitOrder(event)" data-netlify="true" name="order" data-netlify-honeypot="bot-field">
       <input type="hidden" name="form-name" value="order" />
+      <p style="display:none"><input name="bot-field" /></p>
       <input type="hidden" id="selectedPackage" name="packageName" value="bestie_pack" />
       <input type="hidden" id="provinceId" name="provinceId" value="" />
       <input type="hidden" id="districtId" name="districtId" value="" />
