@@ -11,61 +11,88 @@ export interface PancakeOrderPayload {
   price: number;
 }
 
-// How many bottles each package contains — used to match the right variation
+// How many bottles each package contains
 const PACKAGE_QTY: Record<string, number> = {
   starter_glow: 1,
   bestie_pack:  2,
   squad_pack:   3,
 };
 
-// Common Pancake POS API base URLs to try (Philippines market)
-const PANCAKE_API_CANDIDATES = [
-  "https://api-crm.pancake.ph/v2",
-  "https://api-crm.pancake.ph/v1",
-  "https://pos.pancake.ph/api/v2",
-  "https://pos.pancake.ph/api/v1",
-];
+// Fetch with a timeout so we don't hang on bad URLs
+async function fetchWithTimeout(url: string, options: RequestInit, ms = 5000): Promise<Response> {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), ms);
+  try {
+    return await fetch(url, { ...options, signal: controller.signal });
+  } finally {
+    clearTimeout(timer);
+  }
+}
 
-// Resolve the working API base URL by trying /products on each candidate
-export async function resolvePancakeApiUrl(apiKey: string, shopId: string): Promise<string | null> {
-  const override = process.env.PANCAKE_API_URL;
-  if (override) return override;
+// Probe all known Pancake API base URLs and return the first one that responds
+async function resolvePancakeApiUrl(apiKey: string, shopId: string): Promise<string | null> {
+  // Manual override wins
+  if (process.env.PANCAKE_API_URL) return process.env.PANCAKE_API_URL;
 
-  for (const base of PANCAKE_API_CANDIDATES) {
-    try {
-      const res = await fetch(`${base}/shops/${shopId}/products`, {
-        headers: { Authorization: `Bearer ${apiKey}` },
-      });
-      if (res.ok || res.status === 200) {
-        console.log(`[pancake] Resolved API URL: ${base}`);
-        return base;
+  const candidates = [
+    // Philippines domain variants
+    `https://api-crm.pancake.ph/v2`,
+    `https://api-crm.pancake.ph/v1`,
+    `https://api-crm.pancake.ph`,
+    `https://pos.pancake.ph/api/v2`,
+    `https://pos.pancake.ph/api/v1`,
+    `https://pos.pancake.ph/api`,
+    // Vietnam domain (Pancake is originally Vietnamese)
+    `https://api-crm.pancake.vn/v2`,
+    `https://api-crm.pancake.vn/v1`,
+    `https://api-crm.pancake.vn`,
+    `https://pos.pancake.vn/api/v2`,
+    `https://pos.pancake.vn/api/v1`,
+    // Other common patterns
+    `https://api.pancake.vn/v2`,
+    `https://api.pancake.vn/v1`,
+    `https://api.pancake.ph/v2`,
+    `https://api.pancake.ph/v1`,
+  ];
+
+  // Endpoint patterns to try per base URL
+  const endpoints = (base: string) => [
+    `${base}/shops/${shopId}/products`,
+    `${base}/products?shop_id=${shopId}`,
+    `${base}/product/list?shop_id=${shopId}`,
+  ];
+
+  // Auth patterns to try
+  const authHeaders = [
+    { Authorization: `Bearer ${apiKey}` },
+    { Authorization: `Token ${apiKey}` },
+    { "X-Api-Key": apiKey },
+    { "api-key": apiKey },
+  ];
+
+  for (const base of candidates) {
+    for (const url of endpoints(base)) {
+      for (const headers of authHeaders) {
+        try {
+          const res = await fetchWithTimeout(url, { headers }, 4000);
+          // Any real HTTP response (even 401/403) means the server exists
+          if (res.status !== 0) {
+            const text = await res.text();
+            console.log(`[pancake] ${url} → ${res.status} (auth: ${JSON.stringify(headers)})`);
+            if (res.ok) return base;
+          }
+        } catch {
+          // timeout or DNS failure — try next
+        }
       }
-    } catch {
-      // try next
     }
   }
+
   return null;
 }
 
-// Fetch all products for the shop and return raw data (for debug endpoint)
-export async function fetchPancakeProducts(apiKey: string, shopId: string): Promise<any> {
-  const apiUrl = await resolvePancakeApiUrl(apiKey, shopId);
-  if (!apiUrl) throw new Error("Could not resolve Pancake API URL");
-
-  const res = await fetch(`${apiUrl}/shops/${shopId}/products`, {
-    headers: { Authorization: `Bearer ${apiKey}` },
-  });
-
-  if (!res.ok) {
-    const text = await res.text();
-    throw new Error(`Pancake products fetch failed: ${res.status} ${text}`);
-  }
-
-  return res.json();
-}
-
-// Find product_id + variation_id by matching quantity (number of bottles)
-async function resolveVariant(
+// Fetch all products and find the right product_id + variation_id by bottle count
+export async function resolveVariant(
   apiKey: string,
   shopId: string,
   packageName: string
@@ -73,34 +100,45 @@ async function resolveVariant(
   const qty = PACKAGE_QTY[packageName];
   if (!qty) return null;
 
-  // Allow manual overrides via env vars (optional, skips API call)
-  const manualProductId = process.env.PANCAKE_PRODUCT_ID;
-  const manualVariantId = process.env[`PANCAKE_VARIANT_ID_${qty}PC`];
-  if (manualProductId && manualVariantId) {
-    return { productId: manualProductId, variantId: manualVariantId };
-  }
+  const apiUrl = await resolvePancakeApiUrl(apiKey, shopId);
+  if (!apiUrl) return null;
 
-  try {
-    const data = await fetchPancakeProducts(apiKey, shopId);
-    const products: any[] = Array.isArray(data) ? data : (data.data ?? data.products ?? []);
+  const endpoints = [
+    `${apiUrl}/shops/${shopId}/products`,
+    `${apiUrl}/products?shop_id=${shopId}`,
+  ];
 
-    for (const product of products) {
-      const variations: any[] = product.variations ?? product.variants ?? [];
-      for (const variant of variations) {
-        // Match by quantity field (common field names in POS systems)
-        const variantQty =
-          variant.quantity ?? variant.qty ?? variant.pieces ?? variant.count;
+  const authHeaders = [
+    { Authorization: `Bearer ${apiKey}` },
+    { Authorization: `Token ${apiKey}` },
+    { "X-Api-Key": apiKey },
+  ];
 
-        if (Number(variantQty) === qty) {
-          return {
-            productId: String(product.id ?? product.product_id),
-            variantId: String(variant.id ?? variant.variation_id ?? variant.variant_id),
-          };
+  for (const url of endpoints) {
+    for (const headers of authHeaders) {
+      try {
+        const res = await fetchWithTimeout(url, { headers });
+        if (!res.ok) continue;
+
+        const data = await res.json();
+        const products: any[] = Array.isArray(data) ? data : (data.data ?? data.products ?? []);
+
+        for (const product of products) {
+          const variations: any[] = product.variations ?? product.variants ?? [];
+          for (const variant of variations) {
+            const variantQty = variant.quantity ?? variant.qty ?? variant.pieces ?? variant.count;
+            if (Number(variantQty) === qty) {
+              return {
+                productId: String(product.id ?? product.product_id),
+                variantId: String(variant.id ?? variant.variation_id ?? variant.variant_id),
+              };
+            }
+          }
         }
+      } catch {
+        // try next
       }
     }
-  } catch (err) {
-    console.error("[pancake] Failed to resolve variant from API:", err);
   }
 
   return null;
@@ -123,7 +161,7 @@ export async function createPancakeOrder(payload: PancakeOrderPayload): Promise<
 
   const variant = await resolveVariant(apiKey, shopId, payload.packageName);
   if (!variant) {
-    console.warn(`[pancake] Could not resolve product/variant for package: ${payload.packageName}`);
+    console.warn(`[pancake] Could not resolve variant for: ${payload.packageName}`);
     return;
   }
 
@@ -137,33 +175,31 @@ export async function createPancakeOrder(payload: PancakeOrderPayload): Promise<
     .filter(Boolean)
     .join(", ");
 
-  const orderBody = {
-    shop_id: shopId,
-    customer: {
-      name: `${payload.firstName} ${payload.lastName}`.trim(),
-      phone: payload.phone,
-      address: fullAddress,
-      note: payload.landmark ? `Landmark: ${payload.landmark}` : undefined,
-    },
-    items: [
-      {
-        product_id: variant.productId,
-        variation_id: variant.variantId,
-        quantity: 1,
-        price: payload.price,
-      },
-    ],
-    payment_method: "COD",
-    source: "landing_page",
-  };
-
-  const res = await fetch(`${apiUrl}/orders`, {
+  const res = await fetchWithTimeout(`${apiUrl}/orders`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${apiKey}`,
     },
-    body: JSON.stringify(orderBody),
+    body: JSON.stringify({
+      shop_id: shopId,
+      customer: {
+        name: `${payload.firstName} ${payload.lastName}`.trim(),
+        phone: payload.phone,
+        address: fullAddress,
+        note: payload.landmark ? `Landmark: ${payload.landmark}` : undefined,
+      },
+      items: [
+        {
+          product_id: variant.productId,
+          variation_id: variant.variantId,
+          quantity: 1,
+          price: payload.price,
+        },
+      ],
+      payment_method: "COD",
+      source: "landing_page",
+    }),
   });
 
   if (!res.ok) {
