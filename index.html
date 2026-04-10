@@ -29,14 +29,16 @@
   <!-- Preload critical hero image -->
   <link rel="preload" as="image" href="assets/images/avatar.webp" fetchpriority="high" />
 
-  <!-- Google Fonts -->
+  <!-- Google Fonts — loaded async to avoid render-blocking -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Montserrat:wght@700;800&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Montserrat:wght@700;800&family=Poppins:wght@400;500;600&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Montserrat:wght@700;800&family=Poppins:wght@400;500;600&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Montserrat:wght@700;800&family=Poppins:wght@400;500;600&display=swap" /></noscript>
 
-  <!-- DNS prefetch for external image domains -->
-  <link rel="dns-prefetch" href="//ui-avatars.com" />
-  <link rel="dns-prefetch" href="//images.unsplash.com" />
+  <!-- Preconnect for external image domains -->
+  <link rel="preconnect" href="https://ui-avatars.com" crossorigin />
+  <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
 
   <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon-180.png" />
@@ -95,6 +97,8 @@
           alt="Acne marks and dark spots on skin"
           class="pain-img"
           loading="lazy"
+          width="400" height="200"
+          decoding="async"
         />
         <div class="pain-text">
           <strong>Acne marks that won't go away</strong>
@@ -107,6 +111,8 @@
           alt="Melasma and patchy skin tone on face"
           class="pain-img"
           loading="lazy"
+          width="400" height="200"
+          decoding="async"
           onerror="this.style.background='rgba(201,164,90,0.1)';this.style.height='155px'"
         />
         <div class="pain-text">
@@ -120,6 +126,8 @@
           alt="Too many skincare products tried but none working"
           class="pain-img"
           loading="lazy"
+          width="400" height="200"
+          decoding="async"
           onerror="this.style.background='rgba(201,164,90,0.1)';this.style.height='155px'"
         />
         <div class="pain-text">
@@ -133,6 +141,8 @@
           alt="Sun damage and hyperpigmentation on skin"
           class="pain-img"
           loading="lazy"
+          width="400" height="200"
+          decoding="async"
           onerror="this.style.background='rgba(201,164,90,0.1)';this.style.height='155px'"
         />
         <div class="pain-text">
@@ -148,7 +158,7 @@
   <!-- SOCIAL PROOF -->
   <div class="social-proof fade-in">
     <div class="trust-line">Trusted by 500+ Women</div>
-    <div class="trust-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+    <div class="trust-stars" aria-label="5 out of 5 stars" role="img">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
     <div class="trust-badges">
       <span class="trust-badge">🚚 COD Available</span>
       <span class="trust-badge">📦 Free Shipping</span>
@@ -163,6 +173,8 @@
       alt="Confident woman with clear glowing skin"
       class="lifestyle-img"
       loading="lazy"
+      width="480" height="260"
+      decoding="async"
       onerror="this.src='https://media.istockphoto.com/id/1454518944/photo/beautiful-young-asian-woman-with-clean-fresh-skin-on-white-background-face-care-facial.jpg?s=612x612&w=0&k=20&c=Uh8iieVOYcf7lp1rp5-2DbVNaO1vQwm8oLQX6cPMdmM='"
     />
     <p class="lifestyle-caption">"I want to wear less makeup. I want even skin on camera." — every busy woman's dream.</p>
@@ -232,6 +244,7 @@
       <div class="ing-card">
         <img src="https://i.herbalreality.com/wp-content/uploads/2024/06/26083620/Fresh-Bearberry-leaves-Arctostaphylos-uva-ursi.jpg"
           alt="Bearberry plant — source of Alpha Arbutin" class="ing-img" loading="lazy"
+          width="300" height="160" decoding="async"
           onerror="this.style.background='rgba(201,164,90,0.12)'" />
         <div class="ing-body">
           <div class="ing-name">Alpha Arbutin 2%</div>
@@ -240,7 +253,8 @@
       </div>
       <div class="ing-card">
         <img src="assets/images/niacinamide.jpg"
-          alt="Niacinamide Vitamin B3" class="ing-img" loading="lazy" />
+          alt="Niacinamide Vitamin B3" class="ing-img" loading="lazy"
+          width="300" height="160" decoding="async" />
         <div class="ing-body">
           <div class="ing-name">Niacinamide 10%</div>
           <div class="ing-desc">Tone evening + pore minimizing</div>
@@ -249,6 +263,7 @@
       <div class="ing-card">
         <img src="https://elsieorganics.com/wp-content/uploads/2024/10/Tranexamic-Acid-Powder.jpg"
           alt="Tranexamic Acid pure powder" class="ing-img" loading="lazy"
+          width="300" height="160" decoding="async"
           onerror="this.style.background='rgba(201,164,90,0.12)'" />
         <div class="ing-body">
           <div class="ing-name">Tranexamic Acid 3%</div>
@@ -257,7 +272,8 @@
       </div>
       <div class="ing-card">
         <img src="assets/images/snail-secretion.webp"
-          alt="Snail secretion filtrate mucin" class="ing-img" loading="lazy" />
+          alt="Snail secretion filtrate mucin" class="ing-img" loading="lazy"
+          width="300" height="160" decoding="async" />
         <div class="ing-body">
           <div class="ing-name">Snail Secretion</div>
           <div class="ing-desc">Skin repair + regeneration</div>
@@ -265,7 +281,8 @@
       </div>
       <div class="ing-card">
         <img src="assets/images/hyaluronic-acid.jpg"
-          alt="Hyaluronic Acid serum clear hydration" class="ing-img" loading="lazy" />
+          alt="Hyaluronic Acid serum clear hydration" class="ing-img" loading="lazy"
+          width="300" height="160" decoding="async" />
         <div class="ing-body">
           <div class="ing-name">Hyaluronic Acid</div>
           <div class="ing-desc">Deep hydration, plump skin</div>
@@ -274,6 +291,7 @@
       <div class="ing-card">
         <img src="https://paradisenursery.com/cdn/shop/files/brazilian.papaya.and.juice_1280x.webp"
           alt="Papaya fruit and licorice root natural brightening" class="ing-img" loading="lazy"
+          width="300" height="160" decoding="async"
           onerror="this.style.background='rgba(201,164,90,0.12)'" />
         <div class="ing-body">
           <div class="ing-name">Licorice + Papaya</div>
@@ -379,13 +397,14 @@
             alt="Shiela R."
             class="testi-avatar"
             loading="lazy"
+            width="50" height="50" decoding="async"
           />
           <div>
             <div class="testi-name">Shiela R.</div>
             <div class="testi-location">📍 Manila · Office worker</div>
           </div>
         </div>
-        <div class="testi-stars">★★★★★</div>
+        <div class="testi-stars" aria-label="5 out of 5 stars" role="img">★★★★★</div>
         <p class="testi-text">"Teh hindi ako nagexpect na ganito kaganda yung results! <strong>Mga 3 weeks palang</strong>, napansin na ng mga officemates ko na mas naging blooming ako. Yung dark spots ko sa cheeks na tagal ko nang pinoproblema ay nag-fade na siya sobra. Lagi sila nagtatanong ng skincare ko ngayon haha. Highly recommend to all sis!"</p>
         <span class="testi-tag">✔ Dark Spots · Acne Marks</span>
       </div>
@@ -398,13 +417,14 @@
             alt="Marivic D."
             class="testi-avatar"
             loading="lazy"
+            width="50" height="50" decoding="async"
           />
           <div>
             <div class="testi-name">Marivic D.</div>
             <div class="testi-location">📍 Quezon City · WFH Mom</div>
           </div>
         </div>
-        <div class="testi-stars">★★★★★</div>
+        <div class="testi-stars" aria-label="5 out of 5 stars" role="img">★★★★★</div>
         <p class="testi-text">"Nag-order ako ng 2 bottles para i-share sa ate ko. Then pagkatapos ng isang buwan, pareho kaming nagulat. Yung acne marks ko galing sa pregnancy ay <strong>nag-fade ng sobra</strong>. Hindi na masyado obvious pag naka-Zoom call na ako. Worth it talaga, dami pa namin natipid sa buy 1 take 1!"</p>
         <span class="testi-tag">✔ Post-Pregnancy Marks</span>
       </div>
@@ -417,13 +437,14 @@
             alt="Janine T."
             class="testi-avatar"
             loading="lazy"
+            width="50" height="50" decoding="async"
           />
           <div>
             <div class="testi-name">Janine T.</div>
             <div class="testi-location">📍 Cebu City · Corporate</div>
           </div>
         </div>
-        <div class="testi-stars">★★★★★</div>
+        <div class="testi-stars" aria-label="5 out of 5 stars" role="img">★★★★★</div>
         <p class="testi-text">"Nakapag-try na ako ng 4 na brightening serums bago ito. None of them worked sa melasma ko sa cheeks. <strong>After 30 days ng consistent use</strong>, mapapansin mo na talaga ang difference. Hindi overnight pero real results saka hindi mahal! Satisfied na satisfied ako. Mag-oorder na ulit ako!"</p>
         <span class="testi-tag">✔ Melasma · Patchy Tone</span>
       </div>
@@ -436,13 +457,14 @@
             alt="Rachel M."
             class="testi-avatar"
             loading="lazy"
+            width="50" height="50" decoding="async"
           />
           <div>
             <div class="testi-name">Rachel M.</div>
             <div class="testi-location">📍 Davao City · Freelancer</div>
           </div>
         </div>
-        <div class="testi-stars">★★★★★</div>
+        <div class="testi-stars" aria-label="5 out of 5 stars" role="img">★★★★★</div>
         <p class="testi-text">"Skeptical ako dati sa mga ganito kasi marami akong nabilhan na walang epekto. Pero sinubukan ko pa rin kasi COD naman so wala namang mawawala sakin! Sis, ang ganda ng texture, <strong>hindi sticky kahit mainit sa Davao</strong>. At yung dark spots from pimples... slowly fading na. Sobrang sulit talaga!"</p>
         <span class="testi-tag">✔ Pimple Marks · Non-Sticky</span>
       </div>
@@ -455,13 +477,14 @@
             alt="Crissy A."
             class="testi-avatar"
             loading="lazy"
+            width="50" height="50" decoding="async"
           />
           <div>
             <div class="testi-name">Crissy A.</div>
             <div class="testi-location">📍 Laguna · Teacher</div>
           </div>
         </div>
-        <div class="testi-stars">★★★★★</div>
+        <div class="testi-stars" aria-label="5 out of 5 stars" role="img">★★★★★</div>
         <p class="testi-text">"Ginamit ko ito consistently for 30 days twice a day. Ang bilis mag-absorb. Ngayon? <strong>Yung dark spots na lagi kong tinatakpan ng concealer... mas maputi na.</strong> Confident na akong pumunta sa school kahit walang makeup. Mag-oorder ulit ako!"</p>
         <span class="testi-tag">✔ Sun Spots · Uneven Tone</span>
       </div>
@@ -688,6 +711,6 @@
   </div><!-- end .modal -->
 </div><!-- end .overlay -->
 
-<script src="assets/js/index.js"></script>
+<script src="assets/js/index.js" defer></script>
 </body>
 </html>
