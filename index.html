@@ -432,6 +432,7 @@
     .forwho { background: var(--bg2); }
     .forwho h2 { margin-bottom: 24px; }
     .fit-section { margin-bottom: 20px; }
+    .fit-title, .fit-item { text-align: left; }
     .fit-title {
       font-family: 'Montserrat', sans-serif;
       font-weight: 700;
@@ -696,6 +697,71 @@
     }
     .payment-badge .lock { font-size: 13px; }
 
+    /* ── Urgency Banner ── */
+    .urgency-banner {
+      background: #B91C1C;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 1.55;
+      padding: 14px 18px;
+    }
+    .urgency-banner strong { font-weight: 800; }
+
+    /* ── Promo Timer Block ── */
+    .promo-timer-block {
+      background: #7f1d1d;
+      color: #fff;
+      text-align: center;
+      padding: 16px 16px 14px;
+      margin: 0 16px 4px;
+      border-radius: 12px;
+    }
+    .promo-timer-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 15px;
+      letter-spacing: 0.5px;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+    .countdown-wrap {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .countdown-unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: #fff;
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 8px;
+      padding: 8px 10px;
+      min-width: 54px;
+    }
+    .countdown-num {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 24px;
+      color: #1a1a1a;
+      line-height: 1;
+    }
+    .countdown-label {
+      font-size: 10px;
+      color: #666;
+      margin-top: 3px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .promo-timer-badges {
+      font-size: 12px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.9);
+      line-height: 2;
+    }
+
     .form-error {
       color: #f87171;
       font-size: 12px;
@@ -705,6 +771,10 @@
       opacity: 0.6;
       cursor: not-allowed;
       transform: none !important;
+    }
+    #submitBtn {
+      display: block;
+      margin: 24px auto 0;
     }
 
     /* ── Fade-in animation ── */
@@ -874,6 +944,9 @@
         gap: 40px;
       }
       .forwho-grid .fit-section { margin-bottom: 0; }
+      .forwho .section-label,
+      .forwho h2,
+      .forwho .fit-title { text-align: left; }
 
       /* Bonuses 2-col */
       .bonuses-grid {
@@ -1126,7 +1199,7 @@
         />
         <div class="pain-text">
           <strong>Tried other serums but nothing works</strong>
-          Wasted money and time — your skin still looks the same.
+          Wasted money and time but your skin still looks the same.
         </div>
       </div>
       <div class="pain-item">
@@ -1139,7 +1212,7 @@
         />
         <div class="pain-text">
           <strong>Gets darker again so fast after sun exposure</strong>
-          One week without sunscreen — back to square one. Frustrating, right?
+          One week without sunscreen, back to square one. Frustrating, right?
         </div>
       </div>
     </div>
@@ -1204,7 +1277,7 @@
         <div class="step-num">1</div>
         <div class="step-content">
           <h3>Targets the Source</h3>
-          <p>Blocks melanin production (tyrosinase inhibition) at the root — not just a surface brightener.</p>
+          <p>Blocks melanin production (tyrosinase inhibition) at the root, not just a surface brightener.</p>
         </div>
       </div>
       <div class="step-card">
@@ -1388,7 +1461,7 @@
           </div>
         </div>
         <div class="testi-stars">★★★★★</div>
-        <p class="testi-text">"Teh hindi ako nagexpect na ganito kaganda yung results! <strong>Mga 3 weeks palang</strong>, napansin na ng mga officemates ko na mas maliwanag ang mukha ko. Yung dark spots ko sa cheeks na tagal ko nang pinoproblema — nag-fade na siya sobra. Lagi sila nagtatanong ng skincare ko ngayon haha. Highly recommend to all sis!"</p>
+        <p class="testi-text">"Teh hindi ako nagexpect na ganito kaganda yung results! <strong>Mga 3 weeks palang</strong>, napansin na ng mga officemates ko na mas naging blooming ako. Yung dark spots ko sa cheeks na tagal ko nang pinoproblema ay nag-fade na siya sobra. Lagi sila nagtatanong ng skincare ko ngayon haha. Highly recommend to all sis!"</p>
         <span class="testi-tag">✔ Dark Spots · Acne Marks</span>
       </div>
 
@@ -1407,7 +1480,7 @@
           </div>
         </div>
         <div class="testi-stars">★★★★★</div>
-        <p class="testi-text">"Nag-order ako ng Bestie Pack para share sa ate ko. We-ta! Pagkatapos ng isang buwan, pareho kaming nagulat. Yung acne marks ko galing sa pregnancy — <strong>nag-fade ng sobra</strong>. Hindi na masyado obvious pag naka-Zoom call na ako. Worth it talaga, dami pa namin natipid sa B1T1!"</p>
+        <p class="testi-text">"Nag-order ako ng 2 bottles para i-share sa ate ko. Then pagkatapos ng isang buwan, pareho kaming nagulat. Yung acne marks ko galing sa pregnancy ay <strong>nag-fade ng sobra</strong>. Hindi na masyado obvious pag naka-Zoom call na ako. Worth it talaga, dami pa namin natipid sa buy 1 take 1!"</p>
         <span class="testi-tag">✔ Post-Pregnancy Marks</span>
       </div>
 
@@ -1426,7 +1499,7 @@
           </div>
         </div>
         <div class="testi-stars">★★★★★</div>
-        <p class="testi-text">"Nakapag-try na ako ng 4 na brightening serums bago ito. None of them worked sa melasma ko sa cheeks. <strong>After 30 days ng consistent use</strong>, mapapansin mo na talaga ang difference. Hindi overnight pero real results — at hindi mahal! Satisfied na satisfied ako. Mag-oorder na ulit ako!"</p>
+        <p class="testi-text">"Nakapag-try na ako ng 4 na brightening serums bago ito. None of them worked sa melasma ko sa cheeks. <strong>After 30 days ng consistent use</strong>, mapapansin mo na talaga ang difference. Hindi overnight pero real results saka hindi mahal! Satisfied na satisfied ako. Mag-oorder na ulit ako!"</p>
         <span class="testi-tag">✔ Melasma · Patchy Tone</span>
       </div>
 
@@ -1445,7 +1518,7 @@
           </div>
         </div>
         <div class="testi-stars">★★★★★</div>
-        <p class="testi-text">"Skeptical ako dati sa mga ganito kasi marami akong nabilhan na walang epekto. Pero sinubukan ko pa rin kasi COD naman — walang mawawala! Sis, ang ganda ng texture, <strong>hindi sticky kahit mainit sa Davao</strong>. At yung dark spots from pimples... slowly fading na. Kuha na kayo, sulit talaga!"</p>
+        <p class="testi-text">"Skeptical ako dati sa mga ganito kasi marami akong nabilhan na walang epekto. Pero sinubukan ko pa rin kasi COD naman so wala namang mawawala sakin! Sis, ang ganda ng texture, <strong>hindi sticky kahit mainit sa Davao</strong>. At yung dark spots from pimples... slowly fading na. Sobrang sulit talaga!"</p>
         <span class="testi-tag">✔ Pimple Marks · Non-Sticky</span>
       </div>
 
@@ -1464,7 +1537,7 @@
           </div>
         </div>
         <div class="testi-stars">★★★★★</div>
-        <p class="testi-text">"Ginamit ko ito consistently for 30 days — AM and PM, hindi pinaglipasan. Ang bilis mag-absorb, hindi ko naramdaman na may kinalimutan. Ngayon? <strong>Yung dark spots na lagi kong tinatakpan ng concealer... mas maputi na.</strong> Confident na akong pumunta sa school kahit walang makeup. Mag-oorder na ulit ng Squad Pack!"</p>
+        <p class="testi-text">"Ginamit ko ito consistently for 30 days twice a day. Ang bilis mag-absorb. Ngayon? <strong>Yung dark spots na lagi kong tinatakpan ng concealer... mas maputi na.</strong> Confident na akong pumunta sa school kahit walang makeup. Mag-oorder ulit ako!"</p>
         <span class="testi-tag">✔ Sun Spots · Uneven Tone</span>
       </div>
 
@@ -1486,13 +1559,13 @@
     <div class="faq-item">
       <details>
         <summary class="faq-q">Is it safe for sensitive skin? <span class="faq-chevron">&#9660;</span></summary>
-        <div class="faq-a">Yes. Alpha arbutin is one of the gentlest brightening actives available. No peeling, no stinging. But always patch test first — apply a small amount on your inner arm for 24 hours before full use.</div>
+        <div class="faq-a">Yes. Alpha arbutin is one of the gentlest brightening actives available. No peeling, no stinging. But always patch test first. Apply a small amount on your inner arm for 24 hours before full use.</div>
       </details>
     </div>
     <div class="faq-item">
       <details>
         <summary class="faq-q">How is this different from a niacinamide serum? <span class="faq-chevron">&#9660;</span></summary>
-        <div class="faq-a">Niacinamide evens tone generally. Alpha arbutin targets the SOURCE of dark spots — it blocks melanin production at the root. Our formula actually has BOTH (10% Niacinamide + 2% Alpha Arbutin) for a synergistic effect.</div>
+        <div class="faq-a">Niacinamide evens tone generally. Alpha arbutin targets the SOURCE of dark spots. It blocks melanin production at the root. Our formula actually has BOTH (10% Niacinamide + 2% Alpha Arbutin) to deliver better results.</div>
       </details>
     </div>
     <div class="faq-item">
@@ -1503,20 +1576,20 @@
     </div>
     <div class="faq-item">
       <details>
-        <summary class="faq-q">Why ₱549 for 2 bottles — isn't that expensive? <span class="faq-chevron">&#9660;</span></summary>
-        <div class="faq-a">Our formula has 10% Niacinamide + 3% Tranexamic Acid + 2% Alpha Arbutin — clinical-grade concentrations. At ₱274.50/bottle, it's actually cheaper than Dermorepubliq or COSRX which have lower active concentrations.</div>
+        <summary class="faq-q">Why ₱549 for 2 bottles, isn't that expensive? <span class="faq-chevron">&#9660;</span></summary>
+        <div class="faq-a">Our formula has 10% Niacinamide + 3% Tranexamic Acid + 2% Alpha Arbutin, which are clinical-grade concentrations. At ₱274.50/bottle, it's actually cheaper than most of Alpha Arbutin Serums which have lower active concentrations.</div>
       </details>
     </div>
     <div class="faq-item">
       <details>
         <summary class="faq-q">How does payment and delivery work? <span class="faq-chevron">&#9660;</span></summary>
-        <div class="faq-a">Cash on Delivery (COD) via J&T Express. Pay only when you receive your package. Free shipping nationwide. Delivery: 3–7 business days.</div>
+        <div class="faq-a">Cash on Delivery (COD) via J&T Express. Pay only when you receive your package. Free shipping nationwide. Delivery: 3–7 business days for Metro Manila and Luzon, and 7 to 14 days for Visayas and Mindanao.</div>
       </details>
     </div>
     <div class="faq-item">
       <details>
         <summary class="faq-q">What if it doesn't work for my skin? <span class="faq-chevron">&#9660;</span></summary>
-        <div class="faq-a">Every skin is different, but our formula uses clinically-studied ingredients at effective concentrations. We include a free 30-day routine guide to help you maximize results. Reach out to us via Messenger anytime.</div>
+        <div class="faq-a">Every skin is different, but our formula uses clinically-studied ingredients at effective concentrations. Reach out to us via Messenger anytime.</div>
       </details>
     </div>
   </section>
@@ -1527,7 +1600,7 @@
   <section class="final-cta fade-in">
     <div class="section-label">Last Chance</div>
     <h2>Start Your <span>Glow-Up</span> Today</h2>
-    <p>COD. Free shipping. 30-day routine guide included. Nothing to lose — pay only when your package arrives.</p>
+    <p>COD. Free shipping. You have nothing to lose. Pay only when your package arrives.</p>
     <button class="btn-cta" onclick="openPopup('bestie_pack')">
       ORDER NOW — ₱549 (Buy 1 Take 1)
     </button>
@@ -1554,6 +1627,11 @@
       <button class="modal-close" onclick="closePopup()" aria-label="Close">✕</button>
     </div>
 
+    <!-- Urgency Banner -->
+    <div class="urgency-banner">
+      ⚠️ As of now, we only have <strong>27 bottles left.</strong> We have reserved your order now and will expire when the timer hits zero.
+    </div>
+
     <!-- Order Summary -->
     <div class="order-summary">
       <div class="order-summary-title">Order Summary</div>
@@ -1576,6 +1654,33 @@
       <div class="summary-row total">
         <span>Total (pay on delivery)</span>
         <span class="amount" id="summaryTotal">₱549</span>
+      </div>
+    </div>
+
+    <!-- Promo Timer -->
+    <div class="promo-timer-block">
+      <div class="promo-timer-title">LIMITED PROMOTION ONLY!!</div>
+      <div class="countdown-wrap">
+        <div class="countdown-unit">
+          <span class="countdown-num" id="cd-days">00</span>
+          <span class="countdown-label">Days</span>
+        </div>
+        <div class="countdown-unit">
+          <span class="countdown-num" id="cd-hours">00</span>
+          <span class="countdown-label">Hours</span>
+        </div>
+        <div class="countdown-unit">
+          <span class="countdown-num" id="cd-minutes">15</span>
+          <span class="countdown-label">Minutes</span>
+        </div>
+        <div class="countdown-unit">
+          <span class="countdown-num" id="cd-seconds">00</span>
+          <span class="countdown-label">Seconds</span>
+        </div>
+      </div>
+      <div class="promo-timer-badges">
+        <div>✅ FREE SHIPPING NATIONWIDE</div>
+        <div>✅ 100% MONEYBACK GUARANTEE</div>
       </div>
     </div>
 
@@ -1682,6 +1787,24 @@ const PACKAGES = {
 };
 
 // ── Popup helpers ──
+// ── 15-min Countdown ──
+let _cdEnd = null;
+let _cdTimer = null;
+
+function startCountdown() {
+  if (_cdEnd) return; // keep running across re-opens
+  _cdEnd = Date.now() + 15 * 60 * 1000;
+  function tick() {
+    const rem = Math.max(0, _cdEnd - Date.now());
+    const m = Math.floor(rem / 60000);
+    const s = Math.floor((rem % 60000) / 1000);
+    document.getElementById('cd-minutes').textContent = String(m).padStart(2, '0');
+    document.getElementById('cd-seconds').textContent = String(s).padStart(2, '0');
+    if (rem > 0) _cdTimer = setTimeout(tick, 1000);
+  }
+  tick();
+}
+
 function openPopup(packageName) {
   const pkg = PACKAGES[packageName] || PACKAGES['bestie_pack'];
   document.getElementById('selectedPackage').value = packageName;
@@ -1701,6 +1824,7 @@ function openPopup(packageName) {
 
   document.getElementById('checkoutOverlay').classList.add('active');
   document.body.style.overflow = 'hidden';
+  startCountdown();
 
   // FB Pixel: InitiateCheckout
   if (typeof fbq !== 'undefined') {
@@ -1785,121 +1909,105 @@ function showError(msg) {
   el.style.display = 'block';
 }
 
-// ── PH Location Dropdowns ──
-const PH_LOCATIONS = {
-  "Metro Manila": {
-    "Caloocan": ["Bagong Barrio","Deparo","Llano","Maypajo","Sangandaan"],
-    "Las Piñas": ["Almanza Uno","Almanza Dos","BF Homes","Pamplona Tres","Talon Uno"],
-    "Makati": ["Bel-Air","Forbes Park","Legazpi Village","Poblacion","San Antonio"],
-    "Malabon": ["Acacia","Baritan","Catmon","Longos","Tañong"],
-    "Mandaluyong": ["Addition Hills","Barangka","Buayang Bato","Highway Hills","Wack-Wack"],
-    "Manila": ["Binondo","Ermita","Intramuros","Malate","Paco","Pandacan","Quiapo","Sampaloc","Tondo"],
-    "Marikina": ["Calumpang","Concepcion Uno","Industrial Valley","Nangka","Tumana"],
-    "Muntinlupa": ["Alabang","Ayala Alabang","Buli","Cupang","New Alabang Village"],
-    "Navotas": ["Bagumbayan Norte","Bangkulasi","Daanghari","Nboc","Sipac-Almacen"],
-    "Parañaque": ["Baclaran","BF Homes","Don Bosco","La Huerta","Sun Valley"],
-    "Pasay": ["Barangay 1","Barangay 2","Barangay 3","Barangay 4","Barangay 5"],
-    "Pasig": ["Bagong Ilog","Kapitolyo","Maybunga","Rosario","San Miguel"],
-    "Pateros": ["Aguho","Magtanggol","Sto. Rosario","San Pedro","Tabacalera"],
-    "Quezon City": ["Bagong Pag-asa","Batasan Hills","Diliman","Fairview","Kamuning","Matandang Balara","Project 4"],
-    "San Juan": ["Addition Hills","Batis","Corazon de Jesus","Isabelita","Pinaglabanan"],
-    "Taguig": ["BGC","Hagonoy","Ligid-Tipas","Napindan","Ususan"],
-    "Valenzuela": ["Arkong Bato","Bagbaguin","Balangkas","Dalandanan","Karuhatan"]
-  },
-  "Cebu": {
-    "Cebu City": ["Ayala","Carbon","Colon","IT Park","Lahug","Mabolo","Punta Princesa","Talamban"],
-    "Mandaue City": ["Alang-Alang","Bakilid","Banilad","Centro","Guizo","Pakna-an"],
-    "Lapu-Lapu City": ["Babag","Basak","Buaya","Gun-ob","Mactan"],
-    "Talisay City": ["Bulacao","Camp 4","Dumlog","Lawaan","San Roque"],
-    "Danao City": ["Baliang","Binaliw","Danasan","Guinsay","Sabang"]
-  },
-  "Davao del Sur": {
-    "Davao City": ["Agdao","Buhangin","Bunawan","Calinan","Marilog","Paquibato","Poblacion","Talomo","Toril","Tugbok"],
-    "Digos City": ["Aplaya","Goma","Matti","Ruparan","Zone 1"],
-    "Sta. Cruz": ["Bato","Kimlomon","Matanao","Matti","Malahog"]
-  },
-  "Laguna": {
-    "Sta. Rosa City": ["Balibago","Caingin","Dila","Don Jose","Pooc","Tagapo"],
-    "San Pedro City": ["Cuyab","Landayan","Langgam","Narra","San Antonio"],
-    "Calamba City": ["Bagong Kalsada","Bucal","Canlubang","Halang","Punta"],
-    "Biñan City": ["Biñan Poblacion","Casile","De La Paz","Sto. Tomas","Tubigan"],
-    "Los Baños": ["Anos","Bayog","Batong Malake","Calo","Putho-Tuntungin"]
-  },
-  "Bulacan": {
-    "Malolos City": ["Anilao","Babatnin","Bagna","Bulihan","Canalate","Mojon"],
-    "Meycauayan City": ["Bagbaguin","Bahay Pare","Bancal","Banga","Camalig"],
-    "San Jose del Monte City": ["Assumption","Bagong Buhay","Dulong Bayan","Fatima","Kaypian"],
-    "Marilao": ["Abangan Norte","Abangan Sur","Ibayo","Loma de Gato","Patubig"],
-    "Bocaue": ["Bambang","Batia","Bolacan","Bundukan","Caingin"]
-  },
-  "Rizal": {
-    "Antipolo City": ["Bagong Nayon","Dalig","Dela Paz","Mambugan","San Jose","San Luis","San Roque"],
-    "Cainta": ["San Andres","San Juan","San Roque","Sto. Domingo","Sto. Tomas"],
-    "Taytay": ["Dolores","Muzon","San Isidro","San Juan","Sta. Ana"],
-    "Angono": ["Brgy. 1","Brgy. 2","Brgy. 3","Brgy. 4","Brgy. 5"],
-    "Binangonan": ["Batingan","Calumpang","Habagat","Lunsad","Pantay"]
-  },
-  "Cavite": {
-    "Bacoor City": ["Aniban","Banalo","Bayanan","Habay","Molino","Salinas","Talaba"],
-    "Imus City": ["Alapan","Anabu","Bayan Luma","Bucandala","Tanzang Luma"],
-    "Dasmariñas City": ["Burol","Manggahan","Paliparan","Salawag","Sampaloc"],
-    "General Trias City": ["Alingaro","Biclatan","Buenavista","Manggahan","Navarro"],
-    "Tagaytay City": ["Asisan","Bukal","Calabuso","Guinhawa","Kaybagal South"]
-  },
-  "Pampanga": {
-    "Angeles City": ["Anunas","Balibago","Capaya","Claro M. Recto","Lourdes North West","Mining","Pandan","Pulung Maragul"],
-    "San Fernando City": ["Alasas","Baliti","Bulaon","Calulut","Del Carmen","Dolores","Lara"],
-    "Mabalacat City": ["Atlu-Bola","Bical","Cacutud","Calumpang","Dau","Dolores","Mabiga"],
-    "Porac": ["Babo-Pangulo","Babo-Sacan","Balubad","Bancal","Cangatba"],
-    "Guagua": ["Bancal","Betis","Kati","Malauli","Pakig"]
+// ── PH Location Dropdowns (PSGC API) ──
+const PSGC = 'https://psgc.gitlab.io/api';
+
+function _setLoading(selectEl, msg) {
+  selectEl.innerHTML = `<option value="">${msg}</option>`;
+  selectEl.disabled = true;
+}
+function _setReady(selectEl, placeholder) {
+  selectEl.disabled = false;
+  if (!selectEl.options.length) {
+    selectEl.innerHTML = `<option value="">${placeholder}</option>`;
   }
-};
-
-function populateCities() {
-  const province = document.getElementById('province').value;
-  const citySelect = document.getElementById('city');
-  const barangaySelect = document.getElementById('barangay');
-
-  citySelect.innerHTML = '<option value="">— Piliin ang City —</option>';
-  barangaySelect.innerHTML = '<option value="">— Piliin ang Barangay —</option>';
-
-  if (!province || !PH_LOCATIONS[province]) return;
-
-  const cities = Object.keys(PH_LOCATIONS[province]);
-  cities.sort().forEach(city => {
-    const opt = document.createElement('option');
-    opt.value = city;
-    opt.textContent = city;
-    citySelect.appendChild(opt);
-  });
 }
 
-function populateBarangays() {
-  const province = document.getElementById('province').value;
-  const city = document.getElementById('city').value;
+async function populateCities() {
+  const provinceEl = document.getElementById('province');
+  const citySelect = document.getElementById('city');
   const barangaySelect = document.getElementById('barangay');
+  const code = provinceEl.selectedOptions[0]?.dataset.code;
 
-  barangaySelect.innerHTML = '<option value="">— Piliin ang Barangay —</option>';
+  _setLoading(citySelect, '— Loading cities… —');
+  _setLoading(barangaySelect, '— Select Barangay —');
 
-  if (!province || !city || !PH_LOCATIONS[province]?.[city]) return;
+  if (!code) {
+    _setReady(citySelect, '— Select City —');
+    _setReady(barangaySelect, '— Select Barangay —');
+    return;
+  }
 
-  PH_LOCATIONS[province][city].forEach(brgy => {
-    const opt = document.createElement('option');
-    opt.value = brgy;
-    opt.textContent = brgy;
-    barangaySelect.appendChild(opt);
-  });
+  try {
+    const url = code === 'NCR'
+      ? `${PSGC}/regions/130000000/cities-municipalities/`
+      : `${PSGC}/provinces/${code}/cities-municipalities/`;
+    const data = await fetch(url).then(r => r.json());
+    citySelect.innerHTML = '<option value="">— Select City —</option>';
+    data.sort((a, b) => a.name.localeCompare(b.name)).forEach(c => {
+      const opt = document.createElement('option');
+      opt.value = c.name;
+      opt.dataset.code = c.code;
+      opt.textContent = c.name;
+      citySelect.appendChild(opt);
+    });
+    _setReady(citySelect, '— Select City —');
+    _setReady(barangaySelect, '— Select Barangay —');
+  } catch {
+    _setReady(citySelect, '— Select City —');
+    _setReady(barangaySelect, '— Select Barangay —');
+  }
+}
+
+async function populateBarangays() {
+  const cityEl = document.getElementById('city');
+  const barangaySelect = document.getElementById('barangay');
+  const code = cityEl.selectedOptions[0]?.dataset.code;
+
+  _setLoading(barangaySelect, '— Loading barangays… —');
+
+  if (!code) { _setReady(barangaySelect, '— Select Barangay —'); return; }
+
+  try {
+    const data = await fetch(`${PSGC}/cities-municipalities/${code}/barangays/`).then(r => r.json());
+    barangaySelect.innerHTML = '<option value="">— Select Barangay —</option>';
+    data.sort((a, b) => a.name.localeCompare(b.name)).forEach(b => {
+      const opt = document.createElement('option');
+      opt.value = b.name;
+      opt.textContent = b.name;
+      barangaySelect.appendChild(opt);
+    });
+    _setReady(barangaySelect, '— Select Barangay —');
+  } catch {
+    _setReady(barangaySelect, '— Select Barangay —');
+  }
 }
 
 // Populate province dropdown on init
-(function initProvinces() {
+(async function initProvinces() {
   const provinceSelect = document.getElementById('province');
-  Object.keys(PH_LOCATIONS).sort().forEach(prov => {
-    const opt = document.createElement('option');
-    opt.value = prov;
-    opt.textContent = prov;
-    provinceSelect.appendChild(opt);
-  });
+  _setLoading(provinceSelect, '— Loading provinces… —');
+  try {
+    const data = await fetch(`${PSGC}/provinces/`).then(r => r.json());
+    provinceSelect.innerHTML = '<option value="">— Select Province —</option>';
+    // NCR as special entry
+    const ncr = document.createElement('option');
+    ncr.value = 'Metro Manila (NCR)';
+    ncr.dataset.code = 'NCR';
+    ncr.textContent = 'Metro Manila (NCR)';
+    provinceSelect.appendChild(ncr);
+    data.sort((a, b) => a.name.localeCompare(b.name)).forEach(p => {
+      const opt = document.createElement('option');
+      opt.value = p.name;
+      opt.dataset.code = p.code;
+      opt.textContent = p.name;
+      provinceSelect.appendChild(opt);
+    });
+    _setReady(provinceSelect, '— Select Province —');
+  } catch {
+    provinceSelect.innerHTML = '<option value="">— Select Province —</option>';
+    provinceSelect.disabled = false;
+  }
 })();
 
 // ── Fade-in on scroll ──
