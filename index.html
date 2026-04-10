@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EvenMuse Alpha Arbutin Serum — Fade Dark Spots in 30 Days</title>
-  <meta name="description" content="Alpha Arbutin Serum na specifically formulated para sa Filipinas. Targets dark spots, acne marks, at uneven skin tone. COD available. Free shipping." />
+  <meta name="description" content="Alpha Arbutin Serum na specifically formulated para sa Pinay. Targets dark spots, acne marks, at uneven skin tone. COD available. Free shipping." />
 
   <!-- FB Pixel -->
   <script>
@@ -56,9 +56,12 @@
       background: var(--bg);
       color: var(--text);
       font-family: 'Poppins', sans-serif;
-      font-size: 15px;
+      font-size: 16px;
       line-height: 1.6;
       min-height: 100vh;
+    }
+    @media (min-width: 768px) {
+      body { font-size: 18px; }
     }
 
     .page-wrap {
@@ -186,10 +189,12 @@
       border-radius: 50%;
     }
     .hero-img {
-      width: 220px;
+      width: 260px;
       height: auto;
       position: relative;
       z-index: 1;
+      border-radius: 16px;
+      object-fit: contain;
       filter: drop-shadow(0 20px 40px rgba(201,164,90,0.25));
     }
     .hero-badge {
@@ -340,7 +345,8 @@
       align-items: center;
       justify-content: center;
     }
-    .step-content h3 { color: var(--gold); margin-bottom: 4px; font-size: 15px; }
+    .step-content h3 { color: var(--gold); margin-bottom: 4px; font-size: 16px; }
+    @media (min-width: 768px) { .step-content h3 { font-size: 18px; } }
     .step-content p { color: var(--muted); font-size: 13px; }
 
     /* ── INGREDIENTS ── */
@@ -378,7 +384,11 @@
       margin-bottom: 16px;
       position: relative;
       transition: border-color 0.2s;
+      display: flex;
+      flex-direction: column;
     }
+    .pkg-card .btn-cta,
+    .pkg-card .btn-outline { margin-top: auto; }
     .pkg-card.featured {
       border-color: var(--gold);
       background: rgba(201,164,90,0.06);
@@ -823,7 +833,7 @@
       }
       .hero-bot { grid-area: hero-bot; align-self: start; padding-top: 8px; }
       .hero-img-wrap { margin: 0; }
-      .hero-img { width: 320px; }
+      .hero-img { width: 380px; border-radius: 20px; }
       .hero-badge { display: inline-flex; }
       .hero h1 { font-size: 36px; }
 
@@ -851,7 +861,7 @@
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         gap: 24px;
-        align-items: start;
+        align-items: stretch;
       }
       .pkg-card { margin-bottom: 0; }
 
@@ -892,18 +902,18 @@
     @media (min-width: 1100px) {
       section { padding: 88px 12%; }
       .hero { padding: 88px 12%; gap: 0 80px; }
-      .hero-img { width: 360px; }
+      .hero-img { width: 420px; }
     }
 
     /* ── Hero subheadline ── */
     .hero-sub {
-      font-size: 16px;
-      line-height: 1.8;
+      font-size: 16px !important;
+      line-height: 1.7;
       color: var(--muted);
       margin-bottom: 28px;
     }
     .hero-sub strong { color: var(--gold); font-weight: 600; }
-    @media (min-width: 768px) { .hero-sub { font-size: 18px; } }
+    @media (min-width: 768px) { .hero-sub { font-size: 18px !important; } }
 
     /* ── Pain item: image card layout ── */
     .pain-item {
@@ -915,9 +925,16 @@
     }
     .pain-img {
       width: 100%;
-      height: 155px;
-      object-fit: cover;
+      height: 200px;
+      object-fit: contain;
       display: block;
+      background: #1a1a1a;
+    }
+    @media (min-width: 768px) {
+      .pain-img { height: 160px; }
+    }
+    @media (min-width: 1100px) {
+      .pain-img { height: 140px; }
     }
     .pain-text {
       padding: 14px 16px 16px;
@@ -931,11 +948,17 @@
     }
     .ing-img {
       width: 100%;
-      height: 110px;
-      object-fit: cover;
+      height: 160px;
+      object-fit: contain;
       display: block;
       border-radius: var(--radius) var(--radius) 0 0;
-      background: rgba(201,164,90,0.08);
+      background: #1a1a1a;
+    }
+    @media (min-width: 768px) {
+      .ing-img { height: 130px; }
+    }
+    @media (min-width: 1100px) {
+      .ing-img { height: 110px; }
     }
     .ing-body {
       padding: 12px 14px 14px;
@@ -951,24 +974,72 @@
       }
     }
 
-    /* ── Package bottle visuals ── */
+    /* ── Package product visuals ── */
     .pkg-visual {
       display: flex;
       justify-content: center;
-      align-items: flex-end;
-      gap: 6px;
+      align-items: center;
       margin-bottom: 16px;
-      padding: 16px 0 0;
-      min-height: 110px;
+      padding: 12px 0 0;
     }
-    .pkg-bottle {
-      width: 68px;
+    .pkg-product-img {
+      width: 100%;
+      max-width: 200px;
       height: auto;
       object-fit: contain;
-      filter: drop-shadow(0 6px 14px rgba(201,164,90,0.22));
+      display: block;
+      filter: drop-shadow(0 6px 14px rgba(201,164,90,0.18));
     }
-    .pkg-visual.bottles-2 .pkg-bottle { width: 56px; }
-    .pkg-visual.bottles-3 .pkg-bottle { width: 48px; }
+
+    /* ── Body text: 16px mobile, 18px desktop ── */
+    p,
+    .pain-text,
+    .step-content p,
+    .ing-name,
+    .ing-desc,
+    .pkg-desc,
+    .pkg-savings,
+    .how .subtitle,
+    .pricing .subtitle,
+    .faq-q,
+    .faq-a,
+    .lifestyle-caption,
+    .fit-item,
+    .testi-text,
+    .ba-before p,
+    .ba-after p,
+
+    .price-tag,
+    .trust-line,
+    .testi-tag,
+    .payment-badge {
+      font-size: 16px;
+    }
+    @media (min-width: 768px) {
+      p,
+      .pain-text,
+      .step-content p,
+      .ing-name,
+      .ing-desc,
+      .pkg-desc,
+      .pkg-savings,
+      .how .subtitle,
+      .pricing .subtitle,
+      .faq-q,
+      .faq-a,
+      .lifestyle-caption,
+      .fit-item,
+      .testi-text,
+      .ba-before p,
+      .ba-after p,
+  
+      .price-tag,
+      .trust-line,
+      .testi-tag,
+      .payment-badge {
+        font-size: 18px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -976,7 +1047,7 @@
 
   <!-- Top bar -->
   <div class="topbar">
-    FREE SHIPPING + COD sa buong Pilipinas
+    FREE SHIPPING + Cash on Delivery Nationwide
   </div>
 
   <!-- HERO -->
@@ -986,28 +1057,28 @@
       <div class="hero-brand brand">EvenMuse Skincare</div>
       <div class="hero-badge">
         <span class="hero-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-        Trusted by 500+ Filipinas
+        Trusted by 500+ Women
       </div>
-      <h1>Paano Mag-Fade ng Dark Spots ang Busy Filipinas — <span>Kahit Walang Complicated Routine</span></h1>
+      <h1>How Busy Women Get Rid of Dark Spots — <span>Without a Complicated Routine</span></h1>
     </div>
     <!-- hero-visual: product image (right col on desktop) -->
     <div class="hero-visual">
       <div class="hero-img-wrap">
-        <img src="assets/mockup.png" alt="EvenMuse Alpha Arbutin Serum bottle" class="hero-img" loading="eager" />
+        <img src="assets/avatar.png" alt="EvenMuse Alpha Arbutin Serum" class="hero-img" loading="eager" />
       </div>
     </div>
     <!-- hero-bot: desc + price + CTA (left col bottom on desktop) -->
     <div class="hero-bot">
-      <p class="hero-sub">Hindi ito pang-bright lang. <strong>EvenMuse Alpha Arbutin Serum</strong> targets the source ng dark spots, acne marks, at uneven tone — gradual na fade na nagtatagal. 2-3 drops, AM/PM, tapos sunscreen. Kaya ng busy schedule mo.</p>
+      <p class="hero-sub">7 days. 2–3 drops, AM and PM. That's all you need to see your dark spots start to fade.</p>
       <div class="price-tag">
         Regular price: <s>₱698</s> &nbsp;·&nbsp; BESTIE PACK PROMO
       </div>
       <div class="price-main">₱549</div>
-      <p style="font-size:12px;color:var(--green);margin-bottom:20px;font-weight:600;">Buy 1 Take 1 — Libre ang isa pang bottle!</p>
+      <p style="color:var(--green);margin-bottom:20px;font-weight:600;">Buy 1 Get 1 Free — Get a second bottle at no charge!</p>
       <button class="btn-cta" onclick="openPopup('bestie_pack')">
         ORDER NOW — ₱549 (Buy 1 Take 1)
       </button>
-      <p style="font-size:12px;color:var(--muted);margin-top:12px;">Pay upon delivery · Free shipping · 100% authentic</p>
+      <p style="color:var(--muted);margin-top:12px;">Pay upon delivery · Free shipping · 100% authentic</p>
     </div>
   </section>
 
@@ -1015,20 +1086,19 @@
 
   <!-- PROBLEM -->
   <section class="problem fade-in">
-    <div class="section-label">Totoo ba ito para sa'yo?</div>
-    <h2>Bakit Hindi Pa Rin Nawawala ang Dark Spots Mo?</h2>
+    <div class="section-label">Does this sound like you?</div>
+    <h2>Why Aren't Your Dark Spots Going Away?</h2>
     <div class="pain-grid">
       <div class="pain-item">
         <img
-          src="https://c8.alamy.com/comp/2J58YNK/acne-dark-spots-and-scars-on-face-of-asian-young-woman-2J58YNK.jpg"
-          alt="Acne marks and dark spots on Asian woman's face"
+          src="assets/acne.webp"
+          alt="Acne marks and dark spots on skin"
           class="pain-img"
           loading="lazy"
-          onerror="this.style.background='rgba(201,164,90,0.1)';this.style.height='155px'"
         />
         <div class="pain-text">
-          <strong>Acne marks na nagtatagal</strong>
-          Kahit wala nang active pimple, nandoon pa rin ang marks. Ilang months na.
+          <strong>Acne marks that won't go away</strong>
+          Even with no active pimples, the marks are still there. For months.
         </div>
       </div>
       <div class="pain-item">
@@ -1040,8 +1110,8 @@
           onerror="this.style.background='rgba(201,164,90,0.1)';this.style.height='155px'"
         />
         <div class="pain-text">
-          <strong>Patchy tone sa cheeks at upper lip</strong>
-          Hindi pantay ang kulay ng mukha mo kahit sa likas na liwanag.
+          <strong>Patchy tone on your cheeks and upper lip</strong>
+          Your skin tone is uneven even in natural light.
         </div>
       </div>
       <div class="pain-item">
@@ -1053,8 +1123,8 @@
           onerror="this.style.background='rgba(201,164,90,0.1)';this.style.height='155px'"
         />
         <div class="pain-text">
-          <strong>Nag-try na ng ibang serum pero bumabalik pa rin</strong>
-          Pera ang gastos, oras ang kaltas — tapos ganoon pa rin ang skin.
+          <strong>Tried other serums but nothing works</strong>
+          Wasted money and time — your skin still looks the same.
         </div>
       </div>
       <div class="pain-item">
@@ -1066,8 +1136,8 @@
           onerror="this.style.background='rgba(201,164,90,0.1)';this.style.height='155px'"
         />
         <div class="pain-text">
-          <strong>Ang bilis mag-darken ulit pag na-araw</strong>
-          One week walang sunscreen — balik sa dati. Frustrating, 'di ba?
+          <strong>Gets darker again so fast after sun exposure</strong>
+          One week without sunscreen — back to square one. Frustrating, right?
         </div>
       </div>
     </div>
@@ -1077,7 +1147,7 @@
 
   <!-- SOCIAL PROOF -->
   <div class="social-proof fade-in">
-    <div class="trust-line">Trusted by 500+ Filipinas</div>
+    <div class="trust-line">Trusted by 500+ Women</div>
     <div class="trust-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
     <div class="trust-badges">
       <span class="trust-badge">🚚 COD Available</span>
@@ -1095,7 +1165,7 @@
       loading="lazy"
       onerror="this.src='https://media.istockphoto.com/id/1454518944/photo/beautiful-young-asian-woman-with-clean-fresh-skin-on-white-background-face-care-facial.jpg?s=612x612&w=0&k=20&c=Uh8iieVOYcf7lp1rp5-2DbVNaO1vQwm8oLQX6cPMdmM='"
     />
-    <p class="lifestyle-caption">"Gusto ko mag-make up less. Gusto ko pantay balat sa camera." — ang dream ng bawat busy Filipina.</p>
+    <p class="lifestyle-caption">"I want to wear less makeup. I want even skin on camera." — every busy woman's dream.</p>
   </div>
 
   <div class="divider"></div>
@@ -1103,16 +1173,16 @@
   <!-- TRANSFORMATION -->
   <section class="transform fade-in">
     <div class="section-label">Before & After</div>
-    <h2>Ang Pagbabago na Pwede Mong Ma-Experience</h2>
+    <h2>The Transformation You Can Expect</h2>
     <div class="ba-card">
       <div class="ba-before">
         <div class="ba-label">✗ Before EvenMuse</div>
-        <p>"Tried 3 brightening serums na. May dark spots pa rin. Kailangan pa ng concealer every Zoom call."</p>
+        <p>"Tried 3 brightening serums. Still have dark spots. Still need concealer for every Zoom call."</p>
       </div>
       <div class="arrow-divider">↓</div>
       <div class="ba-after">
         <div class="ba-label">✓ After 30 Days</div>
-        <p>"Pantay na skin tone. Less concealer days. Confident mag-bare face sa meetings. Di ko inaasahan."</p>
+        <p>"Even skin tone. Less concealer days. Confident to go bare-face in meetings. Can't believe it. 😱"</p>
       </div>
     </div>
     <button class="btn-cta" onclick="openPopup('bestie_pack')">
@@ -1124,29 +1194,29 @@
 
   <!-- HOW IT WORKS -->
   <section class="how fade-in">
-    <div class="section-label">Ang Science Behind It</div>
+    <div class="section-label">The Science Behind It</div>
     <h2>Why Alpha Arbutin</h2>
-    <p class="subtitle">Hindi ito ordinary brightening serum.</p>
+    <p class="subtitle">This is not your ordinary brightening serum.</p>
     <div class="steps-grid">
       <div class="step-card">
         <div class="step-num">1</div>
         <div class="step-content">
           <h3>Targets the Source</h3>
-          <p>Blocks melanin production (tyrosinase inhibition) at the root — hindi lang pampasipag ng skin.</p>
+          <p>Blocks melanin production (tyrosinase inhibition) at the root — not just a surface brightener.</p>
         </div>
       </div>
       <div class="step-card">
         <div class="step-num">2</div>
         <div class="step-content">
           <h3>Fades Gradually</h3>
-          <p>Not instant whitening. Consistent, even results over 30 days. Para sustainable at hindi harsh sa skin.</p>
+          <p>Not instant whitening. Consistent, even results over 30 days. Sustainable and gentle on your skin.</p>
         </div>
       </div>
       <div class="step-card">
         <div class="step-num">3</div>
         <div class="step-content">
           <h3>Gentle Formula</h3>
-          <p>No peeling, no hapdi. Lightweight na bagay sa humid na panahon ng Pilipinas.</p>
+          <p>No peeling, no stinging. Lightweight formula, perfect for the Philippine humid weather.</p>
         </div>
       </div>
     </div>
@@ -1165,13 +1235,12 @@
           onerror="this.style.background='rgba(201,164,90,0.12)'" />
         <div class="ing-body">
           <div class="ing-name">Alpha Arbutin 2%</div>
-          <div class="ing-desc">Dark spot fading at the source — from bearberry extract</div>
+          <div class="ing-desc">Dark spot fading at the source from bearberry extract</div>
         </div>
       </div>
       <div class="ing-card">
-        <img src="http://wiseowlhealth.com/cdn/shop/files/Niacinamide_Wise_Owl_Health.png"
-          alt="Niacinamide Vitamin B3" class="ing-img" loading="lazy"
-          onerror="this.style.background='rgba(201,164,90,0.12)'" />
+        <img src="assets/niacinamide.jpg"
+          alt="Niacinamide Vitamin B3" class="ing-img" loading="lazy" />
         <div class="ing-body">
           <div class="ing-name">Niacinamide 10%</div>
           <div class="ing-desc">Tone evening + pore minimizing</div>
@@ -1187,18 +1256,16 @@
         </div>
       </div>
       <div class="ing-card">
-        <img src="https://www.cosrx.com/cdn/shop/files/Snail96Essence_8_2048x.jpg"
-          alt="Snail secretion filtrate mucin" class="ing-img" loading="lazy"
-          onerror="this.src='https://media.gettyimages.com/id/522213084/photo/helix-aspersa-maxima-producing-a-defensive-froth-of-mucus.jpg?s=612x612&w=gi&k=20&c=CI4JIP4RgG3ENzjySD08iQ9Zno9Mj6wOTg2htQK_R0k='" />
+        <img src="assets/snail-secretion.webp"
+          alt="Snail secretion filtrate mucin" class="ing-img" loading="lazy" />
         <div class="ing-body">
           <div class="ing-name">Snail Secretion</div>
           <div class="ing-desc">Skin repair + regeneration</div>
         </div>
       </div>
       <div class="ing-card">
-        <img src="https://images.unsplash.com/photo-1614204424926-196a80bf0be8?w=400&fit=crop&q=80"
-          alt="Hyaluronic Acid serum clear hydration" class="ing-img" loading="lazy"
-          onerror="this.style.background='rgba(201,164,90,0.12)'" />
+        <img src="assets/hyaluronic-acid.jpg"
+          alt="Hyaluronic Acid serum clear hydration" class="ing-img" loading="lazy" />
         <div class="ing-body">
           <div class="ing-name">Hyaluronic Acid</div>
           <div class="ing-desc">Deep hydration, plump skin</div>
@@ -1220,15 +1287,15 @@
 
   <!-- PRICING -->
   <section class="pricing fade-in">
-    <div class="section-label">Choose Your Pack</div>
-    <h2>Piliin ang Para Sa'yo</h2>
-    <p class="subtitle">Lahat ay may free shipping + COD</p>
+    <div class="section-label">Choose Your Package</div>
+    <h2>Choose Your Package</h2>
+    <p class="subtitle">Your Discount Has Been Applied!</p>
 
     <div class="pkg-grid">
       <!-- Starter -->
       <div class="pkg-card">
-        <div class="pkg-visual bottles-1">
-          <img src="assets/mockup.png" class="pkg-bottle" alt="1 bottle" onerror="this.style.display='none'">
+        <div class="pkg-visual">
+          <img src="assets/1pc.png" class="pkg-product-img" alt="1 EvenMuse Serum bottle">
         </div>
         <div class="pkg-name">Starter Glow</div>
         <div class="pkg-desc">Buy 1 — 30mL bottle · "Try it once"</div>
@@ -1242,14 +1309,13 @@
       <!-- Bestie Pack (featured) -->
       <div class="pkg-card featured">
         <div class="pkg-badge">⭐ BEST VALUE</div>
-        <div class="pkg-visual bottles-2">
-          <img src="assets/mockup.png" class="pkg-bottle" alt="bottle 1" onerror="this.style.display='none'">
-          <img src="assets/mockup.png" class="pkg-bottle" alt="bottle 2" onerror="this.style.display='none'">
+        <div class="pkg-visual">
+          <img src="assets/2pcs.png" class="pkg-product-img" alt="2 EvenMuse Serum bottles">
         </div>
         <div class="pkg-name">Bestie Pack</div>
         <div class="pkg-desc">Buy 1 Take 1 — 2× 30mL bottles · Save ₱149</div>
         <div class="pkg-price"><span>₱</span>549</div>
-        <div class="pkg-savings">You save ₱149 — ₱274.50 per bottle lang</div>
+        <div class="pkg-savings">You save ₱149 — ₱274.50 per bottle only</div>
         <button class="btn-cta" onclick="openPopup('bestie_pack')">
           ORDER BESTIE PACK — ₱549
         </button>
@@ -1257,10 +1323,8 @@
 
       <!-- Squad Pack -->
       <div class="pkg-card">
-        <div class="pkg-visual bottles-3">
-          <img src="assets/mockup.png" class="pkg-bottle" alt="bottle 1" onerror="this.style.display='none'">
-          <img src="assets/mockup.png" class="pkg-bottle" alt="bottle 2" onerror="this.style.display='none'">
-          <img src="assets/mockup.png" class="pkg-bottle" alt="bottle 3" onerror="this.style.display='none'">
+        <div class="pkg-visual">
+          <img src="assets/3pcs.png" class="pkg-product-img" alt="3 EvenMuse Serum bottles">
         </div>
         <div class="pkg-name">Squad Pack</div>
         <div class="pkg-desc">Buy 2 Take 1 — 3× 30mL bottles · Save ₱348</div>
@@ -1277,21 +1341,21 @@
 
   <!-- FOR WHO -->
   <section class="forwho fade-in">
-    <div class="section-label">Para sa'yo ba ito?</div>
-    <h2>Sino ang Perfect Candidate</h2>
+    <div class="section-label">Is this for you?</div>
+    <h2>This Is for You If You're Done Hiding Behind Makeup</h2>
     <div class="forwho-grid">
       <div class="fit-section">
-        <div class="fit-title good">✓ Perfect fit kung ikaw ay…</div>
-        <div class="fit-item"><span class="check">✔</span><span>Corporate girlie o WFH mom na laging on camera</span></div>
-        <div class="fit-item"><span class="check">✔</span><span>May dark spots, acne marks, o patchy skin tone</span></div>
-        <div class="fit-item"><span class="check">✔</span><span>Gusto ng simple routine — hindi 5 steps</span></div>
+        <div class="fit-title good">✓ Perfect fit if you are…</div>
+        <div class="fit-item"><span class="check">✔</span><span>A corporate girlie or WFH mom always on camera</span></div>
+        <div class="fit-item"><span class="check">✔</span><span>Dealing with dark spots, acne marks, or patchy skin tone</span></div>
+        <div class="fit-item"><span class="check">✔</span><span>Want a simple routine — not 5 steps</span></div>
         <div class="fit-item"><span class="check">✔</span><span>Ready to commit for 30 days consistently</span></div>
       </div>
       <div class="fit-section">
-        <div class="fit-title bad">✗ Hindi para sa'yo kung…</div>
+        <div class="fit-title bad">✗ Not for you if…</div>
         <div class="fit-item"><span class="cross">✘</span><span>Looking for instant whitening overnight</span></div>
-        <div class="fit-item"><span class="cross">✘</span><span>Ayaw mag-sunscreen (kailangan for best results)</span></div>
-        <div class="fit-item"><span class="cross">✘</span><span>Walang patience for gradual, lasting results</span></div>
+        <div class="fit-item"><span class="cross">✘</span><span>You skip sunscreen (required for best results)</span></div>
+        <div class="fit-item"><span class="cross">✘</span><span>You have no patience for gradual, lasting results</span></div>
       </div>
     </div>
     <button class="btn-cta" onclick="openPopup('bestie_pack')">
@@ -1301,44 +1365,10 @@
 
   <div class="divider"></div>
 
-  <!-- BONUSES -->
-  <section class="bonuses fade-in">
-    <div class="section-label">Included for Free</div>
-    <h2>Ang Mga Libre Mong Ma-Receive</h2>
-    <div class="bonuses-grid">
-      <div class="bonus-item">
-        <div class="bonus-icon">📋</div>
-        <div class="bonus-text">
-          <div class="bonus-free">FREE BONUS #1</div>
-          <h3>30-Day Dark Spot Routine Guide (PDF)</h3>
-          <p>Step-by-step guide para maximize ang results ng serum</p>
-        </div>
-      </div>
-      <div class="bonus-item">
-        <div class="bonus-icon">🌅</div>
-        <div class="bonus-text">
-          <div class="bonus-free">FREE BONUS #2</div>
-          <h3>AM/PM Skincare Routine Card</h3>
-          <p>Printable reference card — exact steps, exact order</p>
-        </div>
-      </div>
-      <div class="bonus-item">
-        <div class="bonus-icon">💬</div>
-        <div class="bonus-text">
-          <div class="bonus-free">FREE BONUS #3</div>
-          <h3>Skin Type Consultation</h3>
-          <p>Personal skincare advice via Messenger after order</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="divider"></div>
-
   <!-- TESTIMONIALS -->
   <section class="testimonials fade-in">
-    <div class="section-label">Mga Tunay na Resulta</div>
-    <h2>Sinabi ng Mga Filipinas</h2>
+    <div class="section-label">500+ Filipinas tried it first.</div>
+    <h2>This Is What Happened to Their Skin.</h2>
     <div class="testi-grid">
 
       <!-- 1 -->
@@ -1443,47 +1473,47 @@
 
   <!-- FAQ -->
   <section class="faq fade-in">
-    <div class="section-label">Mga Tanong</div>
+    <div class="section-label">Questions</div>
     <h2>Frequently Asked Questions</h2>
     <div class="faq-item">
       <details>
-        <summary class="faq-q">Gaano katagal bago makita ang results? <span class="faq-chevron">&#9660;</span></summary>
+        <summary class="faq-q">How long before I see results? <span class="faq-chevron">&#9660;</span></summary>
         <div class="faq-a">Most users notice improvement in 2–4 weeks with consistent AM/PM use + sunscreen. Full results around 30 days. Individual results may vary.</div>
       </details>
     </div>
     <div class="faq-item">
       <details>
-        <summary class="faq-q">Safe ba sa sensitive skin? <span class="faq-chevron">&#9660;</span></summary>
-        <div class="faq-a">Yes. Alpha arbutin is one of the gentlest brightening actives available. No peeling, no hapdi. But always patch test first — apply a small amount on your inner arm for 24 hours before full use.</div>
+        <summary class="faq-q">Is it safe for sensitive skin? <span class="faq-chevron">&#9660;</span></summary>
+        <div class="faq-a">Yes. Alpha arbutin is one of the gentlest brightening actives available. No peeling, no stinging. But always patch test first — apply a small amount on your inner arm for 24 hours before full use.</div>
       </details>
     </div>
     <div class="faq-item">
       <details>
-        <summary class="faq-q">Paano ito different sa niacinamide serum? <span class="faq-chevron">&#9660;</span></summary>
+        <summary class="faq-q">How is this different from a niacinamide serum? <span class="faq-chevron">&#9660;</span></summary>
         <div class="faq-a">Niacinamide evens tone generally. Alpha arbutin targets the SOURCE of dark spots — it blocks melanin production at the root. Our formula actually has BOTH (10% Niacinamide + 2% Alpha Arbutin) for a synergistic effect.</div>
       </details>
     </div>
     <div class="faq-item">
       <details>
-        <summary class="faq-q">Pwede ba sa buntis o nagpapabreastfeed? <span class="faq-chevron">&#9660;</span></summary>
+        <summary class="faq-q">Is it safe for pregnant or breastfeeding women? <span class="faq-chevron">&#9660;</span></summary>
         <div class="faq-a">Consult your OB first. Alpha arbutin is generally considered safe topically, but we always recommend professional advice for pregnant and breastfeeding moms.</div>
       </details>
     </div>
     <div class="faq-item">
       <details>
-        <summary class="faq-q">Bakit ₱549 for 2 bottles — mas mahal sa iba? <span class="faq-chevron">&#9660;</span></summary>
-        <div class="faq-a">Our formula has 10% Niacinamide + 3% Tranexamic Acid + 2% Alpha Arbutin — clinical-grade concentrations. At ₱274.50/bottle, mas mura pa ito kaysa sa Dermorepubliq o COSRX na mas mababa ang active concentration.</div>
+        <summary class="faq-q">Why ₱549 for 2 bottles — isn't that expensive? <span class="faq-chevron">&#9660;</span></summary>
+        <div class="faq-a">Our formula has 10% Niacinamide + 3% Tranexamic Acid + 2% Alpha Arbutin — clinical-grade concentrations. At ₱274.50/bottle, it's actually cheaper than Dermorepubliq or COSRX which have lower active concentrations.</div>
       </details>
     </div>
     <div class="faq-item">
       <details>
-        <summary class="faq-q">Paano ang payment at delivery? <span class="faq-chevron">&#9660;</span></summary>
-        <div class="faq-a">Cash on Delivery (COD) via J&T Express. Bayad lang pag natanggap mo na ang package. Free shipping sa buong Pilipinas. Delivery: 3–7 business days.</div>
+        <summary class="faq-q">How does payment and delivery work? <span class="faq-chevron">&#9660;</span></summary>
+        <div class="faq-a">Cash on Delivery (COD) via J&T Express. Pay only when you receive your package. Free shipping nationwide. Delivery: 3–7 business days.</div>
       </details>
     </div>
     <div class="faq-item">
       <details>
-        <summary class="faq-q">What if hindi mag-work sa skin ko? <span class="faq-chevron">&#9660;</span></summary>
+        <summary class="faq-q">What if it doesn't work for my skin? <span class="faq-chevron">&#9660;</span></summary>
         <div class="faq-a">Every skin is different, but our formula uses clinically-studied ingredients at effective concentrations. We include a free 30-day routine guide to help you maximize results. Reach out to us via Messenger anytime.</div>
       </details>
     </div>
@@ -1494,8 +1524,8 @@
   <!-- FINAL CTA -->
   <section class="final-cta fade-in">
     <div class="section-label">Last Chance</div>
-    <h2>Simulan ang <span>Glow-Up Mo</span> Today</h2>
-    <p>COD. Free shipping. 30-day routine guide kasama. Wala kang mawawala — bayad lang pag natanggap mo na.</p>
+    <h2>Start Your <span>Glow-Up</span> Today</h2>
+    <p>COD. Free shipping. 30-day routine guide included. Nothing to lose — pay only when your package arrives.</p>
     <button class="btn-cta" onclick="openPopup('bestie_pack')">
       ORDER NOW — ₱549 (Buy 1 Take 1)
     </button>
@@ -1518,7 +1548,7 @@
   <div class="modal" id="checkoutModal">
 
     <div class="modal-header">
-      <div class="modal-title">🛒 I-Complete ang Order Mo</div>
+      <div class="modal-title">🛒 Complete Your Order</div>
       <button class="modal-close" onclick="closePopup()" aria-label="Close">✕</button>
     </div>
 
@@ -1542,7 +1572,7 @@
         <span>Cash on Delivery</span>
       </div>
       <div class="summary-row total">
-        <span>Total (bayad sa delivery)</span>
+        <span>Total (pay on delivery)</span>
         <span class="amount" id="summaryTotal">₱549</span>
       </div>
     </div>
@@ -1551,7 +1581,7 @@
     <div class="cod-confirm">
       <input type="checkbox" id="codConfirm" />
       <label for="codConfirm">
-        Naiintindihan ko na <strong>Cash on Delivery</strong> ito — magbabayad ako ng <strong id="codAmount">₱549</strong> pag natanggap ko na ang package.
+        I understand this is <strong>Cash on Delivery</strong> — I will pay <strong id="codAmount">₱549</strong> upon receiving my package.
       </label>
     </div>
 
@@ -1583,33 +1613,33 @@
       <div class="form-group">
         <label class="form-label" for="province">Province *</label>
         <select class="form-select" id="province" name="province" required onchange="populateCities()">
-          <option value="">— Piliin ang Province —</option>
+          <option value="">— Select Province —</option>
         </select>
       </div>
 
       <div class="form-group">
         <label class="form-label" for="city">City / Municipality *</label>
         <select class="form-select" id="city" name="city" required onchange="populateBarangays()">
-          <option value="">— Piliin ang City —</option>
+          <option value="">— Select City —</option>
         </select>
       </div>
 
       <div class="form-group">
         <label class="form-label" for="barangay">Barangay</label>
         <select class="form-select" id="barangay" name="barangay">
-          <option value="">— Piliin ang Barangay —</option>
+          <option value="">— Select Barangay —</option>
         </select>
       </div>
 
       <div class="form-group">
         <label class="form-label" for="landmark">Landmark (optional)</label>
-        <input class="form-input" type="text" id="landmark" name="landmark" placeholder="Malapit sa simbahan / 7-Eleven" autocomplete="off" />
+        <input class="form-input" type="text" id="landmark" name="landmark" placeholder="Near a church / 7-Eleven" autocomplete="off" />
       </div>
 
       <div id="formError" class="form-error" style="display:none;margin-bottom:12px;"></div>
 
       <button type="submit" class="btn-cta" id="submitBtn">
-        ORDER NOW — BAYAD SA DELIVERY
+        ORDER NOW — PAY ON DELIVERY
       </button>
 
       <div class="payment-badge">
