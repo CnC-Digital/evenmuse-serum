@@ -1,2 +1,8 @@
 # Local Netlify folder
 .netlify
+
+# Environment variables — never commit this
+.env
+
+# Firecrawl cache
+.firecrawl
