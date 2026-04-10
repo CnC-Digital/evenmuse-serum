@@ -1,0 +1,1752 @@
+<!DOCTYPE html>
+<html lang="fil">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EvenMuse Alpha Arbutin Serum — Fade Dark Spots in 30 Days</title>
+  <meta name="description" content="Alpha Arbutin Serum na specifically formulated para sa Filipinas. Targets dark spots, acne marks, at uneven skin tone. COD available. Free shipping." />
+
+  <!-- FB Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    const FB_PIXEL_ID = document.querySelector('meta[name="fb:pixel_id"]')?.content || '';
+    if (FB_PIXEL_ID) {
+      fbq('init', FB_PIXEL_ID);
+      fbq('track', 'PageView');
+      fbq('track', 'ViewContent', {
+        content_name: 'EvenMuse Alpha Arbutin Serum',
+        content_category: 'Skincare',
+        currency: 'PHP',
+        value: 549
+      });
+    }
+  </script>
+  <meta name="fb:pixel_id" content="" />
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=&ev=PageView&noscript=1" /></noscript>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Montserrat:wght@700;800&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0F0F0F;
+      --bg2: #1A1A1A;
+      --card: #1E1E1E;
+      --gold: #C9A45A;
+      --gold2: #A97B2F;
+      --text: #F3F3F0;
+      --muted: #CBBDA8;
+      --green: #22c55e;
+      --green2: #16a34a;
+      --radius: 16px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Poppins', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    .page-wrap {
+      max-width: 480px;
+      margin: 0 auto;
+      overflow-x: hidden;
+    }
+
+    /* ── Typography ── */
+    .brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 2px;
+      font-size: 13px;
+      text-transform: uppercase;
+    }
+    h1, h2, h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+    h1 { font-size: 26px; }
+    h2 { font-size: 22px; }
+    h3 { font-size: 17px; }
+
+    /* ── CTA Button ── */
+    .btn-cta {
+      display: block;
+      width: 100%;
+      padding: 18px 24px;
+      background: linear-gradient(135deg, var(--green), var(--green2));
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 16px;
+      text-align: center;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 4px 24px rgba(34,197,94,0.35);
+      text-decoration: none;
+      transition: transform 0.15s, box-shadow 0.15s;
+      letter-spacing: 0.5px;
+    }
+    .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(34,197,94,0.45); }
+    .btn-cta:active { transform: translateY(0); }
+
+    .btn-outline {
+      display: block;
+      width: 100%;
+      padding: 14px 24px;
+      background: transparent;
+      color: var(--gold);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      text-align: center;
+      border: 2px solid var(--gold);
+      border-radius: 50px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.15s, color 0.15s;
+    }
+    .btn-outline:hover { background: var(--gold); color: #0F0F0F; }
+
+    /* ── Sections ── */
+    section { padding: 48px 20px; }
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    /* ── Divider ── */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,164,90,0.3), transparent);
+      margin: 0 20px;
+    }
+
+    /* ── Top bar ── */
+    .topbar {
+      background: var(--gold);
+      color: #0F0F0F;
+      text-align: center;
+      padding: 10px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(180deg, #1A1A1A 0%, #0F0F0F 100%);
+      padding: 40px 24px 48px;
+      text-align: center;
+      position: relative;
+    }
+    .hero-brand { margin-bottom: 20px; }
+    .hero h1 {
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+    .hero h1 span { color: var(--gold); }
+    .hero p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 28px;
+      line-height: 1.7;
+    }
+    .hero-img-wrap {
+      position: relative;
+      display: inline-block;
+      margin: 24px 0;
+    }
+    .hero-img-wrap::before {
+      content: '';
+      position: absolute;
+      inset: -20px;
+      background: radial-gradient(circle, rgba(201,164,90,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero-img {
+      width: 220px;
+      height: auto;
+      position: relative;
+      z-index: 1;
+      filter: drop-shadow(0 20px 40px rgba(201,164,90,0.25));
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(201,164,90,0.12);
+      border: 1px solid rgba(201,164,90,0.3);
+      border-radius: 50px;
+      padding: 6px 14px;
+      font-size: 12px;
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: 20px;
+    }
+    .hero-stars { color: var(--gold); font-size: 13px; letter-spacing: 1px; }
+    .price-tag {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 14px;
+      margin-bottom: 4px;
+    }
+    .price-tag s { color: #666; }
+    .price-main {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--gold);
+    }
+
+    /* ── PROBLEM ── */
+    .problem { background: var(--bg2); }
+    .problem h2 { color: var(--text); margin-bottom: 24px; }
+    .pain-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 16px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: var(--radius);
+      margin-bottom: 12px;
+    }
+    .pain-icon {
+      font-size: 22px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .pain-text { color: var(--muted); font-size: 14px; }
+    .pain-text strong { color: var(--text); display: block; margin-bottom: 2px; }
+
+    /* ── SOCIAL PROOF ── */
+    .social-proof {
+      background: var(--bg);
+      text-align: center;
+      padding: 32px 20px;
+    }
+    .trust-line {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .trust-stars { font-size: 20px; color: var(--gold); margin-bottom: 20px; }
+    .trust-badges {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .trust-badge {
+      background: rgba(201,164,90,0.1);
+      border: 1px solid rgba(201,164,90,0.25);
+      border-radius: 50px;
+      padding: 8px 16px;
+      font-size: 12px;
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    /* ── TRANSFORMATION ── */
+    .transform { background: var(--bg2); }
+    .transform h2 { color: var(--text); margin-bottom: 24px; }
+    .ba-card {
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    .ba-before, .ba-after {
+      padding: 20px;
+    }
+    .ba-before {
+      background: rgba(255,80,80,0.08);
+      border: 1px solid rgba(255,80,80,0.15);
+      border-radius: var(--radius) var(--radius) 0 0;
+    }
+    .ba-after {
+      background: rgba(34,197,94,0.08);
+      border: 1px solid rgba(34,197,94,0.15);
+      border-radius: 0 0 var(--radius) var(--radius);
+    }
+    .ba-label {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .ba-before .ba-label { color: #f87171; }
+    .ba-after .ba-label { color: var(--green); }
+    .ba-before p { color: var(--muted); font-size: 14px; }
+    .ba-after p { color: var(--text); font-size: 14px; }
+    .arrow-divider {
+      text-align: center;
+      background: var(--card);
+      padding: 10px;
+      font-size: 20px;
+    }
+
+    /* ── HOW IT WORKS ── */
+    .how { background: var(--bg); }
+    .how h2 { margin-bottom: 6px; }
+    .how .subtitle { color: var(--muted); font-size: 13px; margin-bottom: 28px; }
+    .step-card {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      padding: 20px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: var(--radius);
+      margin-bottom: 14px;
+    }
+    .step-num {
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+      background: linear-gradient(135deg, var(--gold), var(--gold2));
+      color: #0F0F0F;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .step-content h3 { color: var(--gold); margin-bottom: 4px; font-size: 15px; }
+    .step-content p { color: var(--muted); font-size: 13px; }
+
+    /* ── INGREDIENTS ── */
+    .ingredients { background: var(--bg2); }
+    .ingredients h2 { margin-bottom: 24px; }
+    .ing-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .ing-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(201,164,90,0.15);
+      border-radius: var(--radius);
+      padding: 16px;
+    }
+    .ing-name {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+    .ing-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+    /* ── PRICING ── */
+    .pricing { background: var(--bg); }
+    .pricing h2 { text-align: center; margin-bottom: 8px; }
+    .pricing .subtitle { color: var(--muted); font-size: 13px; text-align: center; margin-bottom: 28px; }
+    .pkg-card {
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius);
+      padding: 24px 20px;
+      margin-bottom: 16px;
+      position: relative;
+      transition: border-color 0.2s;
+    }
+    .pkg-card.featured {
+      border-color: var(--gold);
+      background: rgba(201,164,90,0.06);
+    }
+    .pkg-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, var(--gold), var(--gold2));
+      color: #0F0F0F;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      padding: 4px 16px;
+      border-radius: 50px;
+      white-space: nowrap;
+    }
+    .pkg-name {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 18px;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .pkg-desc { font-size: 13px; color: var(--muted); margin-bottom: 12px; }
+    .pkg-price {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 36px;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+    .pkg-price span { font-size: 18px; }
+    .pkg-savings { font-size: 12px; color: var(--green); margin-bottom: 16px; font-weight: 600; }
+
+    /* ── FOR WHO ── */
+    .forwho { background: var(--bg2); }
+    .forwho h2 { margin-bottom: 24px; }
+    .fit-section { margin-bottom: 20px; }
+    .fit-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .fit-title.good { color: var(--green); }
+    .fit-title.bad { color: #f87171; }
+    .fit-item {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 8px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .fit-item .check { color: var(--green); font-weight: 700; }
+    .fit-item .cross { color: #f87171; font-weight: 700; }
+
+    /* ── BONUSES ── */
+    .bonuses { background: var(--bg); }
+    .bonuses h2 { margin-bottom: 24px; }
+    .bonus-item {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      padding: 16px;
+      background: rgba(201,164,90,0.06);
+      border: 1px solid rgba(201,164,90,0.2);
+      border-radius: var(--radius);
+      margin-bottom: 12px;
+    }
+    .bonus-icon { font-size: 28px; flex-shrink: 0; }
+    .bonus-text h3 { font-size: 14px; color: var(--text); margin-bottom: 2px; }
+    .bonus-text p { font-size: 12px; color: var(--muted); }
+    .bonus-free {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--green);
+      letter-spacing: 1px;
+    }
+
+    /* ── FAQ ── */
+    .faq { background: var(--bg2); }
+    .faq h2 { margin-bottom: 24px; }
+    .faq-item {
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 16px 0;
+    }
+    .faq-q {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      list-style: none;
+    }
+    .faq-q::marker, .faq-q::-webkit-details-marker { display: none; }
+    .faq-chevron { color: var(--gold); font-size: 16px; flex-shrink: 0; transition: transform 0.2s; }
+    details[open] .faq-chevron { transform: rotate(180deg); }
+    .faq-a {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+      padding-top: 10px;
+    }
+
+    /* ── FINAL CTA ── */
+    .final-cta {
+      background: linear-gradient(180deg, #0F0F0F 0%, #1A1A1A 100%);
+      text-align: center;
+      padding: 56px 24px;
+    }
+    .final-cta h2 { margin-bottom: 8px; font-size: 26px; }
+    .final-cta h2 span { color: var(--gold); }
+    .final-cta p { color: var(--muted); font-size: 13px; margin-bottom: 28px; }
+    .urgency {
+      font-size: 13px;
+      color: #f87171;
+      font-weight: 600;
+      margin-top: 14px;
+      text-align: center;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #0a0a0a;
+      text-align: center;
+      padding: 24px 20px;
+      font-size: 11px;
+      color: #555;
+      line-height: 1.8;
+    }
+    footer a { color: #666; text-decoration: none; }
+
+    /* ── POPUP / MODAL ── */
+    .overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      z-index: 1000;
+      overflow-y: auto;
+      padding: 20px 0 40px;
+      backdrop-filter: blur(4px);
+    }
+    .overlay.active { display: block; }
+
+    .modal {
+      background: #1A1A1A;
+      max-width: 480px;
+      margin: 0 auto;
+      border-radius: 20px 20px 0 0;
+      border: 1px solid rgba(201,164,90,0.2);
+      overflow: hidden;
+      animation: slideUp 0.3s ease-out;
+    }
+    @keyframes slideUp {
+      from { transform: translateY(40px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .modal-header {
+      background: linear-gradient(135deg, #1E1E1E, #252525);
+      padding: 20px 20px 16px;
+      border-bottom: 1px solid rgba(201,164,90,0.15);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .modal-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 16px;
+      color: var(--text);
+    }
+    .modal-close {
+      background: rgba(255,255,255,0.08);
+      border: none;
+      color: var(--muted);
+      font-size: 18px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s;
+    }
+    .modal-close:hover { background: rgba(255,255,255,0.15); }
+
+    .order-summary {
+      background: rgba(201,164,90,0.06);
+      border: 1px solid rgba(201,164,90,0.2);
+      border-radius: 12px;
+      margin: 16px;
+      padding: 16px;
+    }
+    .order-summary-title {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .summary-row.total {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      margin-top: 8px;
+      padding-top: 10px;
+      font-size: 17px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      color: var(--text);
+    }
+    .summary-row.total .amount { color: var(--gold); }
+    .summary-row .free-tag {
+      color: var(--green);
+      font-weight: 600;
+    }
+    .cod-confirm {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      margin: 0 16px 16px;
+      background: rgba(34,197,94,0.06);
+      border: 1px solid rgba(34,197,94,0.2);
+      border-radius: 12px;
+      padding: 14px;
+      cursor: pointer;
+    }
+    .cod-confirm input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      accent-color: var(--green);
+      margin-top: 1px;
+    }
+    .cod-confirm label {
+      font-size: 13px;
+      color: var(--muted);
+      cursor: pointer;
+      line-height: 1.5;
+    }
+    .cod-confirm label strong { color: var(--text); }
+
+    .modal-form { padding: 0 16px 16px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .form-group { margin-bottom: 12px; }
+    .form-label {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .form-input, .form-select {
+      width: 100%;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 10px;
+      padding: 13px 14px;
+      color: var(--text);
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.15s;
+      -webkit-appearance: none;
+    }
+    .form-input::placeholder { color: #555; }
+    .form-input:focus, .form-select:focus { border-color: var(--gold); }
+    .form-select { cursor: pointer; }
+    .form-select option { background: #1E1E1E; }
+
+    .payment-badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-size: 11px;
+      color: #555;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .payment-badge .lock { font-size: 13px; }
+
+    .form-error {
+      color: #f87171;
+      font-size: 12px;
+      margin-top: 4px;
+    }
+    .btn-cta:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none !important;
+    }
+
+    /* ── Fade-in animation ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Lifestyle / section images ── */
+    .lifestyle-section {
+      padding: 0 20px 40px;
+      background: var(--bg);
+    }
+    .lifestyle-img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: var(--radius);
+      border: 1px solid rgba(201,164,90,0.15);
+      display: block;
+    }
+    .lifestyle-caption {
+      text-align: center;
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 10px;
+      font-style: italic;
+      letter-spacing: 0.3px;
+    }
+    .showcase-img {
+      width: 100%;
+      height: 210px;
+      object-fit: cover;
+      border-radius: var(--radius);
+      margin-bottom: 24px;
+      border: 1px solid rgba(201,164,90,0.15);
+    }
+
+    /* ── Testimonials ── */
+    .testimonials { background: var(--bg2); }
+    .testimonials h2 { margin-bottom: 24px; }
+    .testi-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(201,164,90,0.15);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+    .testi-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+    .testi-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(201,164,90,0.4);
+      flex-shrink: 0;
+    }
+    .testi-name {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--text);
+    }
+    .testi-location { font-size: 11px; color: var(--muted); margin-top: 1px; }
+    .testi-stars {
+      color: var(--gold);
+      font-size: 13px;
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+    }
+    .testi-text {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.75;
+      font-style: italic;
+    }
+    .testi-text strong { color: var(--text); font-style: normal; }
+    .testi-tag {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 11px;
+      font-weight: 600;
+      background: rgba(201,164,90,0.1);
+      border: 1px solid rgba(201,164,90,0.2);
+      color: var(--gold);
+      padding: 3px 10px;
+      border-radius: 50px;
+    }
+
+    /* ── Desktop Responsive ── */
+    @media (min-width: 768px) {
+      .page-wrap { max-width: 100%; }
+
+      h1 { font-size: 38px; }
+      h2 { font-size: 30px; }
+      section { padding: 72px 8%; }
+
+      /* Hero: 2-column grid */
+      .hero {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        grid-template-rows: auto auto;
+        grid-template-areas:
+          "hero-top hero-visual"
+          "hero-bot hero-visual";
+        gap: 0 64px;
+        text-align: left;
+        padding: 72px 8%;
+        align-items: center;
+      }
+      .hero-top { grid-area: hero-top; align-self: end; }
+      .hero-visual {
+        grid-area: hero-visual;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .hero-bot { grid-area: hero-bot; align-self: start; padding-top: 8px; }
+      .hero-img-wrap { margin: 0; }
+      .hero-img { width: 320px; }
+      .hero-badge { display: inline-flex; }
+      .hero h1 { font-size: 36px; }
+
+      /* Pain items 2-col */
+      .pain-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .pain-grid .pain-item { margin-bottom: 0; }
+
+      /* How it works 2-col */
+      .steps-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+      .steps-grid .step-card { margin-bottom: 0; }
+
+      /* Ingredients 3-col */
+      .ing-grid { grid-template-columns: 1fr 1fr 1fr; }
+
+      /* Pricing 3-col */
+      .pkg-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 24px;
+        align-items: start;
+      }
+      .pkg-card { margin-bottom: 0; }
+
+      /* For who 2-col */
+      .forwho-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+      }
+      .forwho-grid .fit-section { margin-bottom: 0; }
+
+      /* Bonuses 2-col */
+      .bonuses-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .bonuses-grid .bonus-item { margin-bottom: 0; }
+
+      /* Testimonials 2-col */
+      .testi-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      .testi-card { margin-bottom: 0; }
+
+      /* Lifestyle / showcase images */
+      .lifestyle-section { padding: 0 8% 56px; }
+      .lifestyle-img { height: 380px; }
+      .showcase-img { height: 280px; }
+
+      /* CTA max-width on desktop */
+      .hero-bot .btn-cta,
+      .hero-bot .btn-outline { max-width: 420px; }
+    }
+
+    @media (min-width: 1100px) {
+      section { padding: 88px 12%; }
+      .hero { padding: 88px 12%; gap: 0 80px; }
+      .hero-img { width: 360px; }
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <!-- Top bar -->
+  <div class="topbar">
+    FREE SHIPPING + COD sa buong Pilipinas
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <!-- hero-top: brand + headline (left col on desktop) -->
+    <div class="hero-top">
+      <div class="hero-brand brand">EvenMuse Skincare</div>
+      <div class="hero-badge">
+        <span class="hero-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        Trusted by 500+ Filipinas
+      </div>
+      <h1>Paano Mag-Fade ng Dark Spots ang Busy Filipinas — <span>Kahit Walang Complicated Routine</span></h1>
+    </div>
+    <!-- hero-visual: product image (right col on desktop) -->
+    <div class="hero-visual">
+      <div class="hero-img-wrap">
+        <img src="assets/mockup.png" alt="EvenMuse Alpha Arbutin Serum bottle" class="hero-img" loading="eager" />
+      </div>
+    </div>
+    <!-- hero-bot: desc + price + CTA (left col bottom on desktop) -->
+    <div class="hero-bot">
+      <p>2-3 drops lang, AM/PM, tapos sunscreen. Alpha Arbutin targets dark spots at the source — hindi lang pang-bright.</p>
+      <div class="price-tag">
+        Regular price: <s>₱698</s> &nbsp;·&nbsp; BESTIE PACK PROMO
+      </div>
+      <div class="price-main">₱549</div>
+      <p style="font-size:12px;color:var(--green);margin-bottom:20px;font-weight:600;">Buy 1 Take 1 — Libre ang isa pang bottle!</p>
+      <button class="btn-cta" onclick="openPopup('bestie_pack')">
+        ORDER NOW — ₱549 (Buy 1 Take 1)
+      </button>
+      <p style="font-size:12px;color:var(--muted);margin-top:12px;">Pay upon delivery · Free shipping · 100% authentic</p>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- PROBLEM -->
+  <section class="problem fade-in">
+    <div class="section-label">Totoo ba ito para sa'yo?</div>
+    <h2>Bakit Hindi Pa Rin Nawawala ang Dark Spots Mo?</h2>
+    <div class="pain-grid">
+      <div class="pain-item">
+        <div class="pain-icon">😔</div>
+        <div class="pain-text">
+          <strong>Acne marks na nagtatagal</strong>
+          Kahit wala nang active pimple, nandoon pa rin ang marks. Ilang months na.
+        </div>
+      </div>
+      <div class="pain-item">
+        <div class="pain-icon">🪞</div>
+        <div class="pain-text">
+          <strong>Patchy tone sa cheeks at upper lip</strong>
+          Hindi pantay ang kulay ng mukha mo kahit sa likas na liwanag.
+        </div>
+      </div>
+      <div class="pain-item">
+        <div class="pain-icon">💸</div>
+        <div class="pain-text">
+          <strong>Nag-try na ng ibang serum pero bumabalik pa rin</strong>
+          Pera ang gastos, oras ang kaltas — tapos ganoon pa rin ang skin.
+        </div>
+      </div>
+      <div class="pain-item">
+        <div class="pain-icon">☀️</div>
+        <div class="pain-text">
+          <strong>Ang bilis mag-darken ulit pag na-araw</strong>
+          One week walang sunscreen — balik sa dati. Frustrating, 'di ba?
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- SOCIAL PROOF -->
+  <div class="social-proof fade-in">
+    <div class="trust-line">Trusted by 500+ Filipinas</div>
+    <div class="trust-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+    <div class="trust-badges">
+      <span class="trust-badge">🚚 COD Available</span>
+      <span class="trust-badge">📦 Free Shipping</span>
+      <span class="trust-badge">🇵🇭 Made in PH</span>
+    </div>
+  </div>
+
+  <!-- Lifestyle image: confident Filipina woman -->
+  <div class="lifestyle-section fade-in">
+    <img
+      src="https://images.unsplash.com/photo-1617901724900-3b88b9dabd1c?w=900&fit=crop&auto=format&q=80"
+      alt="Confident woman with clear glowing skin"
+      class="lifestyle-img"
+      loading="lazy"
+      onerror="this.src='https://media.istockphoto.com/id/1454518944/photo/beautiful-young-asian-woman-with-clean-fresh-skin-on-white-background-face-care-facial.jpg?s=612x612&w=0&k=20&c=Uh8iieVOYcf7lp1rp5-2DbVNaO1vQwm8oLQX6cPMdmM='"
+    />
+    <p class="lifestyle-caption">"Gusto ko mag-make up less. Gusto ko pantay balat sa camera." — ang dream ng bawat busy Filipina.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- TRANSFORMATION -->
+  <section class="transform fade-in">
+    <div class="section-label">Before & After</div>
+    <h2>Ang Pagbabago na Pwede Mong Ma-Experience</h2>
+    <div class="ba-card">
+      <div class="ba-before">
+        <div class="ba-label">✗ Before EvenMuse</div>
+        <p>"Tried 3 brightening serums na. May dark spots pa rin. Kailangan pa ng concealer every Zoom call."</p>
+      </div>
+      <div class="arrow-divider">↓</div>
+      <div class="ba-after">
+        <div class="ba-label">✓ After 30 Days</div>
+        <p>"Pantay na skin tone. Less concealer days. Confident mag-bare face sa meetings. Di ko inaasahan."</p>
+      </div>
+    </div>
+    <button class="btn-cta" onclick="openPopup('bestie_pack')">
+      GET YOUR BESTIE PACK — ₱549
+    </button>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- HOW IT WORKS -->
+  <section class="how fade-in">
+    <div class="section-label">Ang Science Behind It</div>
+    <h2>Why Alpha Arbutin</h2>
+    <p class="subtitle">Hindi ito ordinary brightening serum.</p>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h3>Targets the Source</h3>
+          <p>Blocks melanin production (tyrosinase inhibition) at the root — hindi lang pampasipag ng skin.</p>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h3>Fades Gradually</h3>
+          <p>Not instant whitening. Consistent, even results over 30 days. Para sustainable at hindi harsh sa skin.</p>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h3>Gentle Formula</h3>
+          <p>No peeling, no hapdi. Lightweight na bagay sa humid na panahon ng Pilipinas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- INGREDIENTS -->
+  <section class="ingredients fade-in">
+    <div class="section-label">Formula Breakdown</div>
+    <h2>What's Inside</h2>
+    <img
+      src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=900&fit=crop&auto=format&q=80"
+      alt="Premium skincare serum ingredients flat lay"
+      class="showcase-img"
+      loading="lazy"
+      onerror="this.src='https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=900&fit=crop&auto=format&q=80'"
+    />
+    <div class="ing-grid">
+      <div class="ing-card">
+        <div class="ing-name">Alpha Arbutin 2%</div>
+        <div class="ing-desc">Dark spot fading at the source</div>
+      </div>
+      <div class="ing-card">
+        <div class="ing-name">Niacinamide 10%</div>
+        <div class="ing-desc">Tone evening + pore minimizing</div>
+      </div>
+      <div class="ing-card">
+        <div class="ing-name">Tranexamic Acid 3%</div>
+        <div class="ing-desc">Deep pigmentation control</div>
+      </div>
+      <div class="ing-card">
+        <div class="ing-name">Snail Secretion</div>
+        <div class="ing-desc">Skin repair + regeneration</div>
+      </div>
+      <div class="ing-card">
+        <div class="ing-name">Hyaluronic Acid</div>
+        <div class="ing-desc">Deep hydration, plump skin</div>
+      </div>
+      <div class="ing-card">
+        <div class="ing-name">Licorice + Papaya</div>
+        <div class="ing-desc">Natural brightening extracts</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- PRICING -->
+  <section class="pricing fade-in">
+    <div class="section-label">Choose Your Pack</div>
+    <h2>Piliin ang Para Sa'yo</h2>
+    <p class="subtitle">Lahat ay may free shipping + COD</p>
+
+    <div class="pkg-grid">
+      <!-- Starter -->
+      <div class="pkg-card">
+        <div class="pkg-name">Starter Glow</div>
+        <div class="pkg-desc">Buy 1 — 30mL bottle · "Try it once"</div>
+        <div class="pkg-price"><span>₱</span>349</div>
+        <div class="pkg-savings">Perfect for first-timers</div>
+        <button class="btn-outline" onclick="openPopup('starter_glow')">
+          ORDER STARTER GLOW — ₱349
+        </button>
+      </div>
+
+      <!-- Bestie Pack (featured) -->
+      <div class="pkg-card featured">
+        <div class="pkg-badge">⭐ BEST VALUE</div>
+        <div class="pkg-name">Bestie Pack</div>
+        <div class="pkg-desc">Buy 1 Take 1 — 2× 30mL bottles · Save ₱149</div>
+        <div class="pkg-price"><span>₱</span>549</div>
+        <div class="pkg-savings">You save ₱149 — ₱274.50 per bottle lang</div>
+        <button class="btn-cta" onclick="openPopup('bestie_pack')">
+          ORDER BESTIE PACK — ₱549
+        </button>
+      </div>
+
+      <!-- Squad Pack -->
+      <div class="pkg-card">
+        <div class="pkg-name">Squad Pack</div>
+        <div class="pkg-desc">Buy 2 Take 1 — 3× 30mL bottles · Save ₱348</div>
+        <div class="pkg-price"><span>₱</span>699</div>
+        <div class="pkg-savings">Best deal — 1 bottle FREE! ₱233/bottle</div>
+        <button class="btn-outline" onclick="openPopup('squad_pack')">
+          ORDER SQUAD PACK — ₱699
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- FOR WHO -->
+  <section class="forwho fade-in">
+    <div class="section-label">Para sa'yo ba ito?</div>
+    <h2>Sino ang Perfect Candidate</h2>
+    <div class="forwho-grid">
+      <div class="fit-section">
+        <div class="fit-title good">✓ Perfect fit kung ikaw ay…</div>
+        <div class="fit-item"><span class="check">✔</span><span>Corporate girlie o WFH mom na laging on camera</span></div>
+        <div class="fit-item"><span class="check">✔</span><span>May dark spots, acne marks, o patchy skin tone</span></div>
+        <div class="fit-item"><span class="check">✔</span><span>Gusto ng simple routine — hindi 5 steps</span></div>
+        <div class="fit-item"><span class="check">✔</span><span>Ready to commit for 30 days consistently</span></div>
+      </div>
+      <div class="fit-section">
+        <div class="fit-title bad">✗ Hindi para sa'yo kung…</div>
+        <div class="fit-item"><span class="cross">✘</span><span>Looking for instant whitening overnight</span></div>
+        <div class="fit-item"><span class="cross">✘</span><span>Ayaw mag-sunscreen (kailangan for best results)</span></div>
+        <div class="fit-item"><span class="cross">✘</span><span>Walang patience for gradual, lasting results</span></div>
+      </div>
+    </div>
+    <button class="btn-cta" onclick="openPopup('bestie_pack')">
+      I'M READY — ORDER MY PACK
+    </button>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- BONUSES -->
+  <section class="bonuses fade-in">
+    <div class="section-label">Included for Free</div>
+    <h2>Ang Mga Libre Mong Ma-Receive</h2>
+    <div class="bonuses-grid">
+      <div class="bonus-item">
+        <div class="bonus-icon">📋</div>
+        <div class="bonus-text">
+          <div class="bonus-free">FREE BONUS #1</div>
+          <h3>30-Day Dark Spot Routine Guide (PDF)</h3>
+          <p>Step-by-step guide para maximize ang results ng serum</p>
+        </div>
+      </div>
+      <div class="bonus-item">
+        <div class="bonus-icon">🌅</div>
+        <div class="bonus-text">
+          <div class="bonus-free">FREE BONUS #2</div>
+          <h3>AM/PM Skincare Routine Card</h3>
+          <p>Printable reference card — exact steps, exact order</p>
+        </div>
+      </div>
+      <div class="bonus-item">
+        <div class="bonus-icon">💬</div>
+        <div class="bonus-text">
+          <div class="bonus-free">FREE BONUS #3</div>
+          <h3>Skin Type Consultation</h3>
+          <p>Personal skincare advice via Messenger after order</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials fade-in">
+    <div class="section-label">Mga Tunay na Resulta</div>
+    <h2>Sinabi ng Mga Filipinas</h2>
+    <div class="testi-grid">
+
+      <!-- 1 -->
+      <div class="testi-card">
+        <div class="testi-header">
+          <img
+            src="https://ui-avatars.com/api/?name=SR&background=C9A45A&color=111111&size=100&bold=true"
+            alt="Shiela R."
+            class="testi-avatar"
+            loading="lazy"
+          />
+          <div>
+            <div class="testi-name">Shiela R.</div>
+            <div class="testi-location">📍 Manila · Office worker</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Teh hindi ako nagexpect na ganito kaganda yung results! <strong>Mga 3 weeks palang</strong>, napansin na ng mga officemates ko na mas maliwanag ang mukha ko. Yung dark spots ko sa cheeks na tagal ko nang pinoproblema — nag-fade na siya sobra. Lagi sila nagtatanong ng skincare ko ngayon haha. Highly recommend to all sis!"</p>
+        <span class="testi-tag">✔ Dark Spots · Acne Marks</span>
+      </div>
+
+      <!-- 2 -->
+      <div class="testi-card">
+        <div class="testi-header">
+          <img
+            src="https://ui-avatars.com/api/?name=MD&background=A97B2F&color=F3F3F0&size=100&bold=true"
+            alt="Marivic D."
+            class="testi-avatar"
+            loading="lazy"
+          />
+          <div>
+            <div class="testi-name">Marivic D.</div>
+            <div class="testi-location">📍 Quezon City · WFH Mom</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Nag-order ako ng Bestie Pack para share sa ate ko. We-ta! Pagkatapos ng isang buwan, pareho kaming nagulat. Yung acne marks ko galing sa pregnancy — <strong>nag-fade ng sobra</strong>. Hindi na masyado obvious pag naka-Zoom call na ako. Worth it talaga, dami pa namin natipid sa B1T1!"</p>
+        <span class="testi-tag">✔ Post-Pregnancy Marks</span>
+      </div>
+
+      <!-- 3 -->
+      <div class="testi-card">
+        <div class="testi-header">
+          <img
+            src="https://ui-avatars.com/api/?name=JT&background=8E8A83&color=F3F3F0&size=100&bold=true"
+            alt="Janine T."
+            class="testi-avatar"
+            loading="lazy"
+          />
+          <div>
+            <div class="testi-name">Janine T.</div>
+            <div class="testi-location">📍 Cebu City · Corporate</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Nakapag-try na ako ng 4 na brightening serums bago ito. None of them worked sa melasma ko sa cheeks. <strong>After 30 days ng consistent use</strong>, mapapansin mo na talaga ang difference. Hindi overnight pero real results — at hindi mahal! Satisfied na satisfied ako. Mag-oorder na ulit ako!"</p>
+        <span class="testi-tag">✔ Melasma · Patchy Tone</span>
+      </div>
+
+      <!-- 4 -->
+      <div class="testi-card">
+        <div class="testi-header">
+          <img
+            src="https://ui-avatars.com/api/?name=RM&background=CBBDA8&color=111111&size=100&bold=true"
+            alt="Rachel M."
+            class="testi-avatar"
+            loading="lazy"
+          />
+          <div>
+            <div class="testi-name">Rachel M.</div>
+            <div class="testi-location">📍 Davao City · Freelancer</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Skeptical ako dati sa mga ganito kasi marami akong nabilhan na walang epekto. Pero sinubukan ko pa rin kasi COD naman — walang mawawala! Sis, ang ganda ng texture, <strong>hindi sticky kahit mainit sa Davao</strong>. At yung dark spots from pimples... slowly fading na. Kuha na kayo, sulit talaga!"</p>
+        <span class="testi-tag">✔ Pimple Marks · Non-Sticky</span>
+      </div>
+
+      <!-- 5 -->
+      <div class="testi-card">
+        <div class="testi-header">
+          <img
+            src="https://ui-avatars.com/api/?name=CA&background=E8DCC7&color=111111&size=100&bold=true"
+            alt="Crissy A."
+            class="testi-avatar"
+            loading="lazy"
+          />
+          <div>
+            <div class="testi-name">Crissy A.</div>
+            <div class="testi-location">📍 Laguna · Teacher</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Ginamit ko ito consistently for 30 days — AM and PM, hindi pinaglipasan. Ang bilis mag-absorb, hindi ko naramdaman na may kinalimutan. Ngayon? <strong>Yung dark spots na lagi kong tinatakpan ng concealer... mas maputi na.</strong> Confident na akong pumunta sa school kahit walang makeup. Mag-oorder na ulit ng Squad Pack!"</p>
+        <span class="testi-tag">✔ Sun Spots · Uneven Tone</span>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- FAQ -->
+  <section class="faq fade-in">
+    <div class="section-label">Mga Tanong</div>
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <details>
+        <summary class="faq-q">Gaano katagal bago makita ang results? <span class="faq-chevron">&#9660;</span></summary>
+        <div class="faq-a">Most users notice improvement in 2–4 weeks with consistent AM/PM use + sunscreen. Full results around 30 days. Individual results may vary.</div>
+      </details>
+    </div>
+    <div class="faq-item">
+      <details>
+        <summary class="faq-q">Safe ba sa sensitive skin? <span class="faq-chevron">&#9660;</span></summary>
+        <div class="faq-a">Yes. Alpha arbutin is one of the gentlest brightening actives available. No peeling, no hapdi. But always patch test first — apply a small amount on your inner arm for 24 hours before full use.</div>
+      </details>
+    </div>
+    <div class="faq-item">
+      <details>
+        <summary class="faq-q">Paano ito different sa niacinamide serum? <span class="faq-chevron">&#9660;</span></summary>
+        <div class="faq-a">Niacinamide evens tone generally. Alpha arbutin targets the SOURCE of dark spots — it blocks melanin production at the root. Our formula actually has BOTH (10% Niacinamide + 2% Alpha Arbutin) for a synergistic effect.</div>
+      </details>
+    </div>
+    <div class="faq-item">
+      <details>
+        <summary class="faq-q">Pwede ba sa buntis o nagpapabreastfeed? <span class="faq-chevron">&#9660;</span></summary>
+        <div class="faq-a">Consult your OB first. Alpha arbutin is generally considered safe topically, but we always recommend professional advice for pregnant and breastfeeding moms.</div>
+      </details>
+    </div>
+    <div class="faq-item">
+      <details>
+        <summary class="faq-q">Bakit ₱549 for 2 bottles — mas mahal sa iba? <span class="faq-chevron">&#9660;</span></summary>
+        <div class="faq-a">Our formula has 10% Niacinamide + 3% Tranexamic Acid + 2% Alpha Arbutin — clinical-grade concentrations. At ₱274.50/bottle, mas mura pa ito kaysa sa Dermorepubliq o COSRX na mas mababa ang active concentration.</div>
+      </details>
+    </div>
+    <div class="faq-item">
+      <details>
+        <summary class="faq-q">Paano ang payment at delivery? <span class="faq-chevron">&#9660;</span></summary>
+        <div class="faq-a">Cash on Delivery (COD) via J&T Express. Bayad lang pag natanggap mo na ang package. Free shipping sa buong Pilipinas. Delivery: 3–7 business days.</div>
+      </details>
+    </div>
+    <div class="faq-item">
+      <details>
+        <summary class="faq-q">What if hindi mag-work sa skin ko? <span class="faq-chevron">&#9660;</span></summary>
+        <div class="faq-a">Every skin is different, but our formula uses clinically-studied ingredients at effective concentrations. We include a free 30-day routine guide to help you maximize results. Reach out to us via Messenger anytime.</div>
+      </details>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- FINAL CTA -->
+  <section class="final-cta fade-in">
+    <div class="section-label">Last Chance</div>
+    <h2>Simulan ang <span>Glow-Up Mo</span> Today</h2>
+    <p>COD. Free shipping. 30-day routine guide kasama. Wala kang mawawala — bayad lang pag natanggap mo na.</p>
+    <button class="btn-cta" onclick="openPopup('bestie_pack')">
+      ORDER NOW — ₱549 (Buy 1 Take 1)
+    </button>
+    <p class="urgency">⚡ Limited stocks available this week</p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    © 2025 EvenMuse Skincare · Made with love in the Philippines<br />
+    <a href="#">Privacy Policy</a> · <a href="#">Terms of Service</a><br />
+    For inquiries, message us on Facebook.
+  </footer>
+
+</div><!-- end .page-wrap -->
+
+<!-- ══════════════════════════════════════════
+     POPUP CHECKOUT MODAL
+═══════════════════════════════════════════ -->
+<div class="overlay" id="checkoutOverlay" onclick="handleOverlayClick(event)">
+  <div class="modal" id="checkoutModal">
+
+    <div class="modal-header">
+      <div class="modal-title">🛒 I-Complete ang Order Mo</div>
+      <button class="modal-close" onclick="closePopup()" aria-label="Close">✕</button>
+    </div>
+
+    <!-- Order Summary -->
+    <div class="order-summary">
+      <div class="order-summary-title">Order Summary</div>
+      <div class="summary-row">
+        <span id="summaryProduct">EvenMuse Alpha Arbutin Serum</span>
+        <span id="summaryQty">×1</span>
+      </div>
+      <div class="summary-row" id="summaryFreeRow" style="display:none">
+        <span id="summaryFreeLabel">Free bottle</span>
+        <span class="free-tag">FREE</span>
+      </div>
+      <div class="summary-row">
+        <span>Shipping</span>
+        <span class="free-tag">FREE</span>
+      </div>
+      <div class="summary-row">
+        <span>Payment</span>
+        <span>Cash on Delivery</span>
+      </div>
+      <div class="summary-row total">
+        <span>Total (bayad sa delivery)</span>
+        <span class="amount" id="summaryTotal">₱549</span>
+      </div>
+    </div>
+
+    <!-- COD Confirm -->
+    <div class="cod-confirm">
+      <input type="checkbox" id="codConfirm" />
+      <label for="codConfirm">
+        Naiintindihan ko na <strong>Cash on Delivery</strong> ito — magbabayad ako ng <strong id="codAmount">₱549</strong> pag natanggap ko na ang package.
+      </label>
+    </div>
+
+    <!-- Form -->
+    <form class="modal-form" id="orderForm" onsubmit="submitOrder(event)">
+      <input type="hidden" id="selectedPackage" name="packageName" value="bestie_pack" />
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="firstName">First Name *</label>
+          <input class="form-input" type="text" id="firstName" name="firstName" placeholder="Maria" required autocomplete="given-name" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="lastName">Last Name *</label>
+          <input class="form-input" type="text" id="lastName" name="lastName" placeholder="Santos" required autocomplete="family-name" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="phone">Phone Number *</label>
+        <input class="form-input" type="tel" id="phone" name="phone" placeholder="09xxxxxxxxx" required autocomplete="tel" pattern="[0-9]{10,13}" />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="address">Street Address *</label>
+        <input class="form-input" type="text" id="address" name="address" placeholder="Blk 3 Lot 5, Sampaguita St." required autocomplete="street-address" />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="province">Province *</label>
+        <select class="form-select" id="province" name="province" required onchange="populateCities()">
+          <option value="">— Piliin ang Province —</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="city">City / Municipality *</label>
+        <select class="form-select" id="city" name="city" required onchange="populateBarangays()">
+          <option value="">— Piliin ang City —</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="barangay">Barangay</label>
+        <select class="form-select" id="barangay" name="barangay">
+          <option value="">— Piliin ang Barangay —</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="landmark">Landmark (optional)</label>
+        <input class="form-input" type="text" id="landmark" name="landmark" placeholder="Malapit sa simbahan / 7-Eleven" autocomplete="off" />
+      </div>
+
+      <div id="formError" class="form-error" style="display:none;margin-bottom:12px;"></div>
+
+      <button type="submit" class="btn-cta" id="submitBtn">
+        ORDER NOW — BAYAD SA DELIVERY
+      </button>
+
+      <div class="payment-badge">
+        <span class="lock">🔒</span>
+        Secure order · COD · J&T Express · Free Shipping
+      </div>
+    </form>
+
+  </div><!-- end .modal -->
+</div><!-- end .overlay -->
+
+<script>
+// ── Package data ──
+const PACKAGES = {
+  starter_glow: {
+    label: 'Starter Glow — Buy 1 (30mL)',
+    price: 349,
+    priceLabel: '₱349',
+    qty: '×1',
+    freeRow: false
+  },
+  bestie_pack: {
+    label: 'Bestie Pack — Buy 1 Take 1',
+    price: 549,
+    priceLabel: '₱549',
+    qty: '×2',
+    freeRow: true,
+    freeLabel: 'Extra bottle (FREE)'
+  },
+  squad_pack: {
+    label: 'Squad Pack — Buy 2 Take 1',
+    price: 699,
+    priceLabel: '₱699',
+    qty: '×3',
+    freeRow: true,
+    freeLabel: '1 bottle FREE (squad bonus)'
+  }
+};
+
+// ── Popup helpers ──
+function openPopup(packageName) {
+  const pkg = PACKAGES[packageName] || PACKAGES['bestie_pack'];
+  document.getElementById('selectedPackage').value = packageName;
+
+  document.getElementById('summaryProduct').textContent = pkg.label;
+  document.getElementById('summaryQty').textContent = pkg.qty;
+  document.getElementById('summaryTotal').textContent = pkg.priceLabel;
+  document.getElementById('codAmount').textContent = pkg.priceLabel;
+
+  const freeRow = document.getElementById('summaryFreeRow');
+  if (pkg.freeRow) {
+    freeRow.style.display = 'flex';
+    document.getElementById('summaryFreeLabel').textContent = pkg.freeLabel;
+  } else {
+    freeRow.style.display = 'none';
+  }
+
+  document.getElementById('checkoutOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+
+  // FB Pixel: InitiateCheckout
+  if (typeof fbq !== 'undefined') {
+    fbq('track', 'InitiateCheckout', {
+      content_name: pkg.label,
+      currency: 'PHP',
+      value: pkg.price,
+      num_items: parseInt(pkg.qty.replace('×', ''))
+    });
+  }
+}
+
+function closePopup() {
+  document.getElementById('checkoutOverlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function handleOverlayClick(e) {
+  if (e.target === document.getElementById('checkoutOverlay')) closePopup();
+}
+
+// ── Form submission ──
+async function submitOrder(e) {
+  e.preventDefault();
+
+  const codConfirm = document.getElementById('codConfirm');
+  if (!codConfirm.checked) {
+    showError('Pakiconfirm muna ang COD payment para makapag-proceed.');
+    return;
+  }
+
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.textContent = 'Nagse-send ng order…';
+
+  const formData = new FormData(document.getElementById('orderForm'));
+  const payload = Object.fromEntries(formData.entries());
+
+  // Generate client-side event ID for dedup
+  const eventId = crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(36);
+
+  try {
+    const res = await fetch('/api/submit-order', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ...payload, clientEventId: eventId })
+    });
+
+    const data = await res.json();
+
+    if (data.success) {
+      const pkg = PACKAGES[payload.packageName] || PACKAGES['bestie_pack'];
+
+      // FB Pixel: Purchase (client-side, deduped via event_id)
+      if (typeof fbq !== 'undefined') {
+        fbq('track', 'Purchase', {
+          value: pkg.price,
+          currency: 'PHP',
+          content_name: pkg.label,
+          eventID: data.eventId
+        });
+      }
+
+      // Redirect
+      window.location.href = data.redirect || '/thankyou.html';
+    } else {
+      showError(data.error || 'May error sa pag-submit. Subukan ulit.');
+      btn.disabled = false;
+      btn.textContent = 'ORDER NOW — BAYAD SA DELIVERY';
+    }
+  } catch (err) {
+    console.error('Submit error:', err);
+    showError('Hindi makonekta sa server. I-check ang internet connection mo.');
+    btn.disabled = false;
+    btn.textContent = 'ORDER NOW — BAYAD SA DELIVERY';
+  }
+}
+
+function showError(msg) {
+  const el = document.getElementById('formError');
+  el.textContent = msg;
+  el.style.display = 'block';
+}
+
+// ── PH Location Dropdowns ──
+const PH_LOCATIONS = {
+  "Metro Manila": {
+    "Caloocan": ["Bagong Barrio","Deparo","Llano","Maypajo","Sangandaan"],
+    "Las Piñas": ["Almanza Uno","Almanza Dos","BF Homes","Pamplona Tres","Talon Uno"],
+    "Makati": ["Bel-Air","Forbes Park","Legazpi Village","Poblacion","San Antonio"],
+    "Malabon": ["Acacia","Baritan","Catmon","Longos","Tañong"],
+    "Mandaluyong": ["Addition Hills","Barangka","Buayang Bato","Highway Hills","Wack-Wack"],
+    "Manila": ["Binondo","Ermita","Intramuros","Malate","Paco","Pandacan","Quiapo","Sampaloc","Tondo"],
+    "Marikina": ["Calumpang","Concepcion Uno","Industrial Valley","Nangka","Tumana"],
+    "Muntinlupa": ["Alabang","Ayala Alabang","Buli","Cupang","New Alabang Village"],
+    "Navotas": ["Bagumbayan Norte","Bangkulasi","Daanghari","Nboc","Sipac-Almacen"],
+    "Parañaque": ["Baclaran","BF Homes","Don Bosco","La Huerta","Sun Valley"],
+    "Pasay": ["Barangay 1","Barangay 2","Barangay 3","Barangay 4","Barangay 5"],
+    "Pasig": ["Bagong Ilog","Kapitolyo","Maybunga","Rosario","San Miguel"],
+    "Pateros": ["Aguho","Magtanggol","Sto. Rosario","San Pedro","Tabacalera"],
+    "Quezon City": ["Bagong Pag-asa","Batasan Hills","Diliman","Fairview","Kamuning","Matandang Balara","Project 4"],
+    "San Juan": ["Addition Hills","Batis","Corazon de Jesus","Isabelita","Pinaglabanan"],
+    "Taguig": ["BGC","Hagonoy","Ligid-Tipas","Napindan","Ususan"],
+    "Valenzuela": ["Arkong Bato","Bagbaguin","Balangkas","Dalandanan","Karuhatan"]
+  },
+  "Cebu": {
+    "Cebu City": ["Ayala","Carbon","Colon","IT Park","Lahug","Mabolo","Punta Princesa","Talamban"],
+    "Mandaue City": ["Alang-Alang","Bakilid","Banilad","Centro","Guizo","Pakna-an"],
+    "Lapu-Lapu City": ["Babag","Basak","Buaya","Gun-ob","Mactan"],
+    "Talisay City": ["Bulacao","Camp 4","Dumlog","Lawaan","San Roque"],
+    "Danao City": ["Baliang","Binaliw","Danasan","Guinsay","Sabang"]
+  },
+  "Davao del Sur": {
+    "Davao City": ["Agdao","Buhangin","Bunawan","Calinan","Marilog","Paquibato","Poblacion","Talomo","Toril","Tugbok"],
+    "Digos City": ["Aplaya","Goma","Matti","Ruparan","Zone 1"],
+    "Sta. Cruz": ["Bato","Kimlomon","Matanao","Matti","Malahog"]
+  },
+  "Laguna": {
+    "Sta. Rosa City": ["Balibago","Caingin","Dila","Don Jose","Pooc","Tagapo"],
+    "San Pedro City": ["Cuyab","Landayan","Langgam","Narra","San Antonio"],
+    "Calamba City": ["Bagong Kalsada","Bucal","Canlubang","Halang","Punta"],
+    "Biñan City": ["Biñan Poblacion","Casile","De La Paz","Sto. Tomas","Tubigan"],
+    "Los Baños": ["Anos","Bayog","Batong Malake","Calo","Putho-Tuntungin"]
+  },
+  "Bulacan": {
+    "Malolos City": ["Anilao","Babatnin","Bagna","Bulihan","Canalate","Mojon"],
+    "Meycauayan City": ["Bagbaguin","Bahay Pare","Bancal","Banga","Camalig"],
+    "San Jose del Monte City": ["Assumption","Bagong Buhay","Dulong Bayan","Fatima","Kaypian"],
+    "Marilao": ["Abangan Norte","Abangan Sur","Ibayo","Loma de Gato","Patubig"],
+    "Bocaue": ["Bambang","Batia","Bolacan","Bundukan","Caingin"]
+  },
+  "Rizal": {
+    "Antipolo City": ["Bagong Nayon","Dalig","Dela Paz","Mambugan","San Jose","San Luis","San Roque"],
+    "Cainta": ["San Andres","San Juan","San Roque","Sto. Domingo","Sto. Tomas"],
+    "Taytay": ["Dolores","Muzon","San Isidro","San Juan","Sta. Ana"],
+    "Angono": ["Brgy. 1","Brgy. 2","Brgy. 3","Brgy. 4","Brgy. 5"],
+    "Binangonan": ["Batingan","Calumpang","Habagat","Lunsad","Pantay"]
+  },
+  "Cavite": {
+    "Bacoor City": ["Aniban","Banalo","Bayanan","Habay","Molino","Salinas","Talaba"],
+    "Imus City": ["Alapan","Anabu","Bayan Luma","Bucandala","Tanzang Luma"],
+    "Dasmariñas City": ["Burol","Manggahan","Paliparan","Salawag","Sampaloc"],
+    "General Trias City": ["Alingaro","Biclatan","Buenavista","Manggahan","Navarro"],
+    "Tagaytay City": ["Asisan","Bukal","Calabuso","Guinhawa","Kaybagal South"]
+  },
+  "Pampanga": {
+    "Angeles City": ["Anunas","Balibago","Capaya","Claro M. Recto","Lourdes North West","Mining","Pandan","Pulung Maragul"],
+    "San Fernando City": ["Alasas","Baliti","Bulaon","Calulut","Del Carmen","Dolores","Lara"],
+    "Mabalacat City": ["Atlu-Bola","Bical","Cacutud","Calumpang","Dau","Dolores","Mabiga"],
+    "Porac": ["Babo-Pangulo","Babo-Sacan","Balubad","Bancal","Cangatba"],
+    "Guagua": ["Bancal","Betis","Kati","Malauli","Pakig"]
+  }
+};
+
+function populateCities() {
+  const province = document.getElementById('province').value;
+  const citySelect = document.getElementById('city');
+  const barangaySelect = document.getElementById('barangay');
+
+  citySelect.innerHTML = '<option value="">— Piliin ang City —</option>';
+  barangaySelect.innerHTML = '<option value="">— Piliin ang Barangay —</option>';
+
+  if (!province || !PH_LOCATIONS[province]) return;
+
+  const cities = Object.keys(PH_LOCATIONS[province]);
+  cities.sort().forEach(city => {
+    const opt = document.createElement('option');
+    opt.value = city;
+    opt.textContent = city;
+    citySelect.appendChild(opt);
+  });
+}
+
+function populateBarangays() {
+  const province = document.getElementById('province').value;
+  const city = document.getElementById('city').value;
+  const barangaySelect = document.getElementById('barangay');
+
+  barangaySelect.innerHTML = '<option value="">— Piliin ang Barangay —</option>';
+
+  if (!province || !city || !PH_LOCATIONS[province]?.[city]) return;
+
+  PH_LOCATIONS[province][city].forEach(brgy => {
+    const opt = document.createElement('option');
+    opt.value = brgy;
+    opt.textContent = brgy;
+    barangaySelect.appendChild(opt);
+  });
+}
+
+// Populate province dropdown on init
+(function initProvinces() {
+  const provinceSelect = document.getElementById('province');
+  Object.keys(PH_LOCATIONS).sort().forEach(prov => {
+    const opt = document.createElement('option');
+    opt.value = prov;
+    opt.textContent = prov;
+    provinceSelect.appendChild(opt);
+  });
+})();
+
+// ── Fade-in on scroll ──
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

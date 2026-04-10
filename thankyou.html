@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="fil">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Order Confirmed! — EvenMuse Alpha Arbutin Serum</title>
+
+  <!-- FB Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+
+    // Parse query params for dedup event ID and package
+    const params = new URLSearchParams(window.location.search);
+    const eventId = params.get('eid') || '';
+    const pkg = params.get('pkg') || 'bestie_pack';
+
+    const pkgPrices = { starter_glow: 349, bestie_pack: 549, squad_pack: 699 };
+    const pkgLabels = {
+      starter_glow: 'Starter Glow — Buy 1',
+      bestie_pack: 'Bestie Pack — Buy 1 Take 1',
+      squad_pack: 'Squad Pack — Buy 2 Take 1'
+    };
+    const value = pkgPrices[pkg] || 549;
+    const label = pkgLabels[pkg] || pkgLabels['bestie_pack'];
+
+    const FB_PIXEL_ID = document.querySelector('meta[name="fb:pixel_id"]')?.content || '';
+    if (FB_PIXEL_ID) {
+      fbq('init', FB_PIXEL_ID);
+      fbq('track', 'PageView');
+      // Purchase event — deduped via event_id matching server-side CAPI
+      fbq('track', 'Purchase', {
+        value: value,
+        currency: 'PHP',
+        content_name: label,
+        eventID: eventId
+      });
+    }
+  </script>
+  <meta name="fb:pixel_id" content="" />
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=&ev=PageView&noscript=1" /></noscript>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Montserrat:wght@700;800&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0F0F0F;
+      --bg2: #1A1A1A;
+      --card: #1E1E1E;
+      --gold: #C9A45A;
+      --text: #F3F3F0;
+      --muted: #CBBDA8;
+      --green: #22c55e;
+      --green2: #16a34a;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Poppins', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .wrap {
+      max-width: 420px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 2px;
+      font-size: 13px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .check-circle {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--green), var(--green2));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      font-size: 36px;
+      box-shadow: 0 8px 32px rgba(34,197,94,0.35);
+      animation: popIn 0.4s ease-out;
+    }
+    @keyframes popIn {
+      from { transform: scale(0.5); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 26px;
+      margin-bottom: 8px;
+    }
+    h1 span { color: var(--gold); }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+
+    .confirm-card {
+      background: rgba(34,197,94,0.06);
+      border: 1px solid rgba(34,197,94,0.2);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 24px;
+      text-align: left;
+    }
+    .confirm-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .confirm-row span:last-child { color: var(--text); font-weight: 500; }
+    .confirm-row.highlight span:last-child { color: var(--gold); font-weight: 700; }
+
+    .redirect-card {
+      background: rgba(201,164,90,0.06);
+      border: 1px solid rgba(201,164,90,0.2);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+    .redirect-card p {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+    .redirect-card strong { color: var(--text); }
+
+    .progress-bar-wrap {
+      background: rgba(255,255,255,0.08);
+      border-radius: 50px;
+      height: 6px;
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--gold), var(--gold2));
+      border-radius: 50px;
+      animation: fillBar 3s linear forwards;
+    }
+    @keyframes fillBar {
+      from { width: 0%; }
+      to { width: 100%; }
+    }
+    .countdown {
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .countdown strong { color: var(--gold); }
+
+    .btn-messenger {
+      display: block;
+      width: 100%;
+      padding: 16px 24px;
+      background: linear-gradient(135deg, #0084ff, #0066cc);
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 15px;
+      text-align: center;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 4px 24px rgba(0,132,255,0.35);
+      margin-bottom: 12px;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .btn-messenger:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,132,255,0.45); }
+
+    .btn-back {
+      display: block;
+      width: 100%;
+      padding: 14px 24px;
+      background: transparent;
+      color: var(--muted);
+      font-family: 'Poppins', sans-serif;
+      font-size: 13px;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 50px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: border-color 0.15s;
+    }
+    .btn-back:hover { border-color: var(--muted); color: var(--text); }
+
+    .bonuses {
+      margin-top: 28px;
+      text-align: left;
+    }
+    .bonuses-title {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .bonus-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .bonus-row .icon { font-size: 18px; flex-shrink: 0; }
+
+    footer {
+      margin-top: 32px;
+      font-size: 11px;
+      color: #444;
+      line-height: 1.8;
+    }
+    footer a { color: #555; text-decoration: none; }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="brand">EvenMuse Skincare</div>
+
+  <div class="check-circle">✓</div>
+
+  <h1>Order <span>Confirmed!</span></h1>
+  <p class="subtitle">
+    Salamat sa tiwala mo! Ang iyong order ay naka-receive na at ipro-process agad.<br />
+    <strong>Bayad lang pag natanggap mo na ang package.</strong>
+  </p>
+
+  <div class="confirm-card">
+    <div class="confirm-row">
+      <span>Product</span>
+      <span id="confirmProduct">EvenMuse Alpha Arbutin Serum</span>
+    </div>
+    <div class="confirm-row">
+      <span>Package</span>
+      <span id="confirmPackage">Bestie Pack (Buy 1 Take 1)</span>
+    </div>
+    <div class="confirm-row highlight">
+      <span>Total (COD)</span>
+      <span id="confirmTotal">₱549</span>
+    </div>
+    <div class="confirm-row">
+      <span>Shipping</span>
+      <span>FREE via J&T Express</span>
+    </div>
+    <div class="confirm-row">
+      <span>ETA</span>
+      <span>3–7 business days</span>
+    </div>
+  </div>
+
+  <div class="redirect-card">
+    <p>
+      <strong>Next step:</strong> I-click ang Messenger para matanggap ang iyong:
+      <br />📋 30-Day Dark Spot Routine Guide
+      <br />🌅 AM/PM Skincare Card
+      <br />💬 Personal Skin Consultation
+    </p>
+    <div class="progress-bar-wrap">
+      <div class="progress-bar"></div>
+    </div>
+    <div class="countdown">Auto-redirecting in <strong id="countdownNum">3</strong>s…</div>
+  </div>
+
+  <a class="btn-messenger" id="messengerLink" href="#" target="_blank" rel="noopener">
+    💬 Buksan ang Messenger
+  </a>
+
+  <a class="btn-back" href="/">← Bumalik sa Homepage</a>
+
+  <div class="bonuses">
+    <div class="bonuses-title">What you'll receive</div>
+    <div class="bonus-row"><span class="icon">📦</span><span>EvenMuse Alpha Arbutin Serum — bayad sa delivery</span></div>
+    <div class="bonus-row"><span class="icon">📋</span><span>30-Day Dark Spot Routine Guide (PDF) — FREE</span></div>
+    <div class="bonus-row"><span class="icon">🌅</span><span>AM/PM Skincare Routine Card — FREE</span></div>
+    <div class="bonus-row"><span class="icon">💬</span><span>Skin Type Consultation via Messenger — FREE</span></div>
+  </div>
+
+  <footer>
+    © 2025 EvenMuse Skincare · Made with love in the Philippines<br />
+    <a href="/">Home</a> · <a href="#">Privacy Policy</a>
+  </footer>
+
+</div>
+
+<script>
+  // Read URL params
+  const params = new URLSearchParams(window.location.search);
+  const pkg = params.get('pkg') || 'bestie_pack';
+
+  const pkgLabels = {
+    starter_glow: 'Starter Glow (Buy 1)',
+    bestie_pack: 'Bestie Pack (Buy 1 Take 1)',
+    squad_pack: 'Squad Pack (Buy 2 Take 1)'
+  };
+  const pkgPrices = { starter_glow: '₱349', bestie_pack: '₱549', squad_pack: '₱699' };
+
+  document.getElementById('confirmPackage').textContent = pkgLabels[pkg] || pkgLabels['bestie_pack'];
+  document.getElementById('confirmTotal').textContent = pkgPrices[pkg] || '₱549';
+
+  // Messenger link from meta tag (set via env in TY page generation or hardcoded below)
+  const MESSENGER_URL = document.querySelector('meta[name="botcake:messenger_url"]')?.content || '#';
+  document.getElementById('messengerLink').href = MESSENGER_URL;
+
+  // Countdown and auto-redirect
+  let count = 3;
+  const countEl = document.getElementById('countdownNum');
+  const timer = setInterval(() => {
+    count -= 1;
+    countEl.textContent = count;
+    if (count <= 0) {
+      clearInterval(timer);
+      if (MESSENGER_URL && MESSENGER_URL !== '#') {
+        window.location.href = MESSENGER_URL;
+      }
+    }
+  }, 1000);
+</script>
+
+<!-- Set Botcake Messenger URL -->
+<meta name="botcake:messenger_url" content="" />
+</body>
+</html>
