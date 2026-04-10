@@ -13,7 +13,16 @@ export interface PancakeOrderPayload {
 
 const BASE_URL = "https://pos.pages.fm/api/v1";
 
-// Maps package name → env var suffix for variation IDs
+const PRODUCT_ID = "d3af1b20-ad98-497a-85fd-14162606213e";
+
+// Fallback IDs confirmed from the Pancake POS API (can be overridden via env vars)
+const VARIATION_DEFAULTS: Record<string, { productId: string; variationId: string }> = {
+  starter_glow: { productId: PRODUCT_ID, variationId: "08dd83ed-fffa-4756-8af6-0c5bd855b55e" }, // Set A (1jar) ₱399
+  bestie_pack:  { productId: PRODUCT_ID, variationId: "9515afe7-c5d8-45eb-bcd4-5c810413fee7" }, // Set B (2jars) ₱699
+  squad_pack:   { productId: PRODUCT_ID, variationId: "06ca80fc-91f7-4307-8d8a-ceaf034405be" }, // Set C (3jars) ₱799
+};
+
+// Env var suffixes (override defaults if set in Netlify)
 const PACKAGE_VARIATION_ENV: Record<string, string> = {
   starter_glow: "1PC",
   bestie_pack:  "2PC",
@@ -45,20 +54,17 @@ export async function createPancakeOrder(payload: PancakeOrderPayload): Promise<
   }
 
   const envSuffix = PACKAGE_VARIATION_ENV[payload.packageName];
-  if (!envSuffix) {
+  const defaults = VARIATION_DEFAULTS[payload.packageName];
+
+  if (!defaults) {
     console.warn(`[pancake] Unknown package: ${payload.packageName}`);
     return;
   }
 
-  const productId  = process.env[`PANCAKE_PRODUCT_ID_${envSuffix}`];
-  const variationId = process.env[`PANCAKE_VARIATION_ID_${envSuffix}`];
+  const productId = (envSuffix && process.env[`PANCAKE_PRODUCT_ID_${envSuffix}`]) || defaults.productId;
+  const variationId = (envSuffix && process.env[`PANCAKE_VARIATION_ID_${envSuffix}`]) || defaults.variationId;
 
-  if (!productId || !variationId) {
-    console.warn(
-      `[pancake] Missing PANCAKE_PRODUCT_ID_${envSuffix} or PANCAKE_VARIATION_ID_${envSuffix} — skipping`
-    );
-    return;
-  }
+  console.log(`[pancake] Using product=${productId} variation=${variationId} for ${payload.packageName}`);
 
   const fullAddress = [payload.address, payload.barangay, payload.city, payload.province]
     .filter(Boolean)
