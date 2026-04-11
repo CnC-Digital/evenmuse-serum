@@ -153,7 +153,7 @@ section { padding: 48px 20px; }
 }
 .hero-img {
   width: 260px;
-  height: auto;
+  aspect-ratio: 1;
   position: relative;
   z-index: 1;
   border-radius: 16px;

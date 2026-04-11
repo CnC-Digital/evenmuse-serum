@@ -6,35 +6,42 @@
   <title>EvenMuse Alpha Arbutin Serum — Fade Dark Spots in 30 Days</title>
   <meta name="description" content="Alpha Arbutin Serum na specifically formulated para sa Pinay. Targets dark spots, acne marks, at uneven skin tone. COD available. Free shipping." />
 
-  <!-- FB Pixel -->
-  <script>
-    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-    document,'script','https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '4188994658004996');
-    fbq('track', 'PageView');
-    fbq('track', 'ViewContent', {
-      content_name: 'EvenMuse Alpha Arbutin Serum',
-      content_category: 'Skincare',
-      currency: 'PHP',
-      value: 549
-    });
-  </script>
-  <meta name="fb:pixel_id" content="4188994658004996" />
-  <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=4188994658004996&ev=PageView&noscript=1" /></noscript>
+  <!-- Critical CSS — inlined to eliminate render-blocking -->
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--bg:#0F0F0F;--bg2:#1A1A1A;--card:#1E1E1E;--gold:#C9A45A;--gold2:#A97B2F;--text:#F3F3F0;--muted:#CBBDA8;--green:#22c55e;--green2:#16a34a;--radius:16px}
+    body{background:var(--bg);color:var(--text);font-family:'Poppins',system-ui,sans-serif;font-size:16px;line-height:1.6;min-height:100vh}
+    .page-wrap{max-width:480px;margin:0 auto;overflow-x:hidden}
+    h1,h2,h3{font-family:'Montserrat',system-ui,sans-serif;font-weight:800;line-height:1.2}
+    h1{font-size:26px}h2{font-size:22px}h3{font-size:17px}
+    .brand{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;color:var(--gold);letter-spacing:2px;font-size:13px;text-transform:uppercase}
+    .topbar{background:var(--gold);color:#0F0F0F;text-align:center;padding:10px 16px;font-size:13px;font-weight:600;font-family:'Montserrat',system-ui,sans-serif}
+    .hero{background:linear-gradient(180deg,#1A1A1A 0%,#0F0F0F 100%);padding:40px 24px 48px;text-align:center;position:relative}
+    .hero-brand{margin-bottom:20px}
+    .hero h1{color:var(--text);margin-bottom:16px}
+    .hero h1 span{color:var(--gold)}
+    .hero p{color:var(--muted);font-size:14px;margin-bottom:28px;line-height:1.7}
+    .hero-img-wrap{position:relative;display:inline-block;margin:24px 0}
+    .hero-img-wrap::before{content:'';position:absolute;inset:-20px;background:radial-gradient(circle,rgba(201,164,90,.15) 0%,transparent 70%);border-radius:50%}
+    .hero-img{width:260px;aspect-ratio:1;position:relative;z-index:1;border-radius:16px;object-fit:contain;filter:drop-shadow(0 20px 40px rgba(201,164,90,.25))}
+    .hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(201,164,90,.12);border:1px solid rgba(201,164,90,.3);border-radius:50px;padding:6px 14px;font-size:12px;color:var(--gold);font-weight:500;margin-bottom:20px}
+    .hero-stars{color:var(--gold);font-size:13px;letter-spacing:1px}
+    .price-tag{font-family:'Montserrat',system-ui,sans-serif;font-size:13px;color:var(--muted);margin-top:14px;margin-bottom:4px}
+    .price-tag s{color:#999}
+    .price-main{font-family:'Montserrat',system-ui,sans-serif;font-size:32px;font-weight:800;color:var(--gold)}
+    .btn-cta{display:inline-block;width:auto;padding:18px 32px;background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;font-family:'Montserrat',system-ui,sans-serif;font-weight:800;font-size:16px;text-align:center;border:none;border-radius:50px;cursor:pointer;box-shadow:0 4px 24px rgba(34,197,94,.35);text-decoration:none;transition:transform .15s,box-shadow .15s;letter-spacing:.5px}
+    .fade-in{opacity:0;transform:translateY(24px);transition:opacity .5s ease,transform .5s ease}
+    .fade-in.visible{opacity:1;transform:translateY(0)}
+  </style>
 
   <!-- Preload critical hero image -->
   <link rel="preload" as="image" href="assets/images/avatar.webp" fetchpriority="high" />
 
-  <!-- Google Fonts — loaded async to avoid render-blocking -->
+  <!-- Google Fonts — async, display=optional avoids font-swap CLS -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Montserrat:wght@700;800&family=Poppins:wght@400;500;600&display=swap" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Montserrat:wght@700;800&family=Poppins:wght@400;500;600&display=swap" media="print" onload="this.media='all'" />
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Montserrat:wght@700;800&family=Poppins:wght@400;500;600&display=swap" /></noscript>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Montserrat:wght@700;800&family=Poppins:wght@400;500;600&display=optional" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Montserrat:wght@700;800&family=Poppins:wght@400;500;600&display=optional" /></noscript>
 
   <!-- Preconnect for external image domains -->
   <link rel="preconnect" href="https://ui-avatars.com" crossorigin />
@@ -42,7 +49,25 @@
 
   <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon-180.png" />
-  <link rel="stylesheet" href="assets/css/index.css" />
+
+  <!-- Full CSS — async (non-blocking) -->
+  <link rel="stylesheet" href="assets/css/index.css" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="assets/css/index.css" /></noscript>
+
+  <!-- FB Pixel — deferred to after critical render -->
+  <script>
+    window.addEventListener('load',function(){
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+      document,'script','https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init','4188994658004996');
+      fbq('track','PageView');
+      fbq('track','ViewContent',{content_name:'EvenMuse Alpha Arbutin Serum',content_category:'Skincare',currency:'PHP',value:549});
+    });
+  </script>
+  <meta name="fb:pixel_id" content="4188994658004996" />
 </head>
 <body>
 <div class="page-wrap">
@@ -169,7 +194,7 @@
   <!-- Lifestyle image: confident Filipina woman -->
   <div class="lifestyle-section fade-in">
     <img
-      src="https://images.unsplash.com/photo-1617901724900-3b88b9dabd1c?w=900&fit=crop&auto=format&q=80"
+      src="https://images.unsplash.com/photo-1617901724900-3b88b9dabd1c?w=480&fit=crop&auto=format,webp&q=60"
       alt="Confident woman with clear glowing skin"
       class="lifestyle-img"
       loading="lazy"
