@@ -6,6 +6,17 @@
   <title>EvenMuse Alpha Arbutin Serum — Fade Dark Spots in 30 Days</title>
   <meta name="description" content="Alpha Arbutin Serum na specifically formulated para sa Pinay. Targets dark spots, acne marks, at uneven skin tone. COD available. Free shipping." />
 
+  <!-- Self-hosted fonts (latin only) — eliminates 3rd-party font chain -->
+  <style>
+    @font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:600;font-display:optional;src:url('assets/fonts/cormorant-garamond-600-latin.woff2') format('woff2')}
+    @font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:700;font-display:optional;src:url('assets/fonts/cormorant-garamond-700-latin.woff2') format('woff2')}
+    @font-face{font-family:'Montserrat';font-style:normal;font-weight:700;font-display:optional;src:url('assets/fonts/montserrat-700-latin.woff2') format('woff2')}
+    @font-face{font-family:'Montserrat';font-style:normal;font-weight:800;font-display:optional;src:url('assets/fonts/montserrat-800-latin.woff2') format('woff2')}
+    @font-face{font-family:'Poppins';font-style:normal;font-weight:400;font-display:optional;src:url('assets/fonts/poppins-400-latin.woff2') format('woff2')}
+    @font-face{font-family:'Poppins';font-style:normal;font-weight:500;font-display:optional;src:url('assets/fonts/poppins-500-latin.woff2') format('woff2')}
+    @font-face{font-family:'Poppins';font-style:normal;font-weight:600;font-display:optional;src:url('assets/fonts/poppins-600-latin.woff2') format('woff2')}
+  </style>
+
   <!-- Critical CSS — inlined to eliminate render-blocking -->
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -45,35 +56,38 @@
     }
   </style>
 
-  <!-- Preload critical hero image -->
+  <!-- Preload critical hero image + critical fonts -->
   <link rel="preload" as="image" href="assets/images/avatar.webp" fetchpriority="high" />
-
-  <!-- Google Fonts — non-blocking async load, display=swap -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Montserrat:wght@700;800&family=Poppins:wght@400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Montserrat:wght@700;800&family=Poppins:wght@400;500;600&display=swap" /></noscript>
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/montserrat-800-latin.woff2" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/poppins-400-latin.woff2" />
 
 
   <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon-180.png" />
 
   <!-- Full CSS — high-priority preload (non-blocking but fetched at HIGH priority) -->
-  <link rel="preload" href="assets/css/index.css?v=8" as="style" onload="this.rel='stylesheet'" />
-  <noscript><link rel="stylesheet" href="assets/css/index.css?v=8" /></noscript>
+  <link rel="preload" href="assets/css/index.css?v=9" as="style" onload="this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="assets/css/index.css?v=9" /></noscript>
 
-  <!-- FB Pixel — deferred to after critical render -->
+  <!-- FB Pixel — deferred to idle time to reduce TBT -->
   <script>
-    window.addEventListener('load',function(){
-      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-      document,'script','https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init','4188994658004996');
-      fbq('track','PageView');
-      fbq('track','ViewContent',{content_name:'EvenMuse Alpha Arbutin Serum',content_category:'Skincare',currency:'PHP',value:549});
-    });
+    (function(){
+      function loadPixel(){
+        !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+        n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+        document,'script','https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init','4188994658004996');
+        fbq('track','PageView');
+        fbq('track','ViewContent',{content_name:'EvenMuse Alpha Arbutin Serum',content_category:'Skincare',currency:'PHP',value:549});
+      }
+      if('requestIdleCallback' in window){
+        requestIdleCallback(loadPixel,{timeout:4000});
+      } else {
+        setTimeout(loadPixel,3500);
+      }
+    })();
   </script>
   <meta name="fb:pixel_id" content="4188994658004996" />
 </head>
