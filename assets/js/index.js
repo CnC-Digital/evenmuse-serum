@@ -70,7 +70,6 @@ function openPopup(packageName) {
   document.getElementById('summaryProduct').textContent = pkg.label;
   document.getElementById('summaryQty').textContent = pkg.qty;
   document.getElementById('summaryTotal').textContent = pkg.priceLabel;
-  document.getElementById('codAmount').textContent = pkg.priceLabel;
 
   const freeRow = document.getElementById('summaryFreeRow');
   if (pkg.freeRow) {
@@ -108,12 +107,6 @@ function handleOverlayClick(e) {
 async function submitOrder(e) {
   e.preventDefault();
 
-  const codConfirm = document.getElementById('codConfirm');
-  if (!codConfirm.checked) {
-    showError('Please confirm the COD payment before proceeding.');
-    return;
-  }
-
   const phone = document.getElementById('phone').value.trim();
   if (!/^(09|\+639|639)\d{9}$/.test(phone)) {
     showError('Please enter a valid PH mobile number (e.g. 09171234567 or +639171234567).');
@@ -149,15 +142,7 @@ async function submitOrder(e) {
     if (data.success) {
       const pkg = PACKAGES[payload.packageName] || PACKAGES['bestie_pack'];
 
-      // FB Pixel: Purchase (client-side, deduped via event_id)
-      if (typeof fbq !== 'undefined') {
-        fbq('track', 'Purchase', {
-          value: pkg.price,
-          currency: 'PHP',
-          content_name: pkg.label,
-          eventID: data.eventId
-        });
-      }
+      // FB Pixel: Purchase is fired on thankyou.html (not here) to avoid duplicate events
 
       // Netlify Forms — use sendBeacon so it survives the page redirect
       const formEl = document.getElementById('orderForm');
