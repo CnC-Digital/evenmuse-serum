@@ -108,7 +108,6 @@ export async function createPancakeOrder(payload: PancakeOrderPayload): Promise<
         one_time_product: false,
       },
     ],
-    status: payload.abandoned ? "abandoned" : undefined,
     note: [
       payload.abandoned ? "⚠️ ABANDONED CART — Customer did not complete order" : null,
       payload.landmark ? `Landmark: ${payload.landmark}` : null,
@@ -136,8 +135,28 @@ export async function createPancakeOrder(payload: PancakeOrderPayload): Promise<
   if (!res.ok) {
     const text = await res.text();
     console.error(`[pancake] Order creation failed: ${res.status}`, text);
-  } else {
-    const data = await res.json();
-    console.log("[pancake] Order created:", data?.id ?? data);
+    return;
+  }
+
+  const data = await res.json();
+  const orderId = data?.id;
+  console.log("[pancake] Order created:", orderId ?? data);
+
+  // Step 2: If abandoned, immediately update the order status to "abandoned"
+  if (payload.abandoned && orderId) {
+    const patchRes = await fetchWithTimeout(
+      apiUrl(`/shops/${shopId}/orders/${orderId}`, apiKey),
+      {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ status: "abandoned" }),
+      }
+    );
+    if (!patchRes.ok) {
+      const err = await patchRes.text();
+      console.error(`[pancake] Status update to abandoned failed: ${patchRes.status}`, err);
+    } else {
+      console.log(`[pancake] Order ${orderId} status set to abandoned`);
+    }
   }
 }
