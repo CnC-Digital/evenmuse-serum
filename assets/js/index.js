@@ -46,18 +46,41 @@ let _cdTimer = null;
 let _abandonedTimer = null;
 let _abandonedSent = false;
 let _orderSubmitted = false;
+const ABANDONED_DELAY = 10 * 60 * 1000; // 10 minutes
+const ABANDONED_TS_KEY = '_acStart';
 
 function _scheduleAbandonedCheck() {
   if (_abandonedSent || _orderSubmitted) return;
   if (_abandonedTimer) clearTimeout(_abandonedTimer);
-  _abandonedTimer = setTimeout(_sendAbandoned, 10 * 60 * 1000); // 10 minutes
+  // Store timestamp so iOS Safari can check it on visibility restore
+  sessionStorage.setItem(ABANDONED_TS_KEY, Date.now());
+  _abandonedTimer = setTimeout(_sendAbandoned, ABANDONED_DELAY);
 }
+
+// Called on visibilitychange/pageshow — handles iOS timer pause
+function _checkAbandonedByTimestamp() {
+  if (_abandonedSent || _orderSubmitted) return;
+  const start = parseInt(sessionStorage.getItem(ABANDONED_TS_KEY) || '0');
+  if (start && Date.now() - start >= ABANDONED_DELAY) {
+    _sendAbandoned();
+  }
+}
+
+// iOS Safari pauses setTimeout when tab is backgrounded — use events instead
+document.addEventListener('visibilitychange', function () {
+  if (document.visibilityState === 'visible') _checkAbandonedByTimestamp();
+});
+window.addEventListener('pageshow', function (e) {
+  // persisted = true means iOS restored from bfcache
+  if (e.persisted || document.visibilityState === 'visible') _checkAbandonedByTimestamp();
+});
 
 function _sendAbandoned() {
   if (_abandonedSent || _orderSubmitted) return;
   const phone = document.getElementById('phone').value.trim();
   if (!phone) return; // not enough data — skip
   _abandonedSent = true;
+  sessionStorage.removeItem(ABANDONED_TS_KEY);
   const payload = {
     firstName: document.getElementById('firstName').value.trim(),
     lastName:  document.getElementById('lastName').value.trim(),
@@ -191,6 +214,7 @@ async function submitOrder(e) {
       // Cancel abandoned cart timer — order was placed
       _orderSubmitted = true;
       if (_abandonedTimer) clearTimeout(_abandonedTimer);
+      sessionStorage.removeItem(ABANDONED_TS_KEY);
 
       // FB Pixel: Purchase is fired on thankyou.html (not here) to avoid duplicate events
 
