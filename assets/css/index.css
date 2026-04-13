@@ -130,7 +130,7 @@ section { padding: 48px 20px; }
 .hero-brand { margin-bottom: 20px; }
 .hero h1 {
   color: var(--text);
-  margin-bottom: 16px;
+  margin-bottom: 25px;
 }
 .hero h1 span { color: var(--gold); }
 .hero p {
@@ -139,10 +139,20 @@ section { padding: 48px 20px; }
   margin-bottom: 28px;
   line-height: 1.7;
 }
+.hero-visual {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+.hero-bot {
+  margin-top: 20px;
+  padding-top: 0;
+}
 .hero-img-wrap {
   position: relative;
-  display: inline-block;
-  margin: 24px 0;
+  display: block;
+  width: fit-content;
+  margin: 4px auto 0;
 }
 .hero-img-wrap::before {
   content: '';
@@ -153,12 +163,14 @@ section { padding: 48px 20px; }
 }
 .hero-img {
   width: 260px;
-  aspect-ratio: 1;
+  height: auto;
+  aspect-ratio: auto;
   position: relative;
   z-index: 1;
   border-radius: 16px;
   object-fit: contain;
   filter: drop-shadow(0 20px 40px rgba(201,164,90,0.25));
+  display: block;
 }
 .hero-badge {
   display: inline-flex;
@@ -278,6 +290,36 @@ section { padding: 48px 20px; }
   background: var(--card);
   padding: 10px;
   font-size: 20px;
+}
+
+/* ── BEFORE/AFTER PHOTO GRID ── */
+.ba-photos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  margin: 28px 0 32px;
+}
+.ba-photo-card {
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--card);
+  border: 1px solid rgba(201,164,90,0.15);
+}
+.ba-photo-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+.ba-photo-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--gold);
+  text-align: center;
+  padding: 10px 12px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
 }
 
 /* ── HOW IT WORKS ── */
@@ -733,7 +775,7 @@ footer a { color: #bbb; text-decoration: none; }
 }
 .lifestyle-img {
   width: 100%;
-  height: 260px;
+  height: 400px;
   object-fit: cover;
   object-position: center top;
   border-radius: var(--radius);
@@ -784,7 +826,7 @@ footer a { color: #bbb; text-decoration: none; }
 .testi-name {
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
-  font-size: 14px;
+  font-size: 17px;
   color: var(--text);
 }
 .testi-location { font-size: 11px; color: var(--muted); margin-top: 1px; }
@@ -842,8 +884,8 @@ footer a { color: #bbb; text-decoration: none; }
     justify-content: center;
   }
   .hero-bot { grid-area: hero-bot; align-self: start; padding-top: 8px; }
-  .hero-img-wrap { margin: 0; }
-  .hero-img { width: 380px; border-radius: 20px; }
+  .hero-img-wrap { margin: 0; display: inline-block; width: auto; }
+  .hero-img { width: 380px; height: auto; border-radius: 20px; }
   .hero-badge { display: inline-flex; }
   .hero h1 { font-size: 36px; }
 
@@ -922,6 +964,7 @@ footer a { color: #bbb; text-decoration: none; }
 .hero-sub {
   font-size: 16px !important;
   line-height: 1.7;
+  margin-top: 8px;
   color: var(--muted);
   margin-bottom: 28px;
 }

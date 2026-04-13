@@ -49,19 +49,16 @@
   <!-- Google Fonts — async, display=optional avoids font-swap CLS -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Montserrat:wght@700;800&family=Poppins:wght@400;500;600&display=optional" media="print" onload="this.media='all'" />
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Montserrat:wght@700;800&family=Poppins:wght@400;500;600&display=optional" /></noscript>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Montserrat:wght@700;800&family=Poppins:wght@400;500;600&display=swap" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Montserrat:wght@700;800&family=Poppins:wght@400;500;600&display=swap" /></noscript>
 
-  <!-- Preconnect for external image domains -->
-  <link rel="preconnect" href="https://ui-avatars.com" crossorigin />
-  <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
 
   <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon-180.png" />
 
   <!-- Full CSS — high-priority preload (non-blocking but fetched at HIGH priority) -->
-  <link rel="preload" href="assets/css/index.css?v=2" as="style" onload="this.rel='stylesheet'" />
-  <noscript><link rel="stylesheet" href="assets/css/index.css?v=2" /></noscript>
+  <link rel="preload" href="assets/css/index.css?v=6" as="style" onload="this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="assets/css/index.css?v=6" /></noscript>
 
   <!-- FB Pixel — deferred to after critical render -->
   <script>
@@ -141,7 +138,7 @@
       </div>
       <div class="pain-item">
         <img
-          src="https://cyspera.com/wp-content/uploads/melasma-486x573.jpeg"
+          src="assets/images/melasma.jpg"
           alt="Melasma and patchy skin tone on face"
           class="pain-img"
           loading="lazy"
@@ -156,7 +153,7 @@
       </div>
       <div class="pain-item">
         <img
-          src="https://goodonyou.eco/wp-content/uploads/2025/01/Too-many-beauty-products-1.png"
+          src="assets/images/too-many-products.png"
           alt="Too many skincare products tried but none working"
           class="pain-img"
           loading="lazy"
@@ -171,7 +168,7 @@
       </div>
       <div class="pain-item">
         <img
-          src="https://dehazskincare.com/cdn/shop/articles/image-49_5f7dbd49-8d87-4b1b-b3e4-8eb9fb4be795_1200x.jpg"
+          src="assets/images/tried-serums.jpg"
           alt="Sun damage and hyperpigmentation on skin"
           class="pain-img"
           loading="lazy"
@@ -203,13 +200,13 @@
   <!-- Lifestyle image: confident Filipina woman -->
   <div class="lifestyle-section fade-in">
     <img
-      src="https://images.unsplash.com/photo-1617901724900-3b88b9dabd1c?w=480&fit=crop&auto=format,webp&q=60"
+      src="assets/images/hero-woman.png"
       alt="Confident woman with clear glowing skin"
       class="lifestyle-img"
       loading="lazy"
-      width="480" height="260"
+      width="480" height="480"
       decoding="async"
-      onerror="this.src='https://media.istockphoto.com/id/1454518944/photo/beautiful-young-asian-woman-with-clean-fresh-skin-on-white-background-face-care-facial.jpg?s=612x612&w=0&k=20&c=Uh8iieVOYcf7lp1rp5-2DbVNaO1vQwm8oLQX6cPMdmM='"
+      onerror="this.style.background='rgba(201,164,90,0.1)';this.style.height='400px'"
     />
     <p class="lifestyle-caption">"I want to wear less makeup. I want even skin on camera." — every busy woman's dream.</p>
   </div>
@@ -231,6 +228,23 @@
         <p>"Even skin tone. Less concealer days. Confident to go bare-face in meetings. Can't believe it. 😱"</p>
       </div>
     </div>
+
+    <!-- Real before/after photo results -->
+    <div class="ba-photos-grid">
+      <div class="ba-photo-card">
+        <img src="assets/images/before-after-acne-marks.png" alt="Before and after acne marks treatment" loading="lazy" width="400" height="280" decoding="async" />
+        <div class="ba-photo-label">Acne Marks · 30 Days</div>
+      </div>
+      <div class="ba-photo-card">
+        <img src="assets/images/before-after-melasma.png" alt="Before and after melasma / dark spots treatment" loading="lazy" width="400" height="280" decoding="async" />
+        <div class="ba-photo-label">Melasma / Dark Spots · 30 Days</div>
+      </div>
+      <div class="ba-photo-card">
+        <img src="assets/images/before-after-acne.png" alt="Before and after active acne and marks treatment" loading="lazy" width="400" height="280" decoding="async" />
+        <div class="ba-photo-label">Active Acne + Marks · 30 Days</div>
+      </div>
+    </div>
+
     <button class="btn-cta" onclick="scrollToPackages()">
       GET YOUR BESTIE PACK — ₱549
     </button>
@@ -276,7 +290,7 @@
     <h2>What's Inside</h2>
     <div class="ing-grid">
       <div class="ing-card">
-        <img src="https://i.herbalreality.com/wp-content/uploads/2024/06/26083620/Fresh-Bearberry-leaves-Arctostaphylos-uva-ursi.jpg"
+        <img src="assets/images/bearberry.jpg"
           alt="Bearberry plant — source of Alpha Arbutin" class="ing-img" loading="lazy"
           width="300" height="160" decoding="async"
           onerror="this.style.background='rgba(201,164,90,0.12)'" />
@@ -295,7 +309,7 @@
         </div>
       </div>
       <div class="ing-card">
-        <img src="https://elsieorganics.com/wp-content/uploads/2024/10/Tranexamic-Acid-Powder.jpg"
+        <img src="assets/images/tranexamic-acid.jpg"
           alt="Tranexamic Acid pure powder" class="ing-img" loading="lazy"
           width="300" height="160" decoding="async"
           onerror="this.style.background='rgba(201,164,90,0.12)'" />
@@ -323,7 +337,7 @@
         </div>
       </div>
       <div class="ing-card">
-        <img src="https://paradisenursery.com/cdn/shop/files/brazilian.papaya.and.juice_1280x.webp"
+        <img src="assets/images/papaya.webp"
           alt="Papaya fruit and licorice root natural brightening" class="ing-img" loading="lazy"
           width="300" height="160" decoding="async"
           onerror="this.style.background='rgba(201,164,90,0.12)'" />
@@ -426,13 +440,6 @@
       <!-- 1 -->
       <div class="testi-card">
         <div class="testi-header">
-          <img
-            src="https://ui-avatars.com/api/?name=SR&background=C9A45A&color=111111&size=100&bold=true"
-            alt="Shiela R."
-            class="testi-avatar"
-            loading="lazy"
-            width="50" height="50" decoding="async"
-          />
           <div>
             <div class="testi-name">Shiela R.</div>
             <div class="testi-location">📍 Manila · Office worker</div>
@@ -446,13 +453,6 @@
       <!-- 2 -->
       <div class="testi-card">
         <div class="testi-header">
-          <img
-            src="https://ui-avatars.com/api/?name=MD&background=A97B2F&color=F3F3F0&size=100&bold=true"
-            alt="Marivic D."
-            class="testi-avatar"
-            loading="lazy"
-            width="50" height="50" decoding="async"
-          />
           <div>
             <div class="testi-name">Marivic D.</div>
             <div class="testi-location">📍 Quezon City · WFH Mom</div>
@@ -466,13 +466,6 @@
       <!-- 3 -->
       <div class="testi-card">
         <div class="testi-header">
-          <img
-            src="https://ui-avatars.com/api/?name=JT&background=8E8A83&color=F3F3F0&size=100&bold=true"
-            alt="Janine T."
-            class="testi-avatar"
-            loading="lazy"
-            width="50" height="50" decoding="async"
-          />
           <div>
             <div class="testi-name">Janine T.</div>
             <div class="testi-location">📍 Cebu City · Corporate</div>
@@ -486,13 +479,6 @@
       <!-- 4 -->
       <div class="testi-card">
         <div class="testi-header">
-          <img
-            src="https://ui-avatars.com/api/?name=RM&background=CBBDA8&color=111111&size=100&bold=true"
-            alt="Rachel M."
-            class="testi-avatar"
-            loading="lazy"
-            width="50" height="50" decoding="async"
-          />
           <div>
             <div class="testi-name">Rachel M.</div>
             <div class="testi-location">📍 Davao City · Freelancer</div>
@@ -506,13 +492,6 @@
       <!-- 5 -->
       <div class="testi-card">
         <div class="testi-header">
-          <img
-            src="https://ui-avatars.com/api/?name=CA&background=E8DCC7&color=111111&size=100&bold=true"
-            alt="Crissy A."
-            class="testi-avatar"
-            loading="lazy"
-            width="50" height="50" decoding="async"
-          />
           <div>
             <div class="testi-name">Crissy A.</div>
             <div class="testi-location">📍 Laguna · Teacher</div>
