@@ -18,12 +18,14 @@
     .topbar{background:var(--gold);color:#0F0F0F;text-align:center;padding:10px 16px;font-size:13px;font-weight:600;font-family:'Montserrat',system-ui,sans-serif}
     .hero{background:linear-gradient(180deg,#1A1A1A 0%,#0F0F0F 100%);padding:40px 24px 48px;text-align:center;position:relative}
     .hero-brand{margin-bottom:20px}
-    .hero h1{color:var(--text);margin-bottom:16px}
+    .hero h1{color:var(--text);margin-bottom:25px}
     .hero h1 span{color:var(--gold)}
     .hero p{color:var(--muted);font-size:14px;margin-bottom:28px;line-height:1.7}
-    .hero-img-wrap{position:relative;display:inline-block;margin:24px 0}
+    .hero-visual{margin:0;padding:0;text-align:center}
+    .hero-bot{margin-top:20px;padding-top:0}
+    .hero-img-wrap{position:relative;display:block;width:fit-content;margin:0 auto}
     .hero-img-wrap::before{content:'';position:absolute;inset:-20px;background:radial-gradient(circle,rgba(201,164,90,.15) 0%,transparent 70%);border-radius:50%}
-    .hero-img{width:260px;aspect-ratio:1;position:relative;z-index:1;border-radius:16px;object-fit:contain;filter:drop-shadow(0 20px 40px rgba(201,164,90,.25))}
+    .hero-img{width:260px;height:auto;position:relative;z-index:1;border-radius:16px;object-fit:contain;display:block;filter:drop-shadow(0 20px 40px rgba(201,164,90,.25))}
     .hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(201,164,90,.12);border:1px solid rgba(201,164,90,.3);border-radius:50px;padding:6px 14px;font-size:12px;color:var(--gold);font-weight:500;margin-bottom:20px}
     .hero-stars{color:var(--gold);font-size:13px;letter-spacing:1px}
     .price-tag{font-family:'Montserrat',system-ui,sans-serif;font-size:13px;color:var(--muted);margin-top:14px;margin-bottom:4px}
@@ -38,8 +40,8 @@
       .hero-top{grid-area:hero-top;align-self:end}
       .hero-visual{grid-area:hero-visual;display:flex;align-items:center;justify-content:center}
       .hero-bot{grid-area:hero-bot;align-self:start;padding-top:8px}
-      .hero-img-wrap{margin:0}
-      .hero-img{width:380px}
+      .hero-img-wrap{margin:0;display:inline-block;width:auto}
+      .hero-img{width:380px;height:auto}
     }
   </style>
 
@@ -57,8 +59,8 @@
   <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon-180.png" />
 
   <!-- Full CSS — high-priority preload (non-blocking but fetched at HIGH priority) -->
-  <link rel="preload" href="assets/css/index.css?v=6" as="style" onload="this.rel='stylesheet'" />
-  <noscript><link rel="stylesheet" href="assets/css/index.css?v=6" /></noscript>
+  <link rel="preload" href="assets/css/index.css?v=7" as="style" onload="this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="assets/css/index.css?v=7" /></noscript>
 
   <!-- FB Pixel — deferred to after critical render -->
   <script>
@@ -138,7 +140,7 @@
       </div>
       <div class="pain-item">
         <img
-          src="assets/images/melasma.jpg"
+          src="assets/images/melasma.webp"
           alt="Melasma and patchy skin tone on face"
           class="pain-img"
           loading="lazy"
@@ -153,7 +155,7 @@
       </div>
       <div class="pain-item">
         <img
-          src="assets/images/too-many-products.png"
+          src="assets/images/too-many-products.webp"
           alt="Too many skincare products tried but none working"
           class="pain-img"
           loading="lazy"
@@ -168,7 +170,7 @@
       </div>
       <div class="pain-item">
         <img
-          src="assets/images/tried-serums.jpg"
+          src="assets/images/tried-serums.webp"
           alt="Sun damage and hyperpigmentation on skin"
           class="pain-img"
           loading="lazy"
@@ -200,11 +202,11 @@
   <!-- Lifestyle image: confident Filipina woman -->
   <div class="lifestyle-section fade-in">
     <img
-      src="assets/images/hero-woman.png"
+      src="assets/images/hero-woman.webp"
       alt="Confident woman with clear glowing skin"
       class="lifestyle-img"
       loading="lazy"
-      width="480" height="480"
+      width="480" height="400"
       decoding="async"
       onerror="this.style.background='rgba(201,164,90,0.1)';this.style.height='400px'"
     />
@@ -232,15 +234,15 @@
     <!-- Real before/after photo results -->
     <div class="ba-photos-grid">
       <div class="ba-photo-card">
-        <img src="assets/images/before-after-acne-marks.png" alt="Before and after acne marks treatment" loading="lazy" width="400" height="280" decoding="async" />
+        <img src="assets/images/before-after-acne-marks.webp" alt="Before and after acne marks treatment" loading="lazy" width="1080" height="405" decoding="async" />
         <div class="ba-photo-label">Acne Marks · 30 Days</div>
       </div>
       <div class="ba-photo-card">
-        <img src="assets/images/before-after-melasma.png" alt="Before and after melasma / dark spots treatment" loading="lazy" width="400" height="280" decoding="async" />
+        <img src="assets/images/before-after-melasma.webp" alt="Before and after melasma / dark spots treatment" loading="lazy" width="1100" height="721" decoding="async" />
         <div class="ba-photo-label">Melasma / Dark Spots · 30 Days</div>
       </div>
       <div class="ba-photo-card">
-        <img src="assets/images/before-after-acne.png" alt="Before and after active acne and marks treatment" loading="lazy" width="400" height="280" decoding="async" />
+        <img src="assets/images/before-after-acne.webp" alt="Before and after active acne and marks treatment" loading="lazy" width="1000" height="375" decoding="async" />
         <div class="ba-photo-label">Active Acne + Marks · 30 Days</div>
       </div>
     </div>
@@ -290,7 +292,7 @@
     <h2>What's Inside</h2>
     <div class="ing-grid">
       <div class="ing-card">
-        <img src="assets/images/bearberry.jpg"
+        <img src="assets/images/bearberry.webp"
           alt="Bearberry plant — source of Alpha Arbutin" class="ing-img" loading="lazy"
           width="300" height="160" decoding="async"
           onerror="this.style.background='rgba(201,164,90,0.12)'" />
@@ -300,7 +302,7 @@
         </div>
       </div>
       <div class="ing-card">
-        <img src="assets/images/niacinamide.jpg"
+        <img src="assets/images/niacinamide.webp"
           alt="Niacinamide Vitamin B3" class="ing-img" loading="lazy"
           width="300" height="160" decoding="async" />
         <div class="ing-body">
@@ -309,7 +311,7 @@
         </div>
       </div>
       <div class="ing-card">
-        <img src="assets/images/tranexamic-acid.jpg"
+        <img src="assets/images/tranexamic-acid.webp"
           alt="Tranexamic Acid pure powder" class="ing-img" loading="lazy"
           width="300" height="160" decoding="async"
           onerror="this.style.background='rgba(201,164,90,0.12)'" />
@@ -328,7 +330,7 @@
         </div>
       </div>
       <div class="ing-card">
-        <img src="assets/images/hyaluronic-acid.jpg"
+        <img src="assets/images/hyaluronic-acid.webp"
           alt="Hyaluronic Acid serum clear hydration" class="ing-img" loading="lazy"
           width="300" height="160" decoding="async" />
         <div class="ing-body">
