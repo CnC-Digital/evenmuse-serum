@@ -43,72 +43,43 @@ let _cdEnd = null;
 let _cdTimer = null;
 
 // ── Abandoned Cart ──
-let _abandonedTimer = null;
-let _abandonedSent = false;
 let _orderSubmitted = false;
-const ABANDONED_DELAY = 10 * 60 * 1000; // 10 minutes
-const ABANDONED_TS_KEY = '_acStart';
+let _cartStartedSent = false;
 
-function _scheduleAbandonedCheck() {
-  if (_abandonedSent || _orderSubmitted) return;
-  if (_abandonedTimer) clearTimeout(_abandonedTimer);
-  // Store timestamp so iOS Safari can check it on visibility restore
-  sessionStorage.setItem(ABANDONED_TS_KEY, Date.now());
-  _abandonedTimer = setTimeout(_sendAbandoned, ABANDONED_DELAY);
-}
-
-// Called on visibilitychange/pageshow — handles iOS timer pause
-function _checkAbandonedByTimestamp() {
-  if (_abandonedSent || _orderSubmitted) return;
-  const start = parseInt(sessionStorage.getItem(ABANDONED_TS_KEY) || '0');
-  if (start && Date.now() - start >= ABANDONED_DELAY) {
-    _sendAbandoned();
-  }
-}
-
-// iOS Safari pauses setTimeout when tab is backgrounded — use events instead
-document.addEventListener('visibilitychange', function () {
-  if (document.visibilityState === 'visible') _checkAbandonedByTimestamp();
-});
-window.addEventListener('pageshow', function (e) {
-  // persisted = true means iOS restored from bfcache
-  if (e.persisted || document.visibilityState === 'visible') _checkAbandonedByTimestamp();
-});
-
-function _sendAbandoned() {
-  if (_abandonedSent || _orderSubmitted) return;
+function _notifyCartStarted() {
+  if (_cartStartedSent || _orderSubmitted) return;
   const phone = document.getElementById('phone').value.trim();
-  if (!phone) return; // not enough data — skip
-  _abandonedSent = true;
-  sessionStorage.removeItem(ABANDONED_TS_KEY);
-  const payload = {
-    firstName: document.getElementById('firstName').value.trim(),
-    lastName:  document.getElementById('lastName').value.trim(),
-    phone,
-    address:   document.getElementById('address').value.trim(),
-    barangay:  document.getElementById('barangay').value.trim(),
-    city:      document.getElementById('city').value.trim(),
-    province:  document.getElementById('province').value.trim(),
-    landmark:  document.getElementById('landmark').value.trim(),
-    provinceId: document.getElementById('provinceId').value,
-    districtId: document.getElementById('districtId').value,
-    communeId:  document.getElementById('communeId').value,
-    packageName: document.getElementById('selectedPackage').value || 'bestie_pack',
-    utm_source:   sessionStorage.getItem('utm_source')   || '',
-    utm_medium:   sessionStorage.getItem('utm_medium')   || '',
-    utm_campaign: sessionStorage.getItem('utm_campaign') || '',
-    utm_term:     sessionStorage.getItem('utm_term')     || '',
-    utm_content:  sessionStorage.getItem('utm_content')  || '',
-    utm_id:       sessionStorage.getItem('utm_id')       || '',
-    landing_url:  sessionStorage.getItem('landing_url')  || window.location.href,
-  };
-  fetch('/api/abandoned-cart', {
+  if (!phone) return;
+  _cartStartedSent = true;
+  fetch('/api/cart-started-background', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload),
-    keepalive: true,
+    body: JSON.stringify({
+      firstName:  document.getElementById('firstName').value.trim(),
+      lastName:   document.getElementById('lastName').value.trim(),
+      phone,
+      address:    document.getElementById('address').value.trim(),
+      barangay:   document.getElementById('barangay').value.trim(),
+      city:       document.getElementById('city').value.trim(),
+      province:   document.getElementById('province').value.trim(),
+      landmark:   document.getElementById('landmark').value.trim(),
+      provinceId: document.getElementById('provinceId').value,
+      districtId: document.getElementById('districtId').value,
+      communeId:  document.getElementById('communeId').value,
+      packageName: document.getElementById('selectedPackage').value || 'bestie_pack',
+      utm_source:   sessionStorage.getItem('utm_source')   || '',
+      utm_medium:   sessionStorage.getItem('utm_medium')   || '',
+      utm_campaign: sessionStorage.getItem('utm_campaign') || '',
+      utm_term:     sessionStorage.getItem('utm_term')     || '',
+      utm_content:  sessionStorage.getItem('utm_content')  || '',
+      utm_id:       sessionStorage.getItem('utm_id')       || '',
+      landing_url:  sessionStorage.getItem('landing_url')  || window.location.href,
+    }),
   }).catch(() => {});
 }
+
+// Fire when user fills in phone number (most reliable trigger)
+document.getElementById('phone').addEventListener('blur', _notifyCartStarted);
 
 function startCountdown() {
   if (_cdEnd) return; // keep running across re-opens
@@ -150,7 +121,7 @@ function openPopup(packageName) {
   document.getElementById('checkoutOverlay').classList.add('active');
   document.body.style.overflow = 'hidden';
   startCountdown();
-  _scheduleAbandonedCheck(); // reset 15-min window on each popup open
+  _notifyCartStarted(); // fire if phone already filled when popup opens
 
   // FB Pixel: InitiateCheckout
   if (typeof fbq !== 'undefined') {
@@ -211,10 +182,8 @@ async function submitOrder(e) {
     if (data.success) {
       const pkg = PACKAGES[payload.packageName] || PACKAGES['bestie_pack'];
 
-      // Cancel abandoned cart timer — order was placed
+      // Order placed — submit-order.mts will mark the cart as completed in Blobs
       _orderSubmitted = true;
-      if (_abandonedTimer) clearTimeout(_abandonedTimer);
-      sessionStorage.removeItem(ABANDONED_TS_KEY);
 
       // FB Pixel: Purchase is fired on thankyou.html (not here) to avoid duplicate events
 

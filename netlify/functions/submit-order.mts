@@ -106,6 +106,18 @@ export default async function handler(req: Request, context: Context) {
     landingUrl: landing_url ?? sourceUrl,
   };
 
+  // Mark any pending abandoned cart as completed so the background fn skips it
+  try {
+    const abandonedStore = getStore("abandoned-carts");
+    const cartKey = phone.replace(/\D/g, "");
+    const existingCart = await abandonedStore.get(cartKey, { type: "json" }) as Record<string, unknown> | null;
+    if (existingCart) {
+      await abandonedStore.setJSON(cartKey, { ...existingCart, status: "completed" });
+    }
+  } catch (err) {
+    console.warn("[submit-order] Failed to mark cart completed:", err);
+  }
+
   // Store order in Netlify Blobs for Botcake Dynamic Block lookup (keyed by normalized phone, TTL 2h)
   try {
     const store = getStore("botcake-orders");
