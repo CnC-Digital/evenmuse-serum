@@ -50,7 +50,7 @@ let _orderSubmitted = false;
 function _scheduleAbandonedCheck() {
   if (_abandonedSent || _orderSubmitted) return;
   if (_abandonedTimer) clearTimeout(_abandonedTimer);
-  _abandonedTimer = setTimeout(_sendAbandoned, 10 * 1000); // TEST: 10 seconds
+  _abandonedTimer = setTimeout(_sendAbandoned, 10 * 60 * 1000); // 10 minutes
 }
 
 function _sendAbandoned() {
