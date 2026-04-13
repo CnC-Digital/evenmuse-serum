@@ -19,6 +19,7 @@ export interface PancakeOrderPayload {
   utmContent?: string;
   utmId?: string;
   landingUrl?: string;
+  abandoned?: boolean;
 }
 
 const BASE_URL = "https://pos.pages.fm/api/v1";
@@ -80,14 +81,16 @@ export async function createPancakeOrder(payload: PancakeOrderPayload): Promise<
     .filter(Boolean)
     .join(", ");
 
+  const fullName = `${payload.firstName} ${payload.lastName}`.trim();
+
   const body = {
     shop_id: Number(shopId),
-    bill_full_name: `${payload.firstName} ${payload.lastName}`.trim(),
+    bill_full_name: fullName,
     bill_phone_number: payload.phone,
     shipping_address: {
-      full_name: `${payload.firstName} ${payload.lastName}`.trim(),
+      full_name: fullName,
       phone_number: payload.phone,
-      address: payload.address,
+      address: payload.address || "",
       full_address: fullAddress,
       province_id: payload.provinceId || null,
       district_id: payload.districtId || null,
@@ -105,7 +108,11 @@ export async function createPancakeOrder(payload: PancakeOrderPayload): Promise<
         one_time_product: false,
       },
     ],
-    note: payload.landmark ? `Landmark: ${payload.landmark}` : "",
+    status: payload.abandoned ? "abandoned" : undefined,
+    note: [
+      payload.abandoned ? "⚠️ ABANDONED CART — Customer did not complete order" : null,
+      payload.landmark ? `Landmark: ${payload.landmark}` : null,
+    ].filter(Boolean).join("\n") || "",
     is_free_shipping: false,
     received_at_shop: false,
     shipping_fee: 0,

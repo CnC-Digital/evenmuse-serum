@@ -42,6 +42,51 @@ const PACKAGES = {
 let _cdEnd = null;
 let _cdTimer = null;
 
+// ── Abandoned Cart ──
+let _abandonedTimer = null;
+let _abandonedSent = false;
+let _orderSubmitted = false;
+
+function _scheduleAbandonedCheck() {
+  if (_abandonedSent || _orderSubmitted) return;
+  if (_abandonedTimer) clearTimeout(_abandonedTimer);
+  _abandonedTimer = setTimeout(_sendAbandoned, 10 * 1000); // TEST: 10 seconds
+}
+
+function _sendAbandoned() {
+  if (_abandonedSent || _orderSubmitted) return;
+  const phone = document.getElementById('phone').value.trim();
+  if (!phone) return; // not enough data — skip
+  _abandonedSent = true;
+  const payload = {
+    firstName: document.getElementById('firstName').value.trim(),
+    lastName:  document.getElementById('lastName').value.trim(),
+    phone,
+    address:   document.getElementById('address').value.trim(),
+    barangay:  document.getElementById('barangay').value.trim(),
+    city:      document.getElementById('city').value.trim(),
+    province:  document.getElementById('province').value.trim(),
+    landmark:  document.getElementById('landmark').value.trim(),
+    provinceId: document.getElementById('provinceId').value,
+    districtId: document.getElementById('districtId').value,
+    communeId:  document.getElementById('communeId').value,
+    packageName: document.getElementById('selectedPackage').value || 'bestie_pack',
+    utm_source:   sessionStorage.getItem('utm_source')   || '',
+    utm_medium:   sessionStorage.getItem('utm_medium')   || '',
+    utm_campaign: sessionStorage.getItem('utm_campaign') || '',
+    utm_term:     sessionStorage.getItem('utm_term')     || '',
+    utm_content:  sessionStorage.getItem('utm_content')  || '',
+    utm_id:       sessionStorage.getItem('utm_id')       || '',
+    landing_url:  sessionStorage.getItem('landing_url')  || window.location.href,
+  };
+  fetch('/api/abandoned-cart', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+    keepalive: true,
+  }).catch(() => {});
+}
+
 function startCountdown() {
   if (_cdEnd) return; // keep running across re-opens
   _cdEnd = Date.now() + 15 * 60 * 1000;
@@ -82,6 +127,7 @@ function openPopup(packageName) {
   document.getElementById('checkoutOverlay').classList.add('active');
   document.body.style.overflow = 'hidden';
   startCountdown();
+  _scheduleAbandonedCheck(); // reset 15-min window on each popup open
 
   // FB Pixel: InitiateCheckout
   if (typeof fbq !== 'undefined') {
@@ -141,6 +187,10 @@ async function submitOrder(e) {
 
     if (data.success) {
       const pkg = PACKAGES[payload.packageName] || PACKAGES['bestie_pack'];
+
+      // Cancel abandoned cart timer — order was placed
+      _orderSubmitted = true;
+      if (_abandonedTimer) clearTimeout(_abandonedTimer);
 
       // FB Pixel: Purchase is fired on thankyou.html (not here) to avoid duplicate events
 

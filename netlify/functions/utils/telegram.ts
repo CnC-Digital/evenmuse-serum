@@ -36,6 +36,69 @@ export interface TelegramOrderPayload {
   utmTerm?: string;
 }
 
+export interface TelegramAbandonedPayload {
+  firstName?: string;
+  lastName?: string;
+  phone: string;
+  address?: string;
+  barangay?: string;
+  city?: string;
+  province?: string;
+  landmark?: string;
+  packageName: string;
+  price: number;
+  landingUrl?: string;
+  utmSource?: string;
+  utmMedium?: string;
+  utmCampaign?: string;
+}
+
+export async function sendTelegramAbandonedNotification(order: TelegramAbandonedPayload): Promise<void> {
+  if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) {
+    throw new Error("[telegram] TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID env vars are required");
+  }
+
+  const fullName = [order.firstName, order.lastName].filter(Boolean).join(" ") || "Unknown";
+  const fullAddress = [order.address, order.barangay, order.city, order.province]
+    .filter(Boolean)
+    .join(", ") || "Not provided";
+
+  const surveyLabel = SURVEY_LABELS[order.packageName] ?? `₱${order.price}`;
+
+  const utmLine = [
+    order.utmSource   ? `utm_source=${order.utmSource}`     : null,
+    order.utmMedium   ? `utm_medium=${order.utmMedium}`     : null,
+    order.utmCampaign ? `utm_campaign=${order.utmCampaign}` : null,
+  ].filter(Boolean).join(" | ");
+
+  const text = [
+    `🚨 ABANDONED CART`,
+    ``,
+    `Nagfill-up pero di nagorder.`,
+    ``,
+    `phone_number: ${order.phone}`,
+    `full_name: ${fullName}`,
+    `address: ${fullAddress}${order.landmark ? `, ${order.landmark}` : ""}`,
+    `package: ${surveyLabel}`,
+    ``,
+    utmLine ? `UTM: ${utmLine}` : null,
+    order.landingUrl ? `Link: ${order.landingUrl}` : null,
+  ]
+    .filter((line) => line !== null)
+    .join("\n");
+
+  const res = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text }),
+  });
+
+  if (!res.ok) {
+    const err = await res.text();
+    throw new Error(`[telegram] abandoned sendMessage failed: ${res.status} ${err}`);
+  }
+}
+
 export async function sendTelegramOrderNotification(order: TelegramOrderPayload): Promise<void> {
   if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) {
     throw new Error("[telegram] TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID env vars are required");
