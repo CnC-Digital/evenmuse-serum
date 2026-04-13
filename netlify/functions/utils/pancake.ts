@@ -82,13 +82,14 @@ export async function createPancakeOrder(payload: PancakeOrderPayload): Promise<
     .join(", ");
 
   const fullName = `${payload.firstName} ${payload.lastName}`.trim();
+  const displayName = payload.abandoned ? `[ABANDONED] ${fullName}` : fullName;
 
   const body = {
     shop_id: Number(shopId),
-    bill_full_name: fullName,
+    bill_full_name: displayName,
     bill_phone_number: payload.phone,
     shipping_address: {
-      full_name: fullName,
+      full_name: displayName,
       phone_number: payload.phone,
       address: payload.address || "",
       full_address: fullAddress,
